@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
-
+`include "Pixel.v"
 `default_nettype none
 /*
  *-------------------------------------------------------------
@@ -35,12 +35,20 @@
  *-------------------------------------------------------------
  */
 
+/* Example project for the course Computer Architecture DIEE-UBB */
+
 module user_proj_example #(
     parameter BITS = 32
 )(
 `ifdef USE_POWER_PINS
+    inout vdda1,	// User area 1 3.3V supply
+    inout vdda2,	// User area 2 3.3V supply
+    inout vssa1,	// User area 1 analog ground
+    inout vssa2,	// User area 2 analog ground
     inout vccd1,	// User area 1 1.8V supply
+    inout vccd2,	// User area 2 1.8v supply
     inout vssd1,	// User area 1 digital ground
+    inout vssd2,	// User area 2 digital ground
 `endif
 
     // Wishbone Slave ports (WB MI A)
@@ -68,98 +76,184 @@ module user_proj_example #(
     // IRQ
     output [2:0] irq
 );
+
     wire clk;
     wire rst;
 
-    wire [`MPRJ_IO_PADS-1:0] io_in;
-    wire [`MPRJ_IO_PADS-1:0] io_out;
-    wire [`MPRJ_IO_PADS-1:0] io_oeb;
+    //------ MixPix regs
+    reg reg_pxl_start_i;
+    reg reg_pxl_done_i;
+    reg reg_loc_timer_m_i;
+    reg reg_adj_timer_m_i;
+    reg reg_data_in;
+    reg [9:0] reg_loc_max_clk; 
+    reg [9:0] reg_adj_max_clk;
+    
+    
+    //------ MixPix wires
+	wire  [3:0] wire_pxl_q, wire_data_sel;
+	wire  wire_loc_timer_en, wire_adj_timer_en;
 
-    wire [31:0] rdata; 
+    wire wire_s_p1, wire_s_p2, wire_s1, wire_s2, wire_s1_inv, wire_s2_inv;
+    wire wire_v_b0, wire_v_b1;
+    wire wire_pxl_done_o, wire_loc_timer_max;
+    wire wire_adj_timer_max;
+    wire wire_kernel_done_o;
+	wire [15:0] wire_data_out;  //
+
+    //------ MixPix wires interconnection to Caravel LA
+    assign wire_pxl_q = la_data_out[3:0];
+    assign wire_data_sel = la_data_out[6:3];
+    assign wire_loc_timer_en = la_data_out[7:6];
+    assign wire_adj_timer_en = la_data_out[8:7];
+    assign wire_s_p1 = la_data_out[9:8];
+    assign wire_s_p2 = la_data_out[10:9];
+    assign wire_s1 = la_data_out[11:10];
+    assign wire_s2 = la_data_out[12:11];
+    assign wire_s1_inv = la_data_out[13:12];
+    assign wire_s2_inv = la_data_out[14:13];
+    assign wire_v_b0 = la_data_out[15:14];
+    assign wire_v_b1 = la_data_out[16:15];
+    assign wire_pxl_done_o = la_data_out[17:16];
+    assign wire_loc_timer_max = la_data_out[18:17];
+    assign wire_adj_timer_max = la_data_out[19:18];
+    assign wire_kernel_done_o = la_data_out[20:19];
+    //wire_data_out trougth WB
+
+    //------ MixPix ADDRs table (WSB)
+    localparam PXL_START_I_ADDR = 0;
+    localparam PXL_DONE_I_ADDR = 4;
+    localparam LOC_TIMERM_I_ADDR = 8;
+    localparam ADJ_TIMER_M_I_ADDR = 12; 
+    localparam DATA_IN_ADDR = 16; 
+    localparam LOC_MAX_CLK_ADDR = 20;
+    localparam ADJ_MAX_CLK_ADDR = 24;
+    localparam DATA_OUT_ADDR = 28;
+
+    // ------ WB slave interface
+    reg         wbs_done;
+    reg  [31:0] rdata; 
     wire [31:0] wdata;
-    wire [BITS-1:0] count;
+    wire        valid;
+    wire [3:0]  wstrb;
+    wire        addr_valid;
 
-    wire valid;
-    wire [3:0] wstrb;
-    wire [31:0] la_write;
+    // wire [15:0] my_counter_out;
 
-    // WB MI A
+    // Wishbone
     assign valid = wbs_cyc_i && wbs_stb_i; 
     assign wstrb = wbs_sel_i & {4{wbs_we_i}};
-    assign wbs_dat_o = rdata;
-    assign wdata = wbs_dat_i;
+    assign wbs_dat_o = rdata; // out
+    assign wdata = wbs_dat_i; // in
+    assign addr_valid = (wbs_adr_i[31:28] == 3) ? 1 : 0;
+    assign wbs_ack_o  = wbs_done;
 
-    // IO
-    assign io_out = count;
-    assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
+    assign clk = wb_clk_i;
+    assign rst = wb_rst_i;
 
-    // IRQ
-    assign irq = 3'b000;	// Unused
+always@(posedge clk) begin
+		if(rst) begin
 
-    // LA
-    assign la_data_out = {{(127-BITS){1'b0}}, count};
-    // Assuming LA probes [63:32] are for controlling the count register  
-    assign la_write = ~la_oenb[63:32] & ~{BITS{valid}};
-    // Assuming LA probes [65:64] are for controlling the count clk & reset  
-    assign clk = (~la_oenb[64]) ? la_data_in[64]: wb_clk_i;
-    assign rst = (~la_oenb[65]) ? la_data_in[65]: wb_rst_i;
+            reg_pxl_start_i <= 0;
+            reg_pxl_done_i <= 0;
+            reg_loc_timer_m_i <= 0;
+            reg_adj_timer_m_i <= 0;
+            reg_data_in <= 0;
+            reg_loc_max_clk <= 0; 
+            reg_adj_max_clk <= 0;
 
-    counter #(
-        .BITS(BITS)
-    ) counter(
-        .clk(clk),
-        .reset(rst),
-        .ready(wbs_ack_o),
-        .valid(valid),
-        .rdata(rdata),
-        .wdata(wbs_dat_i),
-        .wstrb(wstrb),
-        .la_write(la_write),
-        .la_input(la_data_in[63:32]),
-        .count(count)
+            rdata <= 0; 
+            wbs_done <= 0;
+		end
+		else begin
+			wbs_done <= 0;
+
+            //WB SLAVE INTERFACE
+			if (valid && addr_valid)  begin  
+			    case(wbs_adr_i[7:0])  
+
+                    PXL_START_I_ADDR: begin
+                        if(wstrb[0])
+                            reg_pxl_start_i <= wdata[0];
+                    end
+
+                    PXL_DONE_I_ADDR: begin
+                        if(wstrb[0])
+                            reg_pxl_done_i <= wdata[0];
+                    end       
+
+                    LOC_TIMERM_I_ADDR: begin
+                        if(wstrb[0])
+                            reg_loc_timer_m_i <= wdata[0];
+                    end
+
+                    ADJ_TIMER_M_I_ADDR:  begin
+                        if(wstrb[0])
+                            reg_adj_timer_m_i <= wdata[0];
+                    end
+
+                    DATA_IN_ADDR: begin
+                        if(wstrb[0])
+                            reg_data_in <= wdata[0];
+                    end
+
+                    LOC_MAX_CLK_ADDR: begin
+                        if(wstrb[0])
+                            reg_loc_max_clk <= wdata[9:0];  
+                    end
+
+                    ADJ_MAX_CLK_ADDR: begin
+                        if(wstrb[0])
+                            reg_adj_max_clk <= wdata[9:0];  
+                    end
+
+                    DATA_OUT_ADDR:  begin	
+                        rdata <= wire_data_out;
+                    end
+
+                    default: ;
+
+				endcase
+
+ 			 wbs_done <= 1; 
+			
+      end
+    
+    end 
+
+ end
+
+
+
+// ------- CUSTOM MODULE INSTANTIATION ----- //
+pixel pixel_fsm0 (
+    .clk(clk),
+    .reset(rst),
+    .pxl_start_i(reg_pxl_start_i),
+    .loc_timer_m_i(reg_loc_timer_m_i),
+    .loc_timer_en(wire_loc_timer_en), 
+    .adj_timer_m_i(reg_adj_timer_m_i), 
+    .adj_timer_en(wire_adj_timer_en),
+    .s_p1(wire_s_p1),
+    .s_p2(wire_s_p2), 
+    .s1(wire_s1),
+    .s2(wire_s2),
+    .s1_inv(wire_s1_inv),
+    .s2_inv(wire_s2_inv),
+    .v_b1(wire_v_b1),
+    .v_b0(wire_v_b0), 
+    .pxl_done_o(wire_pxl_done_o),
+    .loc_timer_max(wire_loc_timer_max),
+    .loc_max_clk(reg_loc_max_clk), 
+    .adj_timer_max(wire_adj_timer_max),
+    .adj_max_clk(reg_adj_max_clk),
+    .pxl_done_i(reg_pxl_done_i), 
+    .pxl_q(wire_pxl_q),
+    .kernel_done_o(wire_kernel_done_o),
+    .data_in(reg_data_in), 
+    .data_sel(wire_data_sel),
+    .data_out(wire_data_out) 
     );
-
 endmodule
 
-module counter #(
-    parameter BITS = 32
-)(
-    input clk,
-    input reset,
-    input valid,
-    input [3:0] wstrb,
-    input [BITS-1:0] wdata,
-    input [BITS-1:0] la_write,
-    input [BITS-1:0] la_input,
-    output ready,
-    output [BITS-1:0] rdata,
-    output [BITS-1:0] count
-);
-    reg ready;
-    reg [BITS-1:0] count;
-    reg [BITS-1:0] rdata;
-
-    always @(posedge clk) begin
-        if (reset) begin
-            count <= 0;
-            ready <= 0;
-        end else begin
-            ready <= 1'b0;
-            if (~|la_write) begin
-                count <= count + 1;
-            end
-            if (valid && !ready) begin
-                ready <= 1'b1;
-                rdata <= count;
-                if (wstrb[0]) count[7:0]   <= wdata[7:0];
-                if (wstrb[1]) count[15:8]  <= wdata[15:8];
-                if (wstrb[2]) count[23:16] <= wdata[23:16];
-                if (wstrb[3]) count[31:24] <= wdata[31:24];
-            end else if (|la_write) begin
-                count <= la_write & la_input;
-            end
-        end
-    end
-
-endmodule
 `default_nettype wire

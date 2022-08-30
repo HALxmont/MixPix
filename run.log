@@ -1,0 +1,67 @@
+make -C openlane user_proj_example
+make[1]: Entering directory '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane'
+# user_proj_example
+mkdir -p ./user_proj_example/runs/22_08_30_16_36 
+rm -rf ./user_proj_example/runs/user_proj_example
+ln -s $(realpath ./user_proj_example/runs/22_08_30_16_36) ./user_proj_example/runs/user_proj_example
+docker run -it -v $(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..):$(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..) -v /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks:/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -v /home/mxmont/Documents/software/OpenHardware/caravel:/home/mxmont/Documents/software/OpenHardware/caravel -v /home/mxmont/Documents/software/OpenHardware/openlane:/openlane -e PDK_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -e PDK=sky130B -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/home/mxmont/Documents/software/OpenHardware/caravel -e OPENLANE_RUN_TAG=22_08_30_16_36 -u 1000:1000 \
+	efabless/openlane:2022.07.02_01.38.08 sh -c "flow.tcl -design $(realpath ./user_proj_example) -save_path $(realpath ..) -save -tag 22_08_30_16_36 -overwrite"
+OpenLane 47c9f22168fff853cb39fa94d6496ede45d9254f
+All rights reserved. (c) 2020-2022 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[36m[INFO]: Using design configuration at /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/config.tcl[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/config.tcl[39m
+[36m[INFO]: PDKs root directory: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks[39m
+[36m[INFO]: PDK: sky130B[39m
+[36m[INFO]: Setting PDKPATH to /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks/sky130B[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library is set to: sky130_fd_sc_hd[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/config.tcl[39m
+[33m[WARNING]: Removing existing run at /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36...[39m
+[36m[INFO]: Current run directory is /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[31m[ERROR]: The version of magic used in building the PDK does not match the version OpenLane was tested on (installed: fe2eb6d3906ed15ade0e7a51daea80dd4e3846e2, tested: a205a0e9419f973346740171618956afe08b2d74)
+This may introduce some issues. You may want to re-install the PDK by invoking `make pdk`.
+Tool drcu is required by the flow scripts being used, but appears to not be installed in the environment.
+Tool cugr is required by the flow scripts being used, but appears to not be installed in the environment.
+The version of openroad_app installed in the environment does not match the one required by the OpenLane flow scripts (installed: 0b8b7ae255f8fbbbefa57d443949b84e73eed757, expected: c1c315118e68926dfff368f85e13bf50adaa920f)[39m
+[31m[ERROR]: Please update your environment. OpenLane will now quit.[39m
+[36m[INFO]: Generating final set of reports...[39m
+[31m[ERROR]: during executing: "openroad -python /openlane/scripts/generate_reports.py -d /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example --design_name user_proj_example --tag 22_08_30_16_36 --output_file /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36/reports/metrics.csv --man_report /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36/reports/manufacturability.rpt --run_path /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36"[39m
+[31m[ERROR]: Exit code: 1[39m
+[31m[ERROR]: Last 10 lines:
+OpenROAD 0b8b7ae255f8fbbbefa57d443949b84e73eed757 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Traceback (most recent call last):
+  File "/openlane/scripts/generate_reports.py", line 20, in <module>
+    import utils.utils as utils
+  File "/openlane/scripts/utils/utils.py", line 18, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+[39m
+[36m[INFO]: Created manufacturability report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36/reports/manufacturability.rpt'.[39m
+[36m[INFO]: Created metrics report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_proj_example/runs/22_08_30_16_36/reports/metrics.csv'.[39m
+[36m[INFO]: Saving runtime environment...[39m
+[31m[ERROR]: Flow failed.[39m
+
+    while executing
+"flow_fail"
+    invoked from within
+"if [catch {exec python3 $::env(OPENLANE_ROOT)/dependencies/verify_versions.py} ::env(VCHECK_OUTPUT)] {
+        if { $::env(QUIT_ON_MISMATCHES) == "1" ..."
+    (procedure "prep" line 396)
+    invoked from within
+"prep {*}$args"
+    (procedure "run_non_interactive_mode" line 11)
+    invoked from within
+"run_non_interactive_mode {*}$argv"
+    invoked from within
+"if { [info exists flags_map(-interactive)] || [info exists flags_map(-it)] } {
+	if { [info exists arg_values(-file)] } {
+		run_file [file normalize $a..."
+    (file "/openlane/flow.tcl" line 427)
+make[1]: Leaving directory '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane'
