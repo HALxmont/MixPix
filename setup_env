@@ -2,3 +2,6 @@ export OPENLANE_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WR
 export PDK_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks
 export PDK=sky130B
 export CARAVEL_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/caravel/
+export MIXPIX=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/
+
+alias res_wrapper="cd ~/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_project_wrapper/runs/user_project_wrapper"

@@ -38,6 +38,11 @@ set ::env(FP_PIN_ORDER_CFG) $script_dir/../../openlane/pixel/pin_order.cfg
 set ::env(PL_BASIC_PLACEMENT) 0
 set ::env(PL_TARGET_DENSITY) 0.5
 
+
+set ::env(FP_PDN_MACRO_HOOKS) "\
+	pixel_macro vccd1 vssd1 vccd1 vssd1"
+
+
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
 # where the PDN is planned on metal 5. So, to avoid having shorts between routes
@@ -52,5 +57,8 @@ set ::env(GND_NETS) [list {vssd1}]
 set ::env(DIODE_INSERTION_STRATEGY) 4 
 # If you're going to use multiple power domains, then disable cvc run.
 set ::env(RUN_CVC) 1
+
+
+
 
 

@@ -46,7 +46,7 @@ set ::env(CLOCK_PERIOD) "10"
 ## Internal Macros
 ### Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-	pixel_macro0 vccd1 vssd1 vccd1 vssd1\
+	pixel_macro0 vccd1 vssd1 vccd1 vssd1, \
 	rlbp_macro0 vccd1 vssd1 vccd1 vssd1"
 
 ### Macro Placement
@@ -71,6 +71,8 @@ set ::env(EXTRA_GDS_FILES) "\
 set ::env(RT_MAX_LAYER) {met4}
 
 
+
+
 # disable pdn check nodes becuase it hangs with multiple power domains.
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
 set ::env(FP_PDN_CHECK_NODES) 0
@@ -91,4 +93,9 @@ set ::env(FILL_INSERTION) 0
 set ::env(TAP_DECAP_INSERTION) 0
 set ::env(CLOCK_TREE_SYNTH) 0
 
+
+
+##custom configurations
+
+set ::env(DRT_OPT_ITERS) 64
 

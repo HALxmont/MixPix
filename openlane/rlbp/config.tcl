@@ -38,6 +38,10 @@ set ::env(FP_PIN_ORDER_CFG) $script_dir/../../openlane/rlbp/pin_order.cfg
 set ::env(PL_BASIC_PLACEMENT) 0
 set ::env(PL_TARGET_DENSITY) 0.5
 
+set ::env(FP_PDN_MACRO_HOOKS) "\
+	rlbp_macro vccd1 vssd1 vccd1 vssd1"
+
+
 # Maximums layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
 # where the PDN is planned on metal 5. So, to avoid having shorts between routes
