@@ -1,0 +1,4 @@
+export OPENLANE_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/openlane_src
+export PDK_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks
+export PDK=sky130B
+export CARAVEL_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/caravel/

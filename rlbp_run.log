@@ -1,0 +1,79 @@
+make -C openlane rlbp
+make[1]: Entering directory '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane'
+# rlbp
+mkdir -p ./rlbp/runs/22_09_02_15_16 
+rm -rf ./rlbp/runs/rlbp
+ln -s $(realpath ./rlbp/runs/22_09_02_15_16) ./rlbp/runs/rlbp
+docker run -it -v $(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..):$(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..) -v /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks:/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -v /home/mxmont/Documents/software/OpenHardware/caravel:/home/mxmont/Documents/software/OpenHardware/caravel -v /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/openlane_src:/openlane -e PDK_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -e PDK=sky130B -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/home/mxmont/Documents/software/OpenHardware/caravel -e OPENLANE_RUN_TAG=22_09_02_15_16 -u 1000:1000 \
+	efabless/openlane:2022.07.02_01.38.08 sh -c "flow.tcl -design $(realpath ./rlbp) -save_path $(realpath ..) -save -tag 22_09_02_15_16 -overwrite"
+OpenLane f9b5781f5ef0bbdf39ab1c2bbd78be8db11b27f2
+All rights reserved. (c) 2020-2022 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[36m[INFO]: Using design configuration at /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/config.tcl[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/config.tcl[39m
+[36m[INFO]: PDKs root directory: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks[39m
+[36m[INFO]: PDK: sky130B[39m
+[36m[INFO]: Setting PDKPATH to /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks/sky130B[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library is set to: sky130_fd_sc_hd[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/config.tcl[39m
+[36m[INFO]: Run Directory: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_09_02_15_16[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[STEP 1]
+[36m[INFO]: Running Synthesis...[39m
+[STEP 2]
+[36m[INFO]: Running Single-Corner Static Timing Analysis...[39m
+^C[31m[ERROR]: during executing openroad script /openlane/scripts/openroad/sta.tcl[39m
+[31m[ERROR]: Exit code: 1[39m
+[31m[ERROR]: full log: ../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_09_02_15_16/logs/synthesis/2-sta.log[39m
+[31m[ERROR]: Last 10 lines:
+child killed: interrupt
+child process exited abnormally
+[39m
+[36m[INFO]: Saving runtime environment...[39m
+[36m[INFO]: Creating reproducible...[39m
+OpenLane TCL Issue Packager
+
+EFABLESS CORPORATION AND ALL AUTHORS OF THE OPENLANE PROJECT SHALL NOT BE HELD
+LIABLE FOR ANY LEAKS THAT MAY OCCUR TO ANY PROPRIETARY DATA AS A RESULT OF USING
+THIS SCRIPT. THIS SCRIPT IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND.
+
+BY USING THIS SCRIPT, YOU ACKNOWLEDGE THAT YOU FULLY UNDERSTAND THIS DISCLAIMER
+AND ALL IT ENTAILS.
+
+[ERR] 0 not found.
+[31m[ERROR]: Failed to package reproducible.[39m
+[36m[INFO]: Saving current set of views in '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_09_02_15_16/results/final'...[39m
+[36m[INFO]: Generating final set of reports...[39m
+[36m[INFO]: Created manufacturability report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_09_02_15_16/reports/manufacturability.rpt'.[39m
+[36m[INFO]: Created metrics report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_09_02_15_16/reports/metrics.csv'.[39m
+[36m[INFO]: Saving runtime environment...[39m
+[31m[ERROR]: Flow failed.[39m
+
+    while executing
+"flow_fail"
+    (procedure "run_tcl_script" line 77)
+    invoked from within
+"run_tcl_script -tool openroad -no_consume {*}$args"
+    (procedure "run_openroad_script" line 2)
+    invoked from within
+"run_openroad_script $::env(SCRIPTS_DIR)/openroad/sta.tcl  -indexed_log $log"
+    (procedure "run_sta" line 40)
+    invoked from within
+"run_sta -pre_cts -log $::env(synthesis_logs)/sta.log"
+    (procedure "run_synthesis" line 16)
+    invoked from within
+"[lindex $step_exe 0] [lindex $step_exe 1] "
+    (procedure "run_non_interactive_mode" line 57)
+    invoked from within
+"run_non_interactive_mode {*}$argv"
+    invoked from within
+"if { [info exists flags_map(-interactive)] || [info exists flags_map(-it)] } {
+    if { [info exists arg_values(-file)] } {
+        run_file [file nor..."
+    (file "/openlane/flow.tcl" line 389)
+

@@ -1,0 +1,133 @@
+make -C openlane pixel
+make[1]: Entering directory '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane'
+# pixel
+mkdir -p ./pixel/runs/22_09_02_16_15 
+rm -rf ./pixel/runs/pixel
+ln -s $(realpath ./pixel/runs/22_09_02_16_15) ./pixel/runs/pixel
+docker run -it -v $(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..):$(realpath /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/..) -v /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks:/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -v /home/mxmont/Documents/software/OpenHardware/caravel:/home/mxmont/Documents/software/OpenHardware/caravel -v /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/openlane_src:/openlane -e PDK_ROOT=/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks -e PDK=sky130B -e MISMATCHES_OK=1 -e CARAVEL_ROOT=/home/mxmont/Documents/software/OpenHardware/caravel -e OPENLANE_RUN_TAG=22_09_02_16_15 -u 1000:1000 \
+	efabless/openlane:2022.07.02_01.38.08 sh -c "flow.tcl -design $(realpath ./pixel) -save_path $(realpath ..) -save -tag 22_09_02_16_15 -overwrite"
+OpenLane f9b5781f5ef0bbdf39ab1c2bbd78be8db11b27f2
+All rights reserved. (c) 2020-2022 Efabless Corporation and contributors.
+Available under the Apache License, version 2.0. See the LICENSE file for more details.
+
+[36m[INFO]: Using design configuration at /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/config.tcl[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/config.tcl[39m
+[36m[INFO]: PDKs root directory: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks[39m
+[36m[INFO]: PDK: sky130B[39m
+[36m[INFO]: Setting PDKPATH to /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks/sky130B[39m
+[36m[INFO]: Standard Cell Library: sky130_fd_sc_hd[39m
+[36m[INFO]: Optimization Standard Cell Library is set to: sky130_fd_sc_hd[39m
+[36m[INFO]: Sourcing Configurations from /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/config.tcl[39m
+[36m[INFO]: Run Directory: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15[39m
+[36m[INFO]: Preparing LEF files for the nom corner...[39m
+[36m[INFO]: Preparing LEF files for the min corner...[39m
+[36m[INFO]: Preparing LEF files for the max corner...[39m
+[STEP 1]
+[36m[INFO]: Running Synthesis...[39m
+[STEP 2]
+[36m[INFO]: Running Single-Corner Static Timing Analysis...[39m
+[STEP 3]
+[36m[INFO]: Running Initial Floorplanning...[39m
+[33m[WARNING]: Current core area is too small for a power grid. The power grid will be minimized.[39m
+[36m[INFO]: Extracting core dimensions...[39m
+[36m[INFO]: Set CORE_WIDTH to 188.6, CORE_HEIGHT to 157.76.[39m
+[STEP 4]
+[36m[INFO]: Running IO Placement...[39m
+[STEP 5]
+[36m[INFO]: Running Tap/Decap Insertion...[39m
+[36m[INFO]: Power planning with power {vccd1} and ground {vssd1}...[39m
+[STEP 6]
+[36m[INFO]: Generating PDN...[39m
+[STEP 7]
+[36m[INFO]: Running Global Placement...[39m
+[STEP 8]
+[36m[INFO]: Running Placement Resizer Design Optimizations...[39m
+[STEP 9]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 10]
+[36m[INFO]: Running Detailed Placement...[39m
+[STEP 11]
+[36m[INFO]: Running Clock Tree Synthesis...[39m
+[STEP 12]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 13]
+[36m[INFO]: Running Placement Resizer Timing Optimizations...[39m
+[STEP 14]
+[36m[INFO]: Writing Verilog...[39m
+[36m[INFO]: Routing...[39m
+[STEP 15]
+[36m[INFO]: Running Global Routing Resizer Timing Optimizations...[39m
+[STEP 16]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 17]
+[36m[INFO]: Running Diode Insertion...[39m
+[STEP 18]
+[36m[INFO]: Running Detailed Placement...[39m
+[STEP 19]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 20]
+[36m[INFO]: Running Fill Insertion...[39m
+[STEP 21]
+[36m[INFO]: Running Global Routing...[39m
+[STEP 22]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 23]
+[36m[INFO]: Running Detailed Routing...[39m
+[36m[INFO]: No DRC violations after detailed routing.[39m
+[STEP 24]
+[36m[INFO]: Writing Verilog...[39m
+[36m[INFO]: Running parasitics-based static timing analysis...[39m
+[STEP 25]
+[36m[INFO]: Running SPEF Extraction at the min process corner...[39m
+[STEP 26]
+[36m[INFO]: Running Multi-Corner Static Timing Analysis at the min process corner...[39m
+[STEP 27]
+[36m[INFO]: Running SPEF Extraction at the max process corner...[39m
+[STEP 28]
+[36m[INFO]: Running Multi-Corner Static Timing Analysis at the max process corner...[39m
+[STEP 29]
+[36m[INFO]: Running SPEF Extraction at the nom process corner...[39m
+[STEP 30]
+[36m[INFO]: Running Single-Corner Static Timing Analysis at the nom process corner...[39m
+[STEP 31]
+[36m[INFO]: Running Multi-Corner Static Timing Analysis at the nom process corner...[39m
+[STEP 32]
+[36m[INFO]: Running Magic to generate various views...[39m
+[36m[INFO]: Streaming out GDS-II with Magic...[39m
+[36m[INFO]: Generating MAGLEF views...[39m
+[STEP 33]
+[36m[INFO]: Streaming out GDS-II with Klayout...[39m
+[STEP 34]
+[36m[INFO]: Running XOR on the layouts using Klayout...[39m
+[STEP 35]
+[36m[INFO]: Running Magic Spice Export from LEF...[39m
+[STEP 36]
+[36m[INFO]: Writing Powered Verilog...[39m
+[STEP 37]
+[36m[INFO]: Writing Verilog...[39m
+[STEP 38]
+[36m[INFO]: Running LEF LVS...[39m
+[STEP 39]
+[36m[INFO]: Running Magic DRC...[39m
+[36m[INFO]: Converting Magic DRC Violations to Magic Readable Format...[39m
+[36m[INFO]: Converting Magic DRC Violations to Klayout XML Database...[39m
+[36m[INFO]: No DRC violations after GDS streaming out.[39m
+[STEP 40]
+[36m[INFO]: Running OpenROAD Antenna Rule Checker...[39m
+[33m[WARNING]: This PDK does not support cvc, skipping...[39m
+[36m[INFO]: Saving current set of views in '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15/results/final'...[39m
+[36m[INFO]: Saving current set of views in '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix'...[39m
+[36m[INFO]: Saving runtime environment...[39m
+[36m[INFO]: Generating final set of reports...[39m
+[36m[INFO]: Created manufacturability report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15/reports/manufacturability.rpt'.[39m
+[36m[INFO]: Created metrics report at '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15/reports/metrics.csv'.[39m
+[33m[WARNING]: There are max fanout violations in the design at the typical corner. Please refer to '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15/reports/signoff/30-rcx_sta.slew.rpt'.[39m
+[36m[INFO]: There are no hold violations in the design at the typical corner.[39m
+[36m[INFO]: There are no setup violations in the design at the typical corner.[39m
+[32m[SUCCESS]: Flow complete.[39m
+[36m[INFO]: Note that the following warnings have been generated:[39m
+[WARNING]: Current core area is too small for a power grid. The power grid will be minimized.
+[WARNING]: This PDK does not support cvc, skipping...
+[WARNING]: There are max fanout violations in the design at the typical corner. Please refer to '../home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_09_02_16_15/reports/signoff/30-rcx_sta.slew.rpt'.
+
+make[1]: Leaving directory '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane'

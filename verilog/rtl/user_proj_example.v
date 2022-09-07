@@ -41,14 +41,8 @@ module user_proj_example #(
     parameter BITS = 32
 )(
 `ifdef USE_POWER_PINS
-    inout vdda1,	// User area 1 3.3V supply
-    inout vdda2,	// User area 2 3.3V supply
-    inout vssa1,	// User area 1 analog ground
-    inout vssa2,	// User area 2 analog ground
     inout vccd1,	// User area 1 1.8V supply
-    inout vccd2,	// User area 2 1.8v supply
     inout vssd1,	// User area 1 digital ground
-    inout vssd2,	// User area 2 digital ground
 `endif
 
     // Wishbone Slave ports (WB MI A)
@@ -91,6 +85,9 @@ module user_proj_example #(
     
     
     //------ MixPix wires
+
+
+   //#MUX-FSM CONTROLLER PINS
 	wire  [3:0] wire_pxl_q, wire_data_sel;
 	wire  wire_loc_timer_en, wire_adj_timer_en;
 
@@ -100,6 +97,10 @@ module user_proj_example #(
     wire wire_adj_timer_max;
     wire wire_kernel_done_o;
 	wire [15:0] wire_data_out;  //
+
+  //RLBP WIRES
+
+
 
     //------ MixPix wires interconnection to Caravel LA
     assign wire_pxl_q = la_data_out[3:0];
