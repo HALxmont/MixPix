@@ -31,16 +31,17 @@ set ::env(CLOCK_NET) "wb_clk_i"
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 300 50"
+set ::env(DIE_AREA) "0 0 350 300"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/../../openlane/rlbp/pin_order.cfg
 
 set ::env(PL_BASIC_PLACEMENT) 0
-set ::env(PL_TARGET_DENSITY) 0.5
+set ::env(PL_TARGET_DENSITY) 0.4
 
 set ::env(FP_PDN_MACRO_HOOKS) "\
 	rlbp_macro vccd1 vssd1 vccd1 vssd1"
 
+#set ::env(FP_PDN_ENABLE_RAILS) 1
 
 # Maximums layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 

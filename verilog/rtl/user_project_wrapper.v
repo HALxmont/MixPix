@@ -83,6 +83,7 @@ module user_project_wrapper #(
 //#######################################################
 //#     User macros/projects ares instantiated  here    #
 //#######################################################
+
 pixel_macro pixel_macro0 (
 
 `ifdef USE_POWER_PINS
