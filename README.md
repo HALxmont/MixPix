@@ -5,7 +5,7 @@
 
 
 
-## Register Map of the Digital Macros 
+## Register map of the digital macros 
 
 ### Pixel FSM
 
