@@ -1,11 +1,10 @@
-** sch_path: /home/icarosix/asic/analog/MixPix/analog/xschem/Diode_Dtemp_tb.sch
-**.subckt Diode_Dtemp_tb
-.model 1N914 D(Is=2.52n N=1.752 Rs=.568 Cjo=4p M=.4 tt=20n )
+** sch_path: /home/icarosix/asic/analog/MixPix/analog/xschem/Diode_Dtemp_PDK_tb.sch
+**.subckt Diode_Dtemp_PDK_tb
 V2 net1 GND 0
 V1 net2 GND 0
 V3 net3 GND 0
-D1 net1 net3 1N914 area=1e-3 dtemp=10
-D2 net1 net2 1N914 area=1e-3
+D1 net1 net3 sky130_fd_pr__diode_pw2nd_05v5 area=1e+17 dtemp=5
+D2 net1 net2 sky130_fd_pr__diode_pw2nd_05v5 area=1e+17
 **** begin user architecture code
 
 
@@ -20,7 +19,7 @@ set color2=blue
 set color3=red
 
 save all
-dc V2 -5 0 100u
+dc V2 -22 0 100u
 
 plot I(V1) I(V3)
 
@@ -32,7 +31,7 @@ hardcopy Inverse.svg I(V1) I(V3)
 
 
 *.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
-*.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .option wnflag=1
 
 **** end user architecture code

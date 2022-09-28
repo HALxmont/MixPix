@@ -20,7 +20,8 @@ N 1210 -450 1210 -420 {
 lab=#net1}
 N 1210 -370 1210 -360 {
 lab=#net2}
-N 800 -330 800 -300 {}
+N 800 -330 800 -300 {
+lab=GND}
 C {devices/code_shown.sym} 458.75 -561.875 0 0 {name=NGSPICE
 only_toplevel=true
 value="
@@ -64,5 +65,11 @@ C {devices/gnd.sym} 1030 -300 0 0 {name=l1 lab=GND}
 C {devices/vsource.sym} 1210 -330 0 0 {name=V1 value=0}
 C {devices/vsource.sym} 1030 -330 0 0 {name=V3 value=0}
 C {devices/gnd.sym} 1210 -300 0 0 {name=l2 lab=GND}
-C {devices/diode.sym} 1030 -390 0 0 {name=D1 model=D1N914 area=1}
-C {devices/diode.sym} 1210 -400 0 0 {name=D2 model=D1N914 area=1}
+C {sky130_fd_pr/diode.sym} 1030 -390 2 0 {name=D1
+model=diode_pw2nd_05v5
+area=1e12
+}
+C {sky130_fd_pr/diode.sym} 1210 -390 2 0 {name=D2
+model=diode_pw2nd_05v5
+area=1e12
+}
