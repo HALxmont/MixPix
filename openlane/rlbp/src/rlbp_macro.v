@@ -54,18 +54,8 @@ module rlbp_macro #(
     wire rst;
 
 
-    //---------RLBP Regs
-    reg reg_ce_d1;
-    reg reg_ce_d2;
-    reg reg_ce_d3;
-    reg reg_gpio_start;
-    reg reg_logic_analyzer_start;
-    reg reg_data_in;
-
-    reg [1:0] reg_data_sel; 
-    reg [3:0] reg_d;
-
-
+    //---------RLBP control register
+    reg [11:0] control_reg_rlbp_fsm;
 
     //------ RLBP wires
 
@@ -75,7 +65,14 @@ module rlbp_macro #(
     wire [3:0] wire_data_out;
     wire [1:0] wire_control_signals;
 
-
+    wire wire_ce_d1;
+    wire wire_ce_d2;
+    wire wire_ce_d3;
+    wire wire_gpio_start;
+    wire wire_logic_analyzer_start;
+    wire wire_data_in;
+    wire [1:0] wire_data_sel; 
+    wire [3:0] wire_d;
 
 
     //------ RLBP wires interconnection to Caravel LA
@@ -91,20 +88,17 @@ module rlbp_macro #(
     assign wire_q3_2 = la_data_out[31];
     assign wire_q3_1 = la_data_out[32];
     assign wire_control_signals = la_data_out[36:33];
-    //wire_data_out trougth WB
+    
+     //------ RLBP wires interconnection to RLBP control register
+    assign wire_ce_d1 = control_reg_rlbp_fsm[0];
+    assign wire_ce_d2 = control_reg_rlbp_fsm[1];
+    assign wire_ce_d3 = control_reg_rlbp_fsm[2];
+    assign wire_gpio_start = control_reg_rlbp_fsm[3];
+    assign wire_logic_analyzer_start = control_reg_rlbp_fsm[4];
+    assign wire_data_in = control_reg_rlbp_fsm[5];
+    assign wire_data_sel = control_reg_rlbp_fsm[7:6]; 
+    assign wire_d = control_reg_rlbp_fsm[11:8];
 
-
-    //------ RLBP ADDRs table (WSB)
-
-    localparam REG_CE_D1= 32;
-    localparam REG_CE_D2 = 36;
-    localparam REG_CE_D3 = 40;
-    localparam GPIO_START = 44;
-    localparam LOGIC_ANALYZER_START = 48;
-    localparam DATA_IN = 52;
-    localparam REG_DATA_SEL = 54;
-    localparam REG_D = 58;
-    localparam DATA_OUT_ADDR = 62;
 
     // ------ WB slave interface
     reg         wbs_done;
@@ -129,79 +123,24 @@ module rlbp_macro #(
 always@(posedge clk) begin
 		if(rst) begin
 
-            reg_ce_d1 <= 0;
-            reg_ce_d2 <= 0;
-            reg_ce_d3 <= 0;
-            reg_gpio_start <= 0;
-            reg_logic_analyzer_start <= 0;
-            reg_data_in <= 0; 
-            reg_data_sel <= 0;
-            reg_d <= 0;
-
+            control_reg_rlbp_fsm <= 0;
             rdata <= 0; 
             wbs_done <= 0;
 		end
-		else begin
+
+    	else begin
 			wbs_done <= 0;
 
             //WB SLAVE INTERFACE
-			if (valid && addr_valid)  begin  
-			    case(wbs_adr_i[7:0])  
+			if (valid && addr_valid) begin  
+                rdata <= {{20{1'b0}}, control_reg_rlbp_fsm};  //fill 32 bits
 
-                    REG_CE_D1: begin
-                        if(wstrb[0])
-                            reg_ce_d1 <= wdata[0];
-                    end
-
-                    REG_CE_D2: begin
-                        if(wstrb[0])
-                            reg_ce_d2 <= wdata[0];
-                    end       
-
-                    REG_CE_D3: begin
-                        if(wstrb[0])
-                            reg_ce_d3 <= wdata[0];
-                    end
-
-                    GPIO_START:  begin
-                        if(wstrb[0])
-                            reg_gpio_start <= wdata[0];
-                    end
-
-                    LOGIC_ANALYZER_START: begin
-                        if(wstrb[0])
-                            reg_logic_analyzer_start <= wdata[0];
-                    end
-
-                    DATA_IN: begin
-                        if(wstrb[0])
-                            reg_data_in <= wdata[9:0];  
-                    end
-
-                    REG_DATA_SEL: begin
-                        if(wstrb[0])
-                            reg_data_sel <= wdata[1:0];  
-                    end
-
-                    REG_D:  begin	
-                        if(wstrb[0])
-                            reg_d <= wdata[3:0];  
-                    end
-
-                    DATA_OUT_ADDR: begin 
-                        rdata <= wire_data_out;
-                    end
-
-                    default: ;
-
-				endcase
-
- 			 wbs_done <= 1; 	
-      end
-    
-    end 
-
- end
+                if(wstrb[0]) begin
+                    control_reg_rlbp_fsm <= wdata[11:0];
+                end
+            end	
+        end
+end 
 
 
 
@@ -209,19 +148,19 @@ always@(posedge clk) begin
 
 rlbp rlbp_inst0 (
     .clk(clk),
-    .ce_d1(reg_ce_d1),
-    .ce_d2(reg_ce_d2),
-    .ce_d3(reg_ce_d3),
+    .ce_d1(wire_ce_d1),
+    .ce_d2(wire_ce_d2),
+    .ce_d3(wire_ce_d3),
     .reset(rst),
     .reset_fsm(wire_reset_fsm),
-    .gpio_start(reg_gpio_start),
-    .logic_analyzer_start(reg_logic_analyzer_start),
+    .gpio_start(wire_gpio_start),
+    .logic_analyzer_start(wire_logic_analyzer_start),
     .control_signals(wire_control_signals),
     .rlbp_done(wire_rlbp_done),
-    .data_in(reg_data_in),
-    .data_sel(reg_data_sel),
+    .data_in(wire_data_in),
+    .data_sel(wire_data_sel),
     .data_out(wire_data_out),
-    .d(reg_d),
+    .d(wire_d),
     .q1_3(wire_q1_3),
     .q1_2(wire_q1_2),
     .q1_1(wire_q1_1),
