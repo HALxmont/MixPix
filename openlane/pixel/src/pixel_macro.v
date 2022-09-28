@@ -53,35 +53,33 @@ module pixel_macro #(
     wire clk;
     wire rst;
 
-    //------ MixPix regs
-    reg reg_pxl_start_i;
-    reg reg_pxl_done_i;
-    reg reg_loc_timer_m_i;
-    reg reg_adj_timer_m_i;
-    reg reg_data_in;
-    reg [9:0] reg_loc_max_clk; 
-    reg [9:0] reg_adj_max_clk;
+    //------ Pixel FSM control reg
+    reg [24:0] control_reg_pxl_fsm;
     
     
-    //------ MixPix wires
+    //------ Pixel FSM wires
 
-
-   //#MUX-FSM CONTROLLER PINS
 	wire  [3:0] wire_pxl_q, wire_data_sel;
 	wire  wire_loc_timer_en, wire_adj_timer_en;
-
     wire wire_s_p1, wire_s_p2, wire_s1, wire_s2, wire_s1_inv, wire_s2_inv;
     wire wire_v_b0, wire_v_b1;
     wire wire_pxl_done_o, wire_loc_timer_max;
     wire wire_adj_timer_max;
     wire wire_kernel_done_o;
-	wire [15:0] wire_data_out;  //
+	wire [15:0] wire_data_out;  
 
-  //RLBP WIRES
+    wire wire_pxl_start_i;
+    wire wire_pxl_done_i;
+    wire wire_loc_timer_m_i;
+    wire wire_adj_timer_m_i;
+    wire wire_data_in;
+    wire [9:0] wire_loc_max_clk; 
+    wire [9:0] wire_adj_max_clk;
 
 
 
-    //------ MixPix wires interconnection to Caravel LA
+
+    //------ PIXEL FSM wires interconnection to Caravel LA
     assign wire_pxl_q = la_data_out[3:0];
     assign wire_data_sel = la_data_out[7:4];
     assign wire_loc_timer_en = la_data_out[8];
@@ -98,18 +96,18 @@ module pixel_macro #(
     assign wire_loc_timer_max = la_data_out[19];
     assign wire_adj_timer_max = la_data_out[20];
     assign wire_kernel_done_o = la_data_out[21];
-    //wire_data_out trougth WB
 
-    //------ MixPix ADDRs table (WSB)
-    localparam PXL_START_I_ADDR = 0;
-    localparam PXL_DONE_I_ADDR = 4;
-    localparam LOC_TIMERM_I_ADDR = 8;
-    localparam ADJ_TIMER_M_I_ADDR = 12; 
-    localparam DATA_IN_ADDR = 16; 
-    localparam LOC_MAX_CLK_ADDR = 20;
-    localparam ADJ_MAX_CLK_ADDR = 24;
-    localparam DATA_OUT_ADDR = 28;
+  //------ PIXEL FSM wires interconnection to control register
+    assign wire_pxl_start_i = control_reg_pxl_fsm[0];
+    assign wire_pxl_done_i = control_reg_pxl_fsm[1];
+    assign wire_loc_timer_m_i = control_reg_pxl_fsm[2];
+    assign wire_adj_timer_m_i = control_reg_pxl_fsm[3];
+    assign wire_data_in = control_reg_pxl_fsm[4];
+    assign wire_loc_max_clk = control_reg_pxl_fsm[14:5];
+    assign wire_adj_max_clk = control_reg_pxl_fsm[24:15];
 
+    
+ 
     // ------ WB slave interface
     reg         wbs_done;
     reg  [31:0] rdata; 
@@ -118,7 +116,7 @@ module pixel_macro #(
     wire [3:0]  wstrb;
     wire        addr_valid;
 
-    // wire [15:0] my_counter_out;
+  
 
     // Wishbone
     assign valid = wbs_cyc_i && wbs_stb_i; 
@@ -133,75 +131,24 @@ module pixel_macro #(
 
 always@(posedge clk) begin
 		if(rst) begin
-
-            reg_pxl_start_i <= 0;
-            reg_pxl_done_i <= 0;
-            reg_loc_timer_m_i <= 0;
-            reg_adj_timer_m_i <= 0;
-            reg_data_in <= 0;
-            reg_loc_max_clk <= 0; 
-            reg_adj_max_clk <= 0;
-
+            control_reg_pxl_fsm <= 0;
             rdata <= 0; 
             wbs_done <= 0;
 		end
+
 		else begin
 			wbs_done <= 0;
 
             //WB SLAVE INTERFACE
-			if (valid && addr_valid)  begin  
-			    case(wbs_adr_i[7:0])  
+			if (valid && addr_valid) begin  
+                rdata <= {{7{1'b0}}, control_reg_pxl_fsm};  //fill 32 bits
 
-                    PXL_START_I_ADDR: begin
-                        if(wstrb[0])
-                            reg_pxl_start_i <= wdata[0];
-                    end
-
-                    PXL_DONE_I_ADDR: begin
-                        if(wstrb[0])
-                            reg_pxl_done_i <= wdata[0];
-                    end       
-
-                    LOC_TIMERM_I_ADDR: begin
-                        if(wstrb[0])
-                            reg_loc_timer_m_i <= wdata[0];
-                    end
-
-                    ADJ_TIMER_M_I_ADDR:  begin
-                        if(wstrb[0])
-                            reg_adj_timer_m_i <= wdata[0];
-                    end
-
-                    DATA_IN_ADDR: begin
-                        if(wstrb[0])
-                            reg_data_in <= wdata[0];
-                    end
-
-                    LOC_MAX_CLK_ADDR: begin
-                        if(wstrb[0])
-                            reg_loc_max_clk <= wdata[9:0];  
-                    end
-
-                    ADJ_MAX_CLK_ADDR: begin
-                        if(wstrb[0])
-                            reg_adj_max_clk <= wdata[9:0];  
-                    end
-
-                    DATA_OUT_ADDR:  begin	
-                        rdata <= wire_data_out;
-                    end
-
-                    default: ;
-
-				endcase
-
- 			 wbs_done <= 1; 
-			
-      end
-    
-    end 
-
- end
+                if(wstrb[0]) begin
+                    control_reg_pxl_fsm <= wdata[24:0];
+                end
+            end	
+        end
+end 
 
 
 
@@ -209,10 +156,10 @@ always@(posedge clk) begin
 pixel pixel_fsm0 (
     .clk(clk),
     .reset(rst),
-    .pxl_start_i(reg_pxl_start_i),
-    .loc_timer_m_i(reg_loc_timer_m_i),
+    .pxl_start_i(wire_pxl_start_i),
+    .loc_timer_m_i(wire_loc_timer_m_i),
     .loc_timer_en(wire_loc_timer_en), 
-    .adj_timer_m_i(reg_adj_timer_m_i), 
+    .adj_timer_m_i(wire_adj_timer_m_i), 
     .adj_timer_en(wire_adj_timer_en),
     .s_p1(wire_s_p1),
     .s_p2(wire_s_p2), 
@@ -224,13 +171,13 @@ pixel pixel_fsm0 (
     .v_b0(wire_v_b0), 
     .pxl_done_o(wire_pxl_done_o),
     .loc_timer_max(wire_loc_timer_max),
-    .loc_max_clk(reg_loc_max_clk), 
+    .loc_max_clk(wire_loc_max_clk), 
     .adj_timer_max(wire_adj_timer_max),
-    .adj_max_clk(reg_adj_max_clk),
-    .pxl_done_i(reg_pxl_done_i), 
+    .adj_max_clk(wire_adj_max_clk),
+    .pxl_done_i(wire_pxl_done_i), 
     .pxl_q(wire_pxl_q),
     .kernel_done_o(wire_kernel_done_o),
-    .data_in(reg_data_in), 
+    .data_in(wire_data_in), 
     .data_sel(wire_data_sel),
     .data_out(wire_data_out) 
     );
