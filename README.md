@@ -1,11 +1,10 @@
-# MixPix Project
+# README
 
-- Dummy project Pre-Check: [30/08/2022](https://github.com/HALxmont/MixPix/blob/main/precheck_results/30_AUG_2022___21_52_52/logs/precheck.log)
-- The list of pins is [HERE](https://docs.google.com/spreadsheets/d/1lk2tjdau-jsVaK7oEaSVmgTM1Ike2VApzto3_pZgkCU/edit?usp=sharing)
+## Digital Macros: Preliminar Layout (manual placement)
 
+![FSM-Physical design notes.png](README%20/FSM-Physical_design_notes.png)
 
-
-## Register map of the digital macros 
+## Digital Macros, Register Map
 
 ### Pixel FSM
 
@@ -29,18 +28,6 @@
 | wire_loc_timer_max | [19] |
 | wire_adj_timer_max | [20] |
 | wire_kernel_done_o | [21] |
-- WB slave address registers
-
-| Register | Address Value |
-| --- | --- |
-| PXL_START_I_ADDR | 0x3000 0000 |
-| PXL_DONE_I_ADDR | 0x3000 0004 |
-| LOC_TIMERM_I_ADDR | 0x3000 0008 |
-| ADJ_TIMER_M_I_ADDR | 0x3000 000C |
-| DATA_IN_ADDR | 0x3000 0010 |
-| LOC_MAX_CLK_ADDR | 0x3000 0014 |
-| ADJ_MAX_CLK_ADDR | 0x3000 0018 |
-| DATA_OUT_ADDR | 0x3000 001C |
 
 ### RLBP FSM
 
@@ -60,21 +47,3 @@
 | wire_q3_2 | [31] |
 | wire_q3_1 | [32] |
 | wire_control_signals | [36:33] |
-- WB slave address registers
-
-| Register | Address Value |
-| --- | --- |
-| REG_CE_D | 0x3000 0020 |
-| REG_CE_D2 | 0x3000 0024 |
-| REG_CE_D3 | 0x3000 0028 |
-| GPIO_START | 0x3000 002C |
-| LOGIC_ANALYZER_START | 0x3000 0030 |
-| DATA_IN | 0x3000 0034 |
-| REG_DATA_SEL | 0x3000 0038 |
-| REG_D | 0x3000 003C |
-| DATA_OUT_ADDR | 0x3000 0040 |
-
-
-
-
-
