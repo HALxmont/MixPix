@@ -2,7 +2,7 @@
 
 ## Digital Macros: Preliminar Layout (manual placement)
 
-![FSM-Physical design notes.png](README%20/FSM-Physical_design_notes.png)
+![FSM-Physical design notes.png](README/FSM-Physical_design_notes.png)
 
 ## Digital Macros, Register Map
 
