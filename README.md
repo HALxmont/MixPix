@@ -28,6 +28,16 @@
 | wire_loc_timer_max | [19] |
 | wire_adj_timer_max | [20] |
 | wire_kernel_done_o | [21] |
+- control_reg_pxl_fsm accessible through WB
+
+| control_reg_pxl_fsm[0] | pxl_start_i |
+| --- | --- |
+| control_reg_pxl_fsm[1] | pxl_done_i |
+| control_reg_pxl_fsm[2] | loc_timer_m_i |
+| control_reg_pxl_fsm[3] | adj_timer_m_i |
+| control_reg_pxl_fsm[4] | data_in |
+| control_reg_pxl_fsm[14:5] | loc_max_clk |
+| control_reg_pxl_fsm[24:15] | adj_max_clk |
 
 ### RLBP FSM
 
@@ -47,4 +57,14 @@
 | wire_q3_2 | [31] |
 | wire_q3_1 | [32] |
 | wire_control_signals | [36:33] |
+- control_reg_rlbp_fsm accessible through WB
 
+| control_reg_rlbp_fsm[0] | ce_d1 |
+| --- | --- |
+| control_reg_rlbp_fsm[1] | ce_d2 |
+| control_reg_rlbp_fsm[2] | ce_d3 |
+| control_reg_rlbp_fsm[3] | gpio_start |
+| control_reg_rlbp_fsm[4] | logic_analyzer_start |
+| control_reg_rlbp_fsm[5] | data_in |
+| control_reg_rlbp_fsm[7:6] | data_sel |
+| control_reg_rlbp_fsm[11:8] | d |
