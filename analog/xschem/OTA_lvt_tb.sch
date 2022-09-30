@@ -19,14 +19,19 @@ N 1000 -280 1020 -280 { lab=INM}
 N 1710 -230 1710 -210 { lab=GND}
 N 1710 -320 1710 -290 { lab=out}
 N 1280 -140 1280 -120 { lab=#net1}
-N 1440 -320 1440 -280 { lab=out}
 N 1440 -140 1440 -100 { lab=INM}
 N 1440 -40 1440 -20 { lab=GND}
 N 1440 -120 1460 -120 { lab=INM}
-N 1440 -220 1440 -200 { lab=#net3}
+N 1440 -220 1440 -200 { lab=out}
 N 1360 -320 1440 -320 { lab=out}
 N 1440 -320 1710 -320 { lab=out}
 N 1710 -320 1730 -320 {
+lab=out}
+N 1440 -240 1440 -220 {
+lab=out}
+N 1440 -320 1440 -300 {
+lab=out}
+N 1440 -300 1440 -240 {
 lab=out}
 C {devices/code_shown.sym} 18.75 -1151.875 0 0 {name=NGSPICE
 only_toplevel=true
@@ -43,9 +48,10 @@ set color3=red
 
 save all
 tran 10u 50m
-plot out -0.9
-hardcopy Output.svg xlabel "time[s]" ylabel "output[mV]" title "Outputvoltage"  out-0.9
-
+*dc V3 -20m 20m 1u
+plot out inp
+hardcopy Output.svg xlabel "time[s]" ylabel "output[mV]" title "Outputvoltage"  out
+reset
 ac dec 200 10 1000Meg
 settype decibel out
 plot vdb(out)
@@ -118,6 +124,8 @@ print Av1
 print Av2
 print 20*log10(Av)  
 
+
+
 .endc
 "}
 C {devices/code.sym} 890 -680 0 0 {name=STDCELL_MODELS 
@@ -158,7 +166,6 @@ value=10E6
 footprint=1206
 device=resistor
 m=1}
-C {devices/vsource.sym} 1440 -250 0 0 {name=V4 value=\{OUTPUT_VOLTAGE-CM_VOLTAGE\}}
 C {devices/capa.sym} 1440 -70 0 0 {name=C2
 m=1
 value=1

@@ -5,13 +5,12 @@ I0 net1 GND 45u
 V2 net2 GND {CM_VOLTAGE}
 V3 INP net2 dc 0 ac 1 sin(0, 10u, 100))
 C1 out GND 150f m=1
-R1 net3 INM 10E6 m=1
-V4 out net3 {OUTPUT_VOLTAGE-CM_VOLTAGE}
+R1 out INM 10E6 m=1
 C2 INM GND 1 m=1
 x1 INP INM out V1V8 GND net1 OTA
 **** begin user architecture code
 
-*.temp 20
+
 .param CM_VOLTAGE = 0.9
 .param OUTPUT_VOLTAGE = 0.9
 .control
@@ -24,18 +23,19 @@ set color3=red
 
 save all
 tran 10u 50m
-*plot out -0.9
-*hardcopy Output.svg xlabel time[s] ylabel output[mV] title Outputvoltage  out-0.9
-
+*dc V3 -20m 20m 1u
+plot out inp
+hardcopy Output.svg xlabel time[s] ylabel output[mV] title Outputvoltage  out
+reset
 ac dec 200 10 1000Meg
 settype decibel out
-*plot vdb(out)
-*hardcopy Magnitude.svg xlabel frequency[Hz] ylabel Av[dB] title Voltagegain  vdb(out)
+plot vdb(out)
+hardcopy Magnitude.svg xlabel frequency[Hz] ylabel Av[dB] title Voltagegain  vdb(out)
 let phase_val = 180/PI*cph(out)
 let phase_margin_val = 180 + 180/PI*cph(out)
 settype phase phase_val
-*plot phase_val
-*hardcopy Phase.svg xlabel frequency[Hz] ylabel phase[deg] title Phaseshift  phase_val
+plot phase_val
+hardcopy Phase.svg xlabel frequency[Hz] ylabel phase[deg] title Phaseshift  phase_val
 meas ac phase_margin find phase_margin_val when vdb(out)=0
 meas ac crossover_freq WHEN vdb(out)=0
 
@@ -99,6 +99,8 @@ print Av1
 print Av2
 print 20*log10(Av)
 
+
+
 .endc
 
 
@@ -135,7 +137,6 @@ XM4 Vmid Vas VSS VSS sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1.5 nf=1 ad='int((nf+1)
 XM3 Vas Vas VSS VSS sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-C1 OUT Vmid 63f m=1
 XM6 OUT Vmid VSS VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
@@ -145,6 +146,7 @@ XM7 Vsrc ibias VDD VDD sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='int((nf+1)/2
 XM8 ibias ibias VDD VDD sky130_fd_pr__pfet_01v8_lvt L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
+XC1 OUT Vmid sky130_fd_pr__cap_mim_m3_1 W=6 L=5 MF=1 m=1
 .ends
 
 .GLOBAL GND

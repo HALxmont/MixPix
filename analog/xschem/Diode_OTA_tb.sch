@@ -18,8 +18,6 @@ N 1440 -320 1710 -320 { lab=out}
 N 1710 -320 1730 -320 {
 lab=out}
 N 1000 -280 1020 -280 {
-lab=#net2}
-N 1000 -360 1020 -360 {
 lab=in}
 N 1560 -610 1560 -320 {
 lab=out}
@@ -31,24 +29,16 @@ N 1240 -760 1560 -760 {
 lab=out}
 N 1560 -760 1560 -610 {
 lab=out}
-N 700 -350 700 -330 { lab=#net3}
-N 700 -270 700 -250 { lab=#net3}
 N 700 -360 810 -360 {
-lab=#net3}
+lab=GND}
 N 700 -360 700 -350 {
-lab=#net3}
+lab=GND}
 N 940 -210 940 -190 { lab=#net2}
 N 940 -130 940 -110 { lab=GND}
 N 940 -280 940 -210 {
 lab=#net2}
-N 940 -280 1000 -280 {
-lab=#net2}
-N 870 -360 1000 -360 {
-lab=in}
 N 1000 -610 1000 -360 {
 lab=in}
-N 700 -330 700 -270 {
-lab=#net3}
 N 900 -410 900 -360 {
 lab=in}
 N 1000 -910 1180 -910 {
@@ -59,9 +49,13 @@ N 1240 -910 1560 -910 {
 lab=out}
 N 1560 -910 1560 -740 {
 lab=out}
-N 810 -360 810 -280 {
-lab=#net3}
-N 870 -360 870 -280 {
+N 1000 -360 1000 -280 {
+lab=in}
+N 940 -280 1020 -360 {
+lab=#net2}
+N 900 -360 1000 -280 {
+lab=in}
+N 870 -360 900 -360 {
 lab=in}
 C {devices/code_shown.sym} 18.75 -1151.875 0 0 {name=NGSPICE
 only_toplevel=true
@@ -77,7 +71,7 @@ set color2=blue
 set color3=red
 
 save all
-tran 10u 50m
+tran 10n 1m
 plot out 
 *ac dec 200 10 1000Meg
 *settype decibel out
@@ -183,21 +177,19 @@ value="
 "}
 C {devices/lab_pin.sym} 1730 -320 0 1 {name=l5 sig_type=std_logic lab=out}
 C {OTA3_kh_PVersion.sym} 1180 -320 0 0 {name=x1}
-C {devices/gnd.sym} 700 -190 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} 940 -160 0 0 {name=V3 value=0.9}
+C {devices/vsource.sym} 940 -160 0 0 {name=V3 value="dc 0 ac 0 pulse(0, 0.9, 10u, 1n, 1n, 50u, 100u)"}
 C {devices/gnd.sym} 940 -110 0 0 {name=l7 lab=GND}
 C {devices/lab_pin.sym} 900 -410 0 0 {name=l6 sig_type=std_logic lab=in
 }
-C {devices/vsource.sym} 700 -220 0 0 {name=V4 value=1.8}
-C {sky130_fd_pr/diode.sym} 840 -360 3 0 {name=D1
+C {sky130_fd_pr/diode.sym} 840 -360 1 0 {name=D1
 model=diode_pw2nd_05v5
 area=1e12
 dtemp=-5
 }
 C {sky130_fd_pr/cap_mim_m3_1.sym} 1210 -760 1 0 {name=C2 model=cap_mim_m3_1 W=10 L=10 MF=1 spiceprefix=X}
 C {devices/res.sym} 1210 -910 1 0 {name=R1
-value=100000k
+value=10000000k
 footprint=1206
 device=resistor
 m=1}
-C {devices/isource.sym} 840 -280 3 0 {name=I1 value=10n}
+C {devices/gnd.sym} 700 -350 0 0 {name=l4 lab=GND}

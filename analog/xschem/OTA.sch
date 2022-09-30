@@ -93,7 +93,7 @@ lab=VDD}
 N 380 -320 400 -320 {
 lab=IN_M}
 N 750 -320 780 -320 {
-lab=IN_M}
+lab=IN_P}
 N 970 -320 1030 -320 {
 lab=OUT}
 N 880 -320 910 -320 {
@@ -200,11 +200,6 @@ C {devices/lab_wire.sym} 1110 -580 0 1 {name=l25 sig_type=std_logic lab=VDD
 }
 C {devices/lab_wire.sym} 1130 -60 0 1 {name=l1 sig_type=std_logic lab=VSS
 }
-C {devices/capa.sym} 940 -320 1 0 {name=C1
-m=1
-value=63f
-footprint=1206
-device="ceramic capacitor"}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 1010 -240 0 0 {name=M6
 L=1
 W=25
@@ -251,3 +246,4 @@ C {devices/lab_pin.sym} 590 -430 0 1 {name=l2 sig_type=std_logic lab=Vsrc}
 C {devices/lab_pin.sym} 540 -240 0 1 {name=l3 sig_type=std_logic lab=Vas}
 C {devices/lab_pin.sym} 790 -270 0 1 {name=l4 sig_type=std_logic lab=Vmid}
 C {devices/opin.sym} 70 -510 0 0 {name=p3 lab=OUT}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 940 -320 1 0 {name=C1 model=cap_mim_m3_1 W=6 L=5 MF=1 spiceprefix=X}
