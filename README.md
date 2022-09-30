@@ -1,5 +1,6 @@
-# MixPix roject ([Design Review](https://docs.google.com/presentation/d/1dJPGg4kybzXeHuJEo80lSE_MKSRe9tjHJpyVqC7n3lY/edit?usp=sharing))
+# MixPix project ([Design Review](https://docs.google.com/presentation/d/1dJPGg4kybzXeHuJEo80lSE_MKSRe9tjHJpyVqC7n3lY/edit?usp=sharing))
 
+* [List of Pins](https://docs.google.com/spreadsheets/d/1lk2tjdau-jsVaK7oEaSVmgTM1Ike2VApzto3_pZgkCU/edit?usp=sharing) 
 
 ## Digital Macros, Register Map
 
