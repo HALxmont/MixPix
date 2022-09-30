@@ -1,6 +1,4 @@
-# MixPix roject
-[Design Review](https://docs.google.com/presentation/d/1dJPGg4kybzXeHuJEo80lSE_MKSRe9tjHJpyVqC7n3lY/edit?usp=sharing)
-## Digital Macros: Preliminar Layout (manual placement)
+# MixPix roject ([Design Review](https://docs.google.com/presentation/d/1dJPGg4kybzXeHuJEo80lSE_MKSRe9tjHJpyVqC7n3lY/edit?usp=sharing))
 
 
 ## Digital Macros, Register Map
