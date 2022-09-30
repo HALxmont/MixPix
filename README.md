@@ -1,5 +1,5 @@
 # README
-
+[Design Review](https://docs.google.com/presentation/d/1dJPGg4kybzXeHuJEo80lSE_MKSRe9tjHJpyVqC7n3lY/edit?usp=sharing)
 ## Digital Macros: Preliminar Layout (manual placement)
 
 <img src="README/FSM-Physical_design_notes.png" width=50% height=50%>
