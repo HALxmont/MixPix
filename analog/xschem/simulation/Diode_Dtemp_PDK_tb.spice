@@ -1,0 +1,43 @@
+** sch_path: /home/icarosix/asic/analog/MixPix/analog/xschem/Diode_Dtemp_PDK_tb.sch
+**.subckt Diode_Dtemp_PDK_tb
+V2 net1 GND 0
+V1 net2 GND 0
+V3 net3 GND 0
+D1 net1 net3 sky130_fd_pr__diode_pw2nd_05v5 area=1e+17 dtemp=5
+D2 net1 net2 sky130_fd_pr__diode_pw2nd_05v5 area=1e+17
+**** begin user architecture code
+
+
+.param CM_VOLTAGE = 0.9
+.param OUTPUT_VOLTAGE = 0.9
+.control
+set hcopydevtype = svg
+set nolegend
+set color0=white
+set color1=black
+set color2=blue
+set color3=red
+
+save all
+dc V2 -22 0 100u
+
+plot I(V1) I(V3)
+
+hardcopy Inverse.svg I(V1) I(V3)
+
+
+.endc
+
+
+
+*.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
+.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.option wnflag=1
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+**** begin user architecture code
+?
+**** end user architecture code
+.end

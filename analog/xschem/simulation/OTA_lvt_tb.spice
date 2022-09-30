@@ -1,0 +1,156 @@
+** sch_path: /home/icarosix/asic/analog/MixPix/analog/xschem/OTA_lvt_tb.sch
+**.subckt OTA_lvt_tb
+V1 V1V8 GND 1.8
+I0 net1 GND 45u
+V2 net2 GND {CM_VOLTAGE}
+V3 INP net2 dc 0 ac 1 sin(0, 10u, 100))
+C1 out GND 150f m=1
+R1 out INM 10E6 m=1
+C2 INM GND 1 m=1
+x1 INP INM out V1V8 GND net1 OTA
+**** begin user architecture code
+
+
+.param CM_VOLTAGE = 0.9
+.param OUTPUT_VOLTAGE = 0.9
+.control
+set hcopydevtype = svg
+set nolegend
+set color0=white
+set color1=black
+set color2=blue
+set color3=red
+
+save all
+tran 10u 50m
+*dc V3 -20m 20m 1u
+plot out inp
+hardcopy Output.svg xlabel time[s] ylabel output[mV] title Outputvoltage  out
+reset
+ac dec 200 10 1000Meg
+settype decibel out
+plot vdb(out)
+hardcopy Magnitude.svg xlabel frequency[Hz] ylabel Av[dB] title Voltagegain  vdb(out)
+let phase_val = 180/PI*cph(out)
+let phase_margin_val = 180 + 180/PI*cph(out)
+settype phase phase_val
+plot phase_val
+hardcopy Phase.svg xlabel frequency[Hz] ylabel phase[deg] title Phaseshift  phase_val
+meas ac phase_margin find phase_margin_val when vdb(out)=0
+meas ac crossover_freq WHEN vdb(out)=0
+
+let id1  = @m.x1.xm1.msky130_fd_pr__pfet_01v8_lvt[id]
+let id2  = @m.x1.xm2.msky130_fd_pr__pfet_01v8_lvt[id]
+let id3  = @m.x1.xm3.msky130_fd_pr__nfet_01v8_lvt[id]
+let id4  = @m.x1.xm4.msky130_fd_pr__nfet_01v8_lvt[id]
+let id5  = @m.x1.xm5.msky130_fd_pr__pfet_01v8_lvt[id]
+let id6  = @m.x1.xm6.msky130_fd_pr__nfet_01v8_lvt[id]
+let id7  = @m.x1.xm7.msky130_fd_pr__pfet_01v8_lvt[id]
+let id8  = @m.x1.xm8.msky130_fd_pr__pfet_01v8_lvt[id]
+let gm1  = @m.x1.xm1.msky130_fd_pr__pfet_01v8_lvt[gm]
+let gm2  = @m.x1.xm2.msky130_fd_pr__pfet_01v8_lvt[gm]
+let gm3  = @m.x1.xm3.msky130_fd_pr__nfet_01v8_lvt[gm]
+let gm4  = @m.x1.xm4.msky130_fd_pr__nfet_01v8_lvt[gm]
+let gm5  = @m.x1.xm5.msky130_fd_pr__pfet_01v8_lvt[gm]
+let gm6  = @m.x1.xm6.msky130_fd_pr__nfet_01v8_lvt[gm]
+let gm7  = @m.x1.xm7.msky130_fd_pr__pfet_01v8_lvt[gm]
+let gm8  = @m.x1.xm8.msky130_fd_pr__pfet_01v8_lvt[gm]
+let gds2  = @m.x1.xm2.msky130_fd_pr__pfet_01v8_lvt[gds]
+let gds4  = @m.x1.xm4.msky130_fd_pr__nfet_01v8_lvt[gds]
+let gds5  = @m.x1.xm5.msky130_fd_pr__pfet_01v8_lvt[gds]
+let gds6  = @m.x1.xm6.msky130_fd_pr__nfet_01v8_lvt[gds]
+
+
+let cgs6  = @m.x1.xm6.msky130_fd_pr__nfet_01v8_lvt[cgg]
+
+*print v(inp)
+*print v(inm)
+*print v(out)
+let v_offset = v(inp)-v(inm)
+*print v_offset
+
+*print cgs6
+print id1
+print id2
+print id3
+print id4
+print id5
+print id6
+print id7
+*print id8
+
+print gm2
+print gm6
+
+print gm1/id1
+print gm2/id2
+print gm3/id3
+print gm4/id4
+print gm5/id5
+print gm6/id6
+print gm7/id7
+print gm8/id8
+
+let Av1 = gm2/(gds2+gds4)
+let Av2 = gm6/(gds6 + gds5)
+let Av  = Av1*Av2
+
+print Av1
+print Av2
+print 20*log10(Av)
+
+
+
+.endc
+
+
+
+*.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
+.lib /home/icarosix/asic/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.option wnflag=1
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  OTA.sym # of pins=6
+** sym_path: /home/icarosix/asic/analog/MixPix/analog/xschem/OTA.sym
+** sch_path: /home/icarosix/asic/analog/MixPix/analog/xschem/OTA.sch
+.subckt OTA  IN_P IN_M OUT VDD VSS ibias
+*.ipin IN_M
+*.ipin IN_P
+*.ipin ibias
+*.ipin VDD
+*.ipin VSS
+*.opin OUT
+XM2 Vmid IN_P Vsrc VDD sky130_fd_pr__pfet_01v8_lvt L=1.2 W=12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 Vas IN_M Vsrc VDD sky130_fd_pr__pfet_01v8_lvt L=1.2 W=12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 OUT ibias VDD VDD sky130_fd_pr__pfet_01v8_lvt L=1 W=5.12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 Vmid Vas VSS VSS sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Vas Vas VSS VSS sky130_fd_pr__nfet_01v8_lvt L=0.5 W=1.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 OUT Vmid VSS VSS sky130_fd_pr__nfet_01v8_lvt L=1 W=25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 Vsrc ibias VDD VDD sky130_fd_pr__pfet_01v8_lvt L=1 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM8 ibias ibias VDD VDD sky130_fd_pr__pfet_01v8_lvt L=1 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XC1 OUT Vmid sky130_fd_pr__cap_mim_m3_1 W=6 L=5 MF=1 m=1
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+?
+**** end user architecture code
+.end
