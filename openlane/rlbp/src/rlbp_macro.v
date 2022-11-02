@@ -42,12 +42,20 @@ module rlbp_macro #(
     input  [127:0] la_oenb,
 
     // IOs
-    input  [`MPRJ_IO_PADS-1:0] io_in,
-    output [`MPRJ_IO_PADS-1:0] io_out,
-    output [`MPRJ_IO_PADS-1:0] io_oeb,
+    input  [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_in,
+    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_out,
+    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_oeb,
+
 
     // IRQ
-    output [2:0] irq
+    output [2:0] irq,
+
+    // ---- Design Specific Ports 
+
+    output serial_data_rlbp_out
+
+
+    
 );
 
     wire clk;
@@ -64,6 +72,11 @@ module rlbp_macro #(
     wire wire_q1_3, wire_q1_2, wire_q1_1, wire_q2_3, wire_q2_2, wire_q2_1, wire_q3_3, wire_q3_2, wire_q3_1;
     wire [3:0] wire_data_out;
     wire [1:0] wire_control_signals;
+
+    wire wire_pxl_done_i;
+    wire [7:0] wire_p_data_in;
+    wire wire_s_data_out;
+    wire wire_ready;
 
     wire wire_ce_d1;
     wire wire_ce_d2;
@@ -120,6 +133,9 @@ module rlbp_macro #(
     assign clk = wb_clk_i;
     assign rst = wb_rst_i;
 
+    // Module ports
+    assign serial_data_rlbp_out = wire_s_data_out;
+
 always@(posedge clk) begin
 		if(rst) begin
 
@@ -143,7 +159,6 @@ always@(posedge clk) begin
 end 
 
 
-
 // ------- CUSTOM MODULE INSTANTIATION ----- //
 
 rlbp rlbp_inst0 (
@@ -157,6 +172,7 @@ rlbp rlbp_inst0 (
     .logic_analyzer_start(wire_logic_analyzer_start),
     .control_signals(wire_control_signals),
     .rlbp_done(wire_rlbp_done),
+    .pxl_done_i(wire_pxl_done_i), //
     .data_in(wire_data_in),
     .data_sel(wire_data_sel),
     .data_out(wire_data_out),
@@ -169,8 +185,14 @@ rlbp rlbp_inst0 (
     .q2_1(wire_q2_1), 
     .q3_3(wire_q3_3), 
     .q3_2(wire_q3_2), 
-    .q3_1(wire_q3_1)
+    .q3_1(wire_q3_1),
+    .en(wire_en), 
+    .p_data_in(wire_p_data_in),  //parallel data in
+    .s_data_out(wire_s_data_out), //serial data out
+    .ready(wire_ready) //P2S conversion ready
 );
+
+
 
 
 endmodule
