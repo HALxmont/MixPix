@@ -170,6 +170,7 @@ pixel_macro pixel_macro0 (
     .pxl_start_in_path(pxl_start_in_path),
     .pxl_start_out_path(pxl_start_out_path),
     .pxl_done(pxl_done)
+    //
 );
 
   
