@@ -12,21 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
-
+//`include "/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/src/pixel_macro.v"
 `default_nettype none
-
 /*
  *-------------------------------------------------------------
  *
- * user_analog_project_wrapper
+ * user_project_wrapper
  *
  * This wrapper enumerates all of the pins available to the
- * user for the user analog project.
+ * user for the user project.
+ *
+ * An example user project is provided in this wrapper.  The
+ * example should be removed and replaced with the actual
+ * user project.
  *
  *-------------------------------------------------------------
  */
 
-module user_analog_project_wrapper (
+module user_project_wrapper #(
+    parameter BITS = 32
+) (
 `ifdef USE_POWER_PINS
     inout vdda1,	// User area 1 3.3V supply
     inout vdda2,	// User area 2 3.3V supply
@@ -55,64 +60,16 @@ module user_analog_project_wrapper (
     output [127:0] la_data_out,
     input  [127:0] la_oenb,
 
-    /* GPIOs.  There are 27 GPIOs, on either side of the analog.
-     * These have the following mapping to the GPIO padframe pins
-     * and memory-mapped registers, since the numbering remains the
-     * same as caravel but skips over the analog I/O:
-     *
-     * io_in/out/oeb/in_3v3 [26:14]  <--->  mprj_io[37:25]
-     * io_in/out/oeb/in_3v3 [13:0]   <--->  mprj_io[13:0]	
-     *
-     * When the GPIOs are configured by the Management SoC for
-     * user use, they have three basic bidirectional controls:
-     * in, out, and oeb (output enable, sense inverted).  For
-     * analog projects, a 3.3V copy of the signal input is
-     * available.  out and oeb must be 1.8V signals.
-     */
+    // IOs
+    input  [`MPRJ_IO_PADS-1:0] io_in,
+    output [`MPRJ_IO_PADS-1:0] io_out,
+    output [`MPRJ_IO_PADS-1:0] io_oeb,
 
-//ANALOG_PADS = 11 (caravel/verilog/rtl/defines.v)
-
-    input  [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_in,
-    input  [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_in_3v3,
-    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_out,
-    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_oeb,
-
-    /* Analog (direct connection to GPIO pad---not for high voltage or
-     * high frequency use).  The management SoC must turn off both
-     * input and output buffers on these GPIOs to allow analog access.
-     * These signals may drive a voltage up to the value of VDDIO
-     * (3.3V typical, 5.5V maximum).
-     * 
-     * Note that analog I/O is not available on the 7 lowest-numbered
-     * GPIO pads, and so the analog_io indexing is offset from the
-     * GPIO indexing by 7, as follows:
-     *
-     * gpio_analog/noesd [17:7]  <--->  mprj_io[35:25]
-     * gpio_analog/noesd [6:0]   <--->  mprj_io[13:7]	
-     *
-     */
-    
-    inout [`MPRJ_IO_PADS-`ANALOG_PADS-10:0] gpio_analog,
-    inout [`MPRJ_IO_PADS-`ANALOG_PADS-10:0] gpio_noesd,
-
-    /* Analog signals, direct through to pad.  These have no ESD at all,
-     * so ESD protection is the responsibility of the designer.
-     *
-     * user_analog[10:0]  <--->  mprj_io[24:14]
-     *
-     */
-    inout [`ANALOG_PADS-1:0] io_analog,
-
-    /* Additional power supply ESD clamps, one per analog pad.  The
-     * high side should be connected to a 3.3-5.5V power supply.
-     * The low side should be connected to ground.
-     *
-     * clamp_high[2:0]   <--->  mprj_io[20:18]
-     * clamp_low[2:0]    <--->  mprj_io[20:18]
-     *
-     */
-    inout [2:0] io_clamp_high,
-    inout [2:0] io_clamp_low,
+    // Analog (direct connection to GPIO pad---use with caution)
+    // Note that analog I/O is not available on the 7 lowest-numbered
+    // GPIO pads, and so the analog_io indexing is offset from the
+    // GPIO indexing by 7 (also upper 2 GPIOs do not have analog_io).
+    inout [`MPRJ_IO_PADS-10:0] analog_io,
 
     // Independent clock (on independent integer divider)
     input   user_clock2,
@@ -126,7 +83,6 @@ wire serial_data_rlbp_out;
 wire pxl_start_in_path;
 wire pxl_start_out_path;
 wire pxl_done;
-
 //#######################################################
 //#     User macros/projects ares instantiated  here    #
 //#######################################################
@@ -212,6 +168,7 @@ rlbp_macro rlbp_macro0 (
     .serial_data_rlbp_out(serial_data_rlbp_out)
 );
 
-endmodule	// user_analog_project_wrapper
+
+endmodule	// user_project_wrapper
 
 `default_nettype wire
