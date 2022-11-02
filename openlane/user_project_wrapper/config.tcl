@@ -27,7 +27,8 @@ source $::env(DESIGN_DIR)/fixed_dont_change/default_wrapper_cfgs.tcl
 
 set script_dir [file dirname [file normalize [info script]]]
 
-set ::env(DESIGN_NAME) user_project_wrapper
+##set ::env(DESIGN_NAME) user_project_wrapper
+set ::env(DESIGN_NAME) user_analog_project_wrapper
 #section end
 
 # User Configurations
@@ -100,4 +101,5 @@ set ::env(CLOCK_TREE_SYNTH) 0
 ##custom configurations
 
 set ::env(DRT_OPT_ITERS) 64
+set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
 

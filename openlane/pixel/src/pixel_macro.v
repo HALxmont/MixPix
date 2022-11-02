@@ -42,12 +42,18 @@ module pixel_macro #(
     input  [127:0] la_oenb,
 
     // IOs
-    input  [`MPRJ_IO_PADS-1:0] io_in,
-    output [`MPRJ_IO_PADS-1:0] io_out,
-    output [`MPRJ_IO_PADS-1:0] io_oeb,
+    input  [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_in,
+    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_out,
+    output [`MPRJ_IO_PADS-`ANALOG_PADS-1:0] io_oeb,
 
     // IRQ
-    output [2:0] irq
+    output [2:0] irq,
+
+    // ---- Design Specific Ports
+    input pxl_start_in_path,
+    input pxl_start_out_path,
+    output pxl_done
+
 );
 
     wire clk;
@@ -106,7 +112,8 @@ module pixel_macro #(
     assign wire_loc_max_clk = control_reg_pxl_fsm[14:5];
     assign wire_adj_max_clk = control_reg_pxl_fsm[24:15];
 
-    
+//------ PIXEL FSM IOs connection
+
  
     // ------ WB slave interface
     reg         wbs_done;
@@ -128,6 +135,8 @@ module pixel_macro #(
 
     assign clk = wb_clk_i;
     assign rst = wb_rst_i;
+
+    // Module Ports
 
 always@(posedge clk) begin
 		if(rst) begin
