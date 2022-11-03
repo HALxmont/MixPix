@@ -47,7 +47,12 @@ module pixel_macro #(
     output [`MPRJ_IO_PADS-1:0] io_oeb,
 
     // IRQ
-    output [2:0] irq
+    output [2:0] irq,
+
+    // ---- Design Specific Ports
+    input pxl_start_in_path,
+    input pxl_start_out_path,
+    output pxl_done
 );
 
     wire clk;
