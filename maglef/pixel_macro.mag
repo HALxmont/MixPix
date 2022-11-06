@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1667491076
+timestamp 1667702168
 << nwell >>
 rect 1066 56837 68854 57403
 rect 1066 55749 68854 56315
@@ -57,7 +57,7 @@ rect 1066 2437 68854 3003
 << obsli1 >>
 rect 1104 2159 68816 57681
 << obsm1 >>
-rect 1104 892 68816 57712
+rect 1104 1300 68816 57712
 << metal2 >>
 rect 2962 59200 3018 60000
 rect 3514 59200 3570 60000
@@ -670,7 +670,7 @@ rect 57426 0 57482 800
 rect 57518 0 57574 800
 rect 57610 0 57666 800
 << obsm2 >>
-rect 1952 59144 2906 59242
+rect 2688 59144 2906 59242
 rect 3074 59144 3458 59242
 rect 3626 59144 4010 59242
 rect 4178 59144 4562 59242
@@ -787,11 +787,11 @@ rect 64898 59144 65282 59242
 rect 65450 59144 65834 59242
 rect 66002 59144 66386 59242
 rect 66554 59144 66938 59242
-rect 1952 856 67048 59144
-rect 1952 734 12290 856
-rect 57722 734 67048 856
+rect 2688 856 67048 59144
+rect 2688 800 12290 856
+rect 57722 800 67048 856
 << obsm3 >>
-rect 2497 2143 65966 57697
+rect 3877 2143 65966 57697
 << metal4 >>
 rect 4208 2128 4528 57712
 rect 19568 2128 19888 57712
@@ -799,8 +799,8 @@ rect 34928 2128 35248 57712
 rect 50288 2128 50608 57712
 rect 65648 2128 65968 57712
 << obsm4 >>
-rect 4659 2619 19488 12613
-rect 19968 2619 20549 12613
+rect 6867 3027 19488 11525
+rect 19968 3027 20733 11525
 << labels >>
 rlabel metal2 s 2962 59200 3018 60000 6 io_in[0]
 port 1 nsew signal input
@@ -1806,9 +1806,9 @@ rlabel metal2 s 24766 0 24822 800 6 la_oenb[9]
 port 501 nsew signal input
 rlabel metal2 s 66994 59200 67050 60000 6 pxl_done
 port 502 nsew signal output
-rlabel metal2 s 65890 59200 65946 60000 6 pxl_start_in_path
+rlabel metal2 s 65890 59200 65946 60000 6 pxl_start_in_ext
 port 503 nsew signal input
-rlabel metal2 s 66442 59200 66498 60000 6 pxl_start_out_path
+rlabel metal2 s 66442 59200 66498 60000 6 pxl_start_out
 port 504 nsew signal input
 rlabel metal4 s 4208 2128 4528 57712 6 vccd1
 port 505 nsew power bidirectional
@@ -2036,8 +2036,8 @@ port 612 nsew signal input
 string FIXED_BBOX 0 0 70000 60000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 2416642
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_11_03_12_55/results/signoff/pixel_macro.magic.gds
-string GDS_START 266154
+string GDS_END 2094032
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_11_05_23_33/results/signoff/pixel_macro.magic.gds
+string GDS_START 134658
 << end >>
 

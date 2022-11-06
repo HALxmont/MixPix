@@ -50,8 +50,8 @@ module pixel_macro #(
     output [2:0] irq,
 
     // ---- Design Specific Ports
-    input pxl_start_in_path,
-    input pxl_start_out_path,
+    input pxl_start_in_ext,
+    input pxl_start_out,
     output pxl_done
 );
 
@@ -63,53 +63,77 @@ module pixel_macro #(
     
     
     //------ Pixel FSM wires
-
-	wire  [3:0] wire_pxl_q, wire_data_sel;
-	wire  wire_loc_timer_en, wire_adj_timer_en;
+ 
+    wire [3:0] wire_pxl_q;
+    wire wire_loc_timer_en, wire_adj_timer_en;
     wire wire_s_p1, wire_s_p2, wire_s1, wire_s2, wire_s1_inv, wire_s2_inv;
     wire wire_v_b0, wire_v_b1;
-    wire wire_pxl_done_o, wire_loc_timer_max;
-    wire wire_adj_timer_max;
+    wire wire_sh;
+    wire wire_pxl_done_o;
+    wire wire_loc_timer_max, wire_adj_timer_max;
     wire wire_kernel_done_o;
-	wire [15:0] wire_data_out;  
 
     wire wire_pxl_start_i;
     wire wire_pxl_done_i;
     wire wire_loc_timer_m_i;
     wire wire_adj_timer_m_i;
-    wire wire_data_in;
     wire [9:0] wire_loc_max_clk; 
     wire [9:0] wire_adj_max_clk;
 
+    wire wire_clk_in_ext;
+    wire wire_clk_in_wb;
+    wire [1:0] wire_clk_sel;
+    wire wire_clk_out;
+    wire wire_reset_in_ext; 
+    wire wire_reset_in_wb;
+    wire [1:0] wire_reset_sel;
+    wire wire_reset_out; 
+    wire wire_pxl_start_in_ext; 
+    wire wire_pxl_start_in_wb; 
+    wire [1:0] wire_pxl_start_sel; 
+    wire wire_pxl_start_out;
 
 
 
     //------ PIXEL FSM wires interconnection to Caravel LA
     assign wire_pxl_q = la_data_out[3:0];
-    assign wire_data_sel = la_data_out[7:4];
-    assign wire_loc_timer_en = la_data_out[8];
-    assign wire_adj_timer_en = la_data_out[9];
-    assign wire_s_p1 = la_data_out[10];
-    assign wire_s_p2 = la_data_out[11];
-    assign wire_s1 = la_data_out[12];
-    assign wire_s2 = la_data_out[13];
-    assign wire_s1_inv = la_data_out[14];
-    assign wire_s2_inv = la_data_out[15];
-    assign wire_v_b0 = la_data_out[16];
-    assign wire_v_b1 = la_data_out[17];
-    assign wire_pxl_done_o = la_data_out[18];
-    assign wire_loc_timer_max = la_data_out[19];
-    assign wire_adj_timer_max = la_data_out[20];
-    assign wire_kernel_done_o = la_data_out[21];
+    assign wire_loc_timer_en = la_data_out[4];
+    assign wire_adj_timer_en = la_data_out[5];
+    assign wire_s_p1 = la_data_out[6];
+    assign wire_s_p2 = la_data_out[7];
+    assign wire_s1 = la_data_out[8];
+    assign wire_s2 = la_data_out[9];
+    assign wire_s1_inv = la_data_out[10];
+    assign wire_s2_inv = la_data_out[11];
+    assign wire_v_b0 = la_data_out[12];
+    assign wire_v_b1 = la_data_out[13];
+    assign wire_sh = la_data_out[14];
+    assign wire_pxl_done_o = la_data_out[15];
+    assign wire_loc_timer_max = la_data_out[16];
+    assign wire_adj_timer_max = la_data_out[17];
+    assign wire_kernel_done_o = la_data_out[18];
+
+    assign wire_clk_in_ext = la_data_out[19];
+    assign wire_clk_in_wb = la_data_out[20];
+    assign wire_clk_sel = la_data_out[22:21];
+    assign wire_clk_out = la_data_out[23];
+    assign wire_reset_in_ext = la_data_out[24]; 
+    assign wire_reset_in_wb = la_data_out[25];
+    assign wire_reset_sel = la_data_out[27:26];
+    assign wire_reset_out = la_data_out[28]; 
+    assign wire_pxl_start_in_ext = la_data_out[29]; 
+    assign wire_pxl_start_in_wb = la_data_out[30]; 
+    assign wire_pxl_start_sel = la_data_out[32:31]; 
+    assign wire_pxl_start_out = la_data_out[33];
+
 
   //------ PIXEL FSM wires interconnection to control register
     assign wire_pxl_start_i = control_reg_pxl_fsm[0];
     assign wire_pxl_done_i = control_reg_pxl_fsm[1];
     assign wire_loc_timer_m_i = control_reg_pxl_fsm[2];
     assign wire_adj_timer_m_i = control_reg_pxl_fsm[3];
-    assign wire_data_in = control_reg_pxl_fsm[4];
-    assign wire_loc_max_clk = control_reg_pxl_fsm[14:5];
-    assign wire_adj_max_clk = control_reg_pxl_fsm[24:15];
+    assign wire_loc_max_clk = control_reg_pxl_fsm[13:4];
+    assign wire_adj_max_clk = control_reg_pxl_fsm[23:14];
 
     
  
@@ -174,6 +198,7 @@ pixel pixel_fsm0 (
     .s2_inv(wire_s2_inv),
     .v_b1(wire_v_b1),
     .v_b0(wire_v_b0), 
+    .sh(wire_sh),
     .pxl_done_o(wire_pxl_done_o),
     .loc_timer_max(wire_loc_timer_max),
     .loc_max_clk(wire_loc_max_clk), 
@@ -182,11 +207,19 @@ pixel pixel_fsm0 (
     .pxl_done_i(wire_pxl_done_i), 
     .pxl_q(wire_pxl_q),
     .kernel_done_o(wire_kernel_done_o),
-    .data_in(wire_data_in), 
-    .data_sel(wire_data_sel),
-    .data_out(wire_data_out) 
+    .clk_in_ext(wire_clk_in_ext), 
+    .clk_in_wb(wire_clk_in_wb), 
+    .clk_sel(wire_clk_sel), 
+    .clk_out(wire_clk_out), 
+    .reset_in_ext(wire_reset_in_ext), 
+    .reset_in_wb(wire_reset_in_wb), 
+    .reset_sel(wire_reset_sel), 
+    .reset_out(wire_reset_out), 
+    .pxl_start_in_ext(wire_pxl_start_in_ext), 
+    .pxl_start_in_wb(wire_pxl_start_in_wb), 
+    .pxl_start_sel(wire_pxl_start_sel), 
+    .pxl_start_out(wire_pxl_start_out)
     );
-
 
 endmodule
 

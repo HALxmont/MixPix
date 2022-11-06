@@ -80,8 +80,8 @@ module user_project_wrapper #(
 
 
 wire serial_data_rlbp_out;
-wire pxl_start_in_path;
-wire pxl_start_out_path;
+wire pxl_start_in_ext;
+wire pxl_start_out;
 wire pxl_done;
 //#######################################################
 //#     User macros/projects ares instantiated  here    #
@@ -123,8 +123,8 @@ pixel_macro pixel_macro0 (
     // IRQ
     .irq(user_irq),
 
-    .pxl_start_in_path(pxl_start_in_path),
-    .pxl_start_out_path(pxl_start_out_path),
+    .pxl_start_in_ext(pxl_start_in_ext),
+    .pxl_start_out(pxl_start_out),
     .pxl_done(pxl_done)
 );
 

@@ -89,18 +89,18 @@ module rlbp_macro #(
 
 
     //------ RLBP wires interconnection to Caravel LA
-    assign wire_reset_fsm = la_data_out[22];
-    assign wire_rlbp_done = la_data_out[23];
-    assign wire_q1_3 = la_data_out[24];
-    assign wire_q1_2 = la_data_out[25];
-    assign wire_q1_1 = la_data_out[26];
-    assign wire_q2_3 = la_data_out[27];
-    assign wire_q2_2 = la_data_out[28];
-    assign wire_q2_1 = la_data_out[29];
-    assign wire_q3_3 = la_data_out[30];
-    assign wire_q3_2 = la_data_out[31];
-    assign wire_q3_1 = la_data_out[32];
-    assign wire_control_signals = la_data_out[36:33];
+    assign wire_reset_fsm = la_data_out[34];
+    assign wire_rlbp_done = la_data_out[35];
+    assign wire_q1_3 = la_data_out[36];
+    assign wire_q1_2 = la_data_out[37];
+    assign wire_q1_1 = la_data_out[38];
+    assign wire_q2_3 = la_data_out[39];
+    assign wire_q2_2 = la_data_out[40];
+    assign wire_q2_1 = la_data_out[41];
+    assign wire_q3_3 = la_data_out[42];
+    assign wire_q3_2 = la_data_out[43];
+    assign wire_q3_1 = la_data_out[44];
+    assign wire_control_signals = la_data_out[48:45];
     
      //------ RLBP wires interconnection to RLBP control register
     assign wire_ce_d1 = control_reg_rlbp_fsm[0];

@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1667491521
+timestamp 1667702282
 << nwell >>
 rect 1066 56837 68854 57403
 rect 1066 55749 68854 56315
@@ -57,7 +57,7 @@ rect 1066 2437 68854 3003
 << obsli1 >>
 rect 1104 2159 68816 57681
 << obsm1 >>
-rect 1104 1844 68816 57712
+rect 1104 1640 68816 57712
 << metal2 >>
 rect 1398 59200 1454 60000
 rect 2226 59200 2282 60000
@@ -719,15 +719,13 @@ rect 2228 856 68520 59144
 rect 2228 800 12290 856
 rect 57722 800 68520 856
 << obsm3 >>
-rect 3969 2143 65966 57697
+rect 3233 2143 65966 57697
 << metal4 >>
 rect 4208 2128 4528 57712
 rect 19568 2128 19888 57712
 rect 34928 2128 35248 57712
 rect 50288 2128 50608 57712
 rect 65648 2128 65968 57712
-<< obsm4 >>
-rect 14595 2619 14661 11117
 << labels >>
 rlabel metal2 s 1398 59200 1454 60000 6 io_in[0]
 port 1 nsew signal input
@@ -1893,8 +1891,8 @@ port 577 nsew signal input
 string FIXED_BBOX 0 0 70000 60000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 2106606
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_03_13_03/results/signoff/rlbp_macro.magic.gds
+string GDS_END 2097804
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_05_23_36/results/signoff/rlbp_macro.magic.gds
 string GDS_START 294016
 << end >>
 
