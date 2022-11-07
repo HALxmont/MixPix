@@ -101,37 +101,44 @@ module pixel_macro #(
     //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
 
     //reg_la0_oenb = reg_la0_iena = 0xFF000000;    // [31:0]  OUTPUTS (00, 24bits)  INPUTS(FF, last 8bits)
-    assign wire_pxl_q = la_data_out[3:0];           //out
-    assign wire_loc_timer_en = la_data_out[4];      //out
+    assign wire_pxl_q = la_data_out[3:0];           //out  0
+    assign wire_loc_timer_en = la_data_out[4];      //out  
     assign wire_adj_timer_en = la_data_out[5];      //out
     assign wire_s_p1 = la_data_out[6];              //out
-    assign wire_s_p2 = la_data_out[7];              //out
+    assign wire_s_p2 = la_data_out[7];              //out  0
     assign wire_s1 = la_data_out[8];                //out
     assign wire_s2 = la_data_out[9];                //out
     assign wire_s1_inv = la_data_out[10];           //out
-    assign wire_s2_inv = la_data_out[11];           //out
+    assign wire_s2_inv = la_data_out[11];           //out  0
     assign wire_v_b0 = la_data_out[12];             //out
     assign wire_v_b1 = la_data_out[13];             //out
     assign wire_sh = la_data_out[14];               //out
-    assign wire_pxl_done_o = la_data_out[15];       //out
+    assign wire_pxl_done_o = la_data_out[15];       //out  0
     assign wire_loc_timer_max = la_data_out[16];    //out
     assign wire_adj_timer_max = la_data_out[17];    //out
     assign wire_kernel_done_o = la_data_out[18];    //out
-    assign wire_clk_out = la_data_out[19];          //out  
+    assign wire_clk_out = la_data_out[19];          //out  0 
     assign wire_reset_out = la_data_out[20];        //out
-    assign wire_pxl_start_out = la_data_out[21];    //out 
-    assign wire_clk_in_ext = la_data_out[25];       //in
-    assign wire_clk_in_wb = la_data_out[26];        //in
-    assign wire_clk_sel = la_data_out[28:27];       //in
-    assign wire_reset_in_ext = la_data_out[29];     //in  
-    assign wire_reset_in_wb = la_data_out[30];      //in
-    assign wire_reset_sel = la_data_out[32:31];     //in    //end [31:0] bits, and bit 32
-    
+    assign wire_pxl_start_out = la_data_out[21];    //out 22,23 -> 0
 
-    //reg_la1_oenb = reg_la1_iena = 0x000000FF;    // [63:32]
-    assign wire_pxl_start_in_ext = la_data_out[33]; //in  
-    assign wire_pxl_start_in_wb = la_data_out[34];  //in
-    assign wire_pxl_start_sel = la_data_out[36:35]; //in    //end [33:36]
+    //1byte per input (32bit RiscV)
+    assign wire_clk_in_ext = la_data_out[24];       //in 24,25,26,26 -> F
+    assign wire_clk_in_wb = la_data_out[28];        //in 28,29,30,31 -> F = >   0xFF000000  END [31:0]
+
+
+    //begin [63:32]
+    assign wire_clk_sel = la_data_out[33:32];       //in 32,33,34,35 -> F
+    assign wire_reset_in_ext = la_data_out[36];     //in 36,37,38,39 -> F
+    assign wire_reset_in_wb = la_data_out[40];      //in 40,41,42,43 -> F
+    assign wire_reset_sel = la_data_out[45:44];     //in 44,45,46,47 -> F   
+    assign wire_pxl_start_in_ext = la_data_out[48]; //in 48,49,50,51 -> F
+    assign wire_pxl_start_in_wb = la_data_out[52];  //in 52,53,54,55 -> F
+    assign wire_pxl_start_sel = la_data_out[58:57]; //in 56,57,58,59 -> F
+                                                    // 60,61,62,63 free bits of the last byte 
+                                                    //0x0FFFFFFF
+                                                    //reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;
+
+
 
 
 

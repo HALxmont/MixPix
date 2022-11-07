@@ -94,19 +94,23 @@ module rlbp_macro #(
     //in and outs are relative to the macros
     //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
 
-    //reg_la1_oenb = reg_la1_iena = 0x000000FF;    // [63:32]
-    assign wire_reset_fsm = la_data_out[40];            //out
-    assign wire_rlbp_done = la_data_out[41];            //out
-    assign wire_q1_3 = la_data_out[42];                 //out
-    assign wire_q1_2 = la_data_out[43];                 //out
-    assign wire_q1_1 = la_data_out[44];                 //out
-    assign wire_q2_3 = la_data_out[45];                 //out
-    assign wire_q2_2 = la_data_out[46];                 //out
-    assign wire_q2_1 = la_data_out[47];                 //out
-    assign wire_q3_3 = la_data_out[48];                 //out
-    assign wire_q3_2 = la_data_out[49];                 //out
-    assign wire_q3_1 = la_data_out[50];                 //out
-    assign wire_control_signals = la_data_out[54:51];   //out
+    //[95:64]
+    assign wire_reset_fsm = la_data_out[64];            //out
+    assign wire_rlbp_done = la_data_out[65];            //out
+    assign wire_q1_3 = la_data_out[66];                 //out
+    assign wire_q1_2 = la_data_out[67];                 //out   0
+    assign wire_q1_1 = la_data_out[68];                 //out
+    assign wire_q2_3 = la_data_out[69];                 //out
+    assign wire_q2_2 = la_data_out[70];                 //out
+    assign wire_q2_1 = la_data_out[71];                 //out   0
+    assign wire_q3_3 = la_data_out[72];                 //out
+    assign wire_q3_2 = la_data_out[73];                 //out
+    assign wire_q3_1 = la_data_out[74];                 //out
+    assign wire_control_signals = la_data_out[78:75];   //out   0
+                                                        //5 bytes free. First 3 bytes needs to be set 0
+                                                        //0x-----000  ("-" = free to set)
+
+
     
      //------ RLBP wires interconnection to RLBP control register
     assign wire_ce_d1 = control_reg_rlbp_fsm[0];

@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1667828178
+timestamp 1667844517
 << nwell >>
 rect 1066 56837 68854 57403
 rect 1066 55749 68854 56315
@@ -2037,7 +2037,7 @@ string FIXED_BBOX 0 0 70000 60000
 string LEFclass BLOCK
 string LEFview TRUE
 string GDS_END 2094032
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_11_07_10_33/results/signoff/pixel_macro.magic.gds
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/runs/22_11_07_15_05/results/signoff/pixel_macro.magic.gds
 string GDS_START 134658
 << end >>
 
