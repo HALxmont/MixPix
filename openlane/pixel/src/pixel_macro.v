@@ -95,36 +95,44 @@ module pixel_macro #(
 
 
 
-    //------ PIXEL FSM wires interconnection to Caravel LA
-    assign wire_pxl_q = la_data_out[3:0];
-    assign wire_loc_timer_en = la_data_out[4];
-    assign wire_adj_timer_en = la_data_out[5];
-    assign wire_s_p1 = la_data_out[6];
-    assign wire_s_p2 = la_data_out[7];
-    assign wire_s1 = la_data_out[8];
-    assign wire_s2 = la_data_out[9];
-    assign wire_s1_inv = la_data_out[10];
-    assign wire_s2_inv = la_data_out[11];
-    assign wire_v_b0 = la_data_out[12];
-    assign wire_v_b1 = la_data_out[13];
-    assign wire_sh = la_data_out[14];
-    assign wire_pxl_done_o = la_data_out[15];
-    assign wire_loc_timer_max = la_data_out[16];
-    assign wire_adj_timer_max = la_data_out[17];
-    assign wire_kernel_done_o = la_data_out[18];
+    //------ PIXEL FSM wires interconnection to Caravel LA   
 
-    assign wire_clk_in_ext = la_data_out[19];
-    assign wire_clk_in_wb = la_data_out[20];
-    assign wire_clk_sel = la_data_out[22:21];
-    assign wire_clk_out = la_data_out[23];
-    assign wire_reset_in_ext = la_data_out[24]; 
-    assign wire_reset_in_wb = la_data_out[25];
-    assign wire_reset_sel = la_data_out[27:26];
-    assign wire_reset_out = la_data_out[28]; 
-    assign wire_pxl_start_in_ext = la_data_out[29]; 
-    assign wire_pxl_start_in_wb = la_data_out[30]; 
-    assign wire_pxl_start_sel = la_data_out[32:31]; 
-    assign wire_pxl_start_out = la_data_out[33];
+    //in and outs are relative to the macros
+    //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
+
+    //reg_la0_oenb = reg_la0_iena = 0xFF000000;    // [31:0]  OUTPUTS (00, 24bits)  INPUTS(FF, last 8bits)
+    assign wire_pxl_q = la_data_out[3:0];           //out
+    assign wire_loc_timer_en = la_data_out[4];      //out
+    assign wire_adj_timer_en = la_data_out[5];      //out
+    assign wire_s_p1 = la_data_out[6];              //out
+    assign wire_s_p2 = la_data_out[7];              //out
+    assign wire_s1 = la_data_out[8];                //out
+    assign wire_s2 = la_data_out[9];                //out
+    assign wire_s1_inv = la_data_out[10];           //out
+    assign wire_s2_inv = la_data_out[11];           //out
+    assign wire_v_b0 = la_data_out[12];             //out
+    assign wire_v_b1 = la_data_out[13];             //out
+    assign wire_sh = la_data_out[14];               //out
+    assign wire_pxl_done_o = la_data_out[15];       //out
+    assign wire_loc_timer_max = la_data_out[16];    //out
+    assign wire_adj_timer_max = la_data_out[17];    //out
+    assign wire_kernel_done_o = la_data_out[18];    //out
+    assign wire_clk_out = la_data_out[19];          //out  
+    assign wire_reset_out = la_data_out[20];        //out
+    assign wire_pxl_start_out = la_data_out[21];    //out 
+    assign wire_clk_in_ext = la_data_out[25];       //in
+    assign wire_clk_in_wb = la_data_out[26];        //in
+    assign wire_clk_sel = la_data_out[28:27];       //in
+    assign wire_reset_in_ext = la_data_out[29];     //in  
+    assign wire_reset_in_wb = la_data_out[30];      //in
+    assign wire_reset_sel = la_data_out[32:31];     //in    //end [31:0] bits, and bit 32
+    
+
+    //reg_la1_oenb = reg_la1_iena = 0x000000FF;    // [63:32]
+    assign wire_pxl_start_in_ext = la_data_out[33]; //in  
+    assign wire_pxl_start_in_wb = la_data_out[34];  //in
+    assign wire_pxl_start_sel = la_data_out[36:35]; //in    //end [33:36]
+
 
 
   //------ PIXEL FSM wires interconnection to control register

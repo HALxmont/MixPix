@@ -53,8 +53,15 @@ module user_project_wrapper (user_clock2,
  output [31:0] wbs_dat_o;
  input [3:0] wbs_sel_i;
 
+ wire pxl_done;
+ wire pxl_start_in_ext;
+ wire pxl_start_out;
+ wire serial_data_rlbp_out;
 
- pixel_macro pixel_macro0 (.vccd1(vccd1),
+ pixel_macro pixel_macro0 (.pxl_done(pxl_done),
+    .pxl_start_in_ext(pxl_start_in_ext),
+    .pxl_start_out(pxl_start_out),
+    .vccd1(vccd1),
     .vssd1(vssd1),
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
@@ -663,7 +670,8 @@ module user_project_wrapper (user_clock2,
     wbs_sel_i[2],
     wbs_sel_i[1],
     wbs_sel_i[0]}));
- rlbp_macro rlbp_macro0 (.vccd1(vccd1),
+ rlbp_macro rlbp_macro0 (.serial_data_rlbp_out(serial_data_rlbp_out),
+    .vccd1(vccd1),
     .vssd1(vssd1),
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),

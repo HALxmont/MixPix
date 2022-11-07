@@ -1,3 +1,12 @@
+//###ORIGINAL####
 // Caravel user project includes		
-$USER_PROJECT_VERILOG/gl/user_project_wrapper.v	     
-$USER_PROJECT_VERILOG/gl/user_proj_example.v
+//$USER_PROJECT_VERILOG/gl/user_project_wrapper.v	     
+//$USER_PROJECT_VERILOG/gl/user_proj_example.v
+
+
+//###MixPix####
+$USER_PROJECT_VERILOG/gl/user_project_wrapper.v
+$USER_PROJECT_VERILOG/gl/pixel.v
+$USER_PROJECT_VERILOG/gl/rlbp.v	     
+$USER_PROJECT_VERILOG/gl/pixel_macro.v
+$USER_PROJECT_VERILOG/gl/rlbp_macro.v

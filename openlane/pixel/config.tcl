@@ -13,10 +13,15 @@
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
 
+
+
 set ::env(PDK) $::env(PDK)
 set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 set script_dir [file dirname [file normalize [info script]]]
+
+
+
 
 set ::env(DESIGN_NAME) pixel_macro
 

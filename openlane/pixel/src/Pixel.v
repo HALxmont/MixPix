@@ -329,6 +329,8 @@ module pixel (clk, reset, pxl_start_i, loc_timer_m_i, loc_timer_en, adj_timer_m_
 	output [3:0] pxl_q;
 	output loc_timer_en, adj_timer_en, s_p1, s_p2, s1, s2, s1_inv, s2_inv, v_b1, v_b0, sh, pxl_done_o, loc_timer_max, adj_timer_max, kernel_done_o, clk_out, reset_out, pxl_start_out;
 
+
+
 //Define internal nets for wiring
 	wire loc_timer_m_i_net, adj_timer_m_i_net, pxl_done_i_net, clk_net, reset_net, pxl_start_i_net;
 	assign loc_timer_m_i_net = loc_timer_max;

@@ -380,7 +380,7 @@ endmodule
 module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analyzer_start, control_signals, rlbp_done, pxl_done_i, data_in, data_sel, data_out, d, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1, en, p_data_in, s_data_out, ready);
 	//clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analyzer_start, control_signals, rlbp_done, data_in, data_sel, data_out, d, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1
 	
-	
+
 	input clk, ce_d1, ce_d2, ce_d3, reset, gpio_start, logic_analyzer_start, pxl_done_i, data_in, en;
 	input [1:0] data_sel;  
 	input [3:0] d;
