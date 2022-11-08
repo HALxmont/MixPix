@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
-`include "rlbp.v"
+`include "/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/src/rlbp.v"
 `default_nettype none
 
 
@@ -63,7 +63,7 @@ module rlbp_macro #(
 
 
     //---------RLBP control register
-    reg [11:0] control_reg_rlbp_fsm;
+    reg [12:0] control_reg_rlbp_fsm;
 
     //------ RLBP wires
 
@@ -78,6 +78,7 @@ module rlbp_macro #(
     wire wire_s_data_out;
     wire wire_ready;
 
+    wire wire_en;
     wire wire_ce_d1;
     wire wire_ce_d2;
     wire wire_ce_d3;
@@ -95,32 +96,41 @@ module rlbp_macro #(
     //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
 
     //[95:64]
-    assign wire_reset_fsm = la_data_out[64];            //out
-    assign wire_rlbp_done = la_data_out[65];            //out
-    assign wire_q1_3 = la_data_out[66];                 //out
-    assign wire_q1_2 = la_data_out[67];                 //out   0
-    assign wire_q1_1 = la_data_out[68];                 //out
-    assign wire_q2_3 = la_data_out[69];                 //out
-    assign wire_q2_2 = la_data_out[70];                 //out
-    assign wire_q2_1 = la_data_out[71];                 //out   0
-    assign wire_q3_3 = la_data_out[72];                 //out
-    assign wire_q3_2 = la_data_out[73];                 //out
-    assign wire_q3_1 = la_data_out[74];                 //out
-    assign wire_control_signals = la_data_out[78:75];   //out   0
-                                                        //5 bytes free. First 3 bytes needs to be set 0
-                                                        //0x-----000  ("-" = free to set)
+    assign wire_reset_fsm = la_data_out[64];                //out
+    assign wire_rlbp_done = la_data_out[65];                //out
+    assign wire_q1_3 = la_data_out[66];                     //out
+    assign wire_q1_2 = la_data_out[67];                     //out   0
+    assign wire_q1_1 = la_data_out[68];                     //out
+    assign wire_q2_3 = la_data_out[69];                     //out
+    assign wire_q2_2 = la_data_out[70];                     //out
+    assign wire_q2_1 = la_data_out[71];                     //out   0
+    assign wire_q3_3 = la_data_out[72];                     //out
+    assign wire_q3_2 = la_data_out[73];                     //out
+    assign wire_q3_1 = la_data_out[74];                     //out
+    assign wire_control_signals = la_data_out[78:75];       //out   00
 
 
+    assign wire_ce_d1 = la_data_out[83];                    //in
+    assign wire_ce_d2 = la_data_out[84];                    //in
+    assign wire_ce_d3 = la_data_out[85];                    //in
+    assign wire_gpio_start = la_data_out[86];               //in    F
+    assign wire_logic_analyzer_start = la_data_out[87];     //in
+    assign wire_data_in = la_data_out[88];                  //in
+    assign wire_data_sel = la_data_out[90:89];              //in
+    assign wire_en = la_data_out[91];                       //in    F
+    assign wire_d = la_data_out[95:92];                     //in    F
+                                                            // pixel 79:82 | rlbp 83:95 -> 0x-FFFF0000 
+
+
+    //[127:96]
+    assign wire_p_data_in = la_data_out[103:96];            //in    FF  ###test 
+    assign wire_data_out = la_data_out[107:104];            //out   0
+    assign wire_s_data_out = la_data_out[108];              //out
+    assign wire_ready = la_data_out[109];                   //out
+
+    //------ RLBP wires interconnection to RLBP control register
+    // assign wire_p_data_in = control_reg_rlbp_fsm[7:0];
     
-     //------ RLBP wires interconnection to RLBP control register
-    assign wire_ce_d1 = control_reg_rlbp_fsm[0];
-    assign wire_ce_d2 = control_reg_rlbp_fsm[1];
-    assign wire_ce_d3 = control_reg_rlbp_fsm[2];
-    assign wire_gpio_start = control_reg_rlbp_fsm[3];
-    assign wire_logic_analyzer_start = control_reg_rlbp_fsm[4];
-    assign wire_data_in = control_reg_rlbp_fsm[5];
-    assign wire_data_sel = control_reg_rlbp_fsm[7:6]; 
-    assign wire_d = control_reg_rlbp_fsm[11:8];
 
 
     // ------ WB slave interface
@@ -159,10 +169,10 @@ always@(posedge clk) begin
 
             //WB SLAVE INTERFACE
 			if (valid && addr_valid) begin  
-                rdata <= {{20{1'b0}}, control_reg_rlbp_fsm};  //fill 32 bits
+                rdata <= {{19{1'b0}}, control_reg_rlbp_fsm};  //fill 32 bits
 
                 if(wstrb[0]) begin
-                    control_reg_rlbp_fsm <= wdata[11:0];
+                    control_reg_rlbp_fsm <= wdata[12:0];
                 end
             end	
         end

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
-`include "Pixel.v"
+`include "/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/pixel/src/Pixel.v"
 `default_nettype none
 
 
@@ -135,18 +135,20 @@ module pixel_macro #(
     assign wire_pxl_start_in_wb = la_data_out[52];  //in 52,53,54,55 -> F
     assign wire_pxl_start_sel = la_data_out[58:57]; //in 56,57,58,59 -> F
                                                     // 60,61,62,63 free bits of the last byte 
-                                                    //0x0FFFFFFF
+                                                    //0x-FFFFFFF
                                                     //reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;
 
 
 
+    //79
+    assign wire_pxl_start_i = la_data_out[79];      //in
+    assign wire_pxl_done_i = la_data_out[80];       //in
+    assign wire_loc_timer_m_i = la_data_out[81];    //in
+    assign wire_adj_timer_m_i = la_data_out[82];    //in    F
+
 
 
   //------ PIXEL FSM wires interconnection to control register
-    assign wire_pxl_start_i = control_reg_pxl_fsm[0];
-    assign wire_pxl_done_i = control_reg_pxl_fsm[1];
-    assign wire_loc_timer_m_i = control_reg_pxl_fsm[2];
-    assign wire_adj_timer_m_i = control_reg_pxl_fsm[3];
     assign wire_loc_max_clk = control_reg_pxl_fsm[13:4];
     assign wire_adj_max_clk = control_reg_pxl_fsm[23:14];
 

@@ -40,7 +40,10 @@ module la_test1_tb;
 
 	`ifdef ENABLE_SDF
 		initial begin
-			$sdf_annotate("../../../sdf/user_proj_example.sdf", uut.mprj) ;
+			//$sdf_annotate("../../../sdf/pixel.sdf", uut.mprj) ;
+			$sdf_annotate("../../../sdf/pixel_macro.sdf", uut.mprj) ;
+			//$sdf_annotate("../../../sdf/rlbp.sdf", uut.mprj) ;
+			$sdf_annotate("../../../sdf/rlbp_macro.sdf", uut.mprj) ;
 			$sdf_annotate("../../../sdf/user_project_wrapper.sdf", uut.mprj.mprj) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/DFFRAM.sdf", uut.soc.DFFRAM_0) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/mgmt_core.sdf", uut.soc.core) ;
@@ -136,7 +139,7 @@ module la_test1_tb;
 	// assign mprj_io[3] = 1'b1;
 
 	initial begin
-		$dumpfile("la_test1.vcd");
+		$dumpfile("RTL-la_test_MixPix.vcd");
 		$dumpvars(0, la_test1_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
@@ -160,7 +163,7 @@ module la_test1_tb;
 		wait(checkbits == 16'hAB41);
 		wait(checkbits == 16'hAB51);
 		$display("LA Test 2 passed");
-		#10000;
+		#20000;
 		$finish;
 	end
 
@@ -228,7 +231,7 @@ module la_test1_tb;
 	);
 
 	spiflash #(
-		.FILENAME("la_test1.hex")
+		.FILENAME("la_test_MixPix.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),

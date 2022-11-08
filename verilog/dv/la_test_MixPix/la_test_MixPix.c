@@ -105,26 +105,29 @@ void main()
 	// Configure LA probes [63:32] (pixel_macro and rlbp_macro)
 	reg_la0_oenb = reg_la0_iena = 0xFF000000;	// [31:0]  pixel macro | OUTPUTS (00, 24bits)  2 INPUTS(FF, last 8bits)
 	reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;	// [32:63] pixel macro 7 inputs (last byte is free)
-	reg_la2_oenb = reg_la2_iena = 0x00000000;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
-	reg_la3_oenb = reg_la3_iena = 0x00000000;   // [127:96] DEFAULT
+	reg_la2_oenb = reg_la2_iena = 0xFFFFF000;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
+	reg_la3_oenb = reg_la3_iena = 0x000000FF;   // [127:96] rlbp macro 0 F F
+
 
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB400000;
 
-	// Set Counter value to zero through LA probes [63:32]
-	reg_la1_data = 0x00000000;
+	// Set LA probes [0:31]
+	reg_la1_data = 0x11000000;
+	reg_la2_oenb = 0x01000000;
+	reg_la3_data = 0x11000007;
+
+	// Set LA probes [63:32]
+	//reg_la1_data = 0x11111111;
 
 	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
+	//reg_la1_oenb = reg_la1_iena = 0x00000000;    
 
-	while (1) {
-		if (reg_la0_data_in > 0x1F4) {
-			reg_mprj_datal = 0xAB410000;
-			break;
-		}
-	}
-	print("\n");
-	print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
+	reg_la2_oenb = 0x01000000;
+	reg_la3_data = 0x11000003;
+
+	//print("\n");
+	//print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
 	reg_mprj_datal = 0xAB510000;
 }
 

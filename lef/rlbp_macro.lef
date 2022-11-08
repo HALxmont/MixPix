@@ -5076,9 +5076,9 @@ MACRO rlbp_macro
         RECT 12.980 3.670 61.450 4.280 ;
         RECT 288.610 3.670 332.480 4.280 ;
       LAYER met3 ;
-        RECT 16.165 10.375 329.830 288.485 ;
+        RECT 17.545 10.715 329.830 288.485 ;
       LAYER met4 ;
-        RECT 68.375 13.775 68.705 30.425 ;
+        RECT 46.295 13.095 48.465 49.465 ;
   END
 END rlbp_macro
 END LIBRARY
