@@ -169,6 +169,10 @@ always@(posedge clk) begin
 		else begin
 			wbs_done <= 0;
 
+
+
+
+
             //WB SLAVE INTERFACE
 			if (valid && addr_valid)  begin  
 			    case(wbs_adr_i[7:0])  

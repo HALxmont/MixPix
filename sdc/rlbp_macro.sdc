@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Tue Nov  8 02:02:27 2022
+# Tue Nov  8 17:13:14 2022
 ###############################################################################
 current_design rlbp_macro
 ###############################################################################
@@ -583,6 +583,13 @@ set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {la
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {la_data_out[98]}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {la_data_out[99]}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {la_data_out[9]}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_1}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_2}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_3}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_4}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_5}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {out_7}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {rst}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {serial_data_rlbp_out}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs_ack_o}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs_dat_o[0]}]
@@ -620,6 +627,13 @@ set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wb
 ###############################################################################
 # Environment
 ###############################################################################
+set_load -pin_load 0.0334 [get_ports {out_1}]
+set_load -pin_load 0.0334 [get_ports {out_2}]
+set_load -pin_load 0.0334 [get_ports {out_3}]
+set_load -pin_load 0.0334 [get_ports {out_4}]
+set_load -pin_load 0.0334 [get_ports {out_5}]
+set_load -pin_load 0.0334 [get_ports {out_7}]
+set_load -pin_load 0.0334 [get_ports {rst}]
 set_load -pin_load 0.0334 [get_ports {serial_data_rlbp_out}]
 set_load -pin_load 0.0334 [get_ports {wbs_ack_o}]
 set_load -pin_load 0.0334 [get_ports {io_oeb[37]}]

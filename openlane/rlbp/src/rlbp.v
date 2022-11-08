@@ -373,22 +373,426 @@ module Parallel2Serial(clk, reset, en, p_data_in, s_data_out, ready);
 
 endmodule 
 
+//
+// Signal 1 FSM
+//
+module signal1_fsm (clk, reset, count, time_up_1, time_down_1, out_1);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_1, time_down_1;
+	output reg out_1;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	//reg [9:0] time_up_1, time_down_1;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	//	time_up_1 = 1000; //10us equals to 1000 counts of 10ns (10MHz)
+	//	time_down = 2000; //20 us
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_up_1)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_up_1)==time_down_1)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_1 = 1'b0;
+					end
+							
+			INITIAL_STATE:	begin
+					out_1 = 1'b1;
+					end
+					
+			FINAL_STATE:	begin
+					out_1 = 1'b0;
+					end
+		endcase
+	end
+
+endmodule
+
+
+//
+// Signal 2 FSM
+//
+module signal2_fsm (clk, reset, count, time_up_2, time_down_2, out_2);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_2, time_down_2;
+	output reg out_2;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_down_2)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_down_2)==time_up_2)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_2 = 1'b0;
+					end
+							
+			INITIAL_STATE:	begin
+					out_2 = 1'b0;
+					end
+					
+			FINAL_STATE:	begin
+					out_2 = 1'b1;
+					end
+		endcase
+	end
+
+endmodule
+
+//
+// Signal 3 FSM
+//
+module signal3_fsm (clk, reset, count, time_up_3, time_down_3, out_3);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_3, time_down_3;
+	output reg out_3;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_up_3)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_up_3)==time_down_3)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_3 = 1'b0;
+					end
+							
+			INITIAL_STATE:	begin
+					out_3 = 1'b1;
+					end
+					
+			FINAL_STATE:	begin
+					out_3 = 1'b0;
+					end
+		endcase
+	end
+
+endmodule
+
+//
+// Signal 4 FSM
+//
+module signal4_fsm (clk, reset, count, time_up_4, time_down_4, rst, out_4);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_4, time_down_4;
+	output reg rst, out_4;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_down_4)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_down_4)==time_up_4)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_4 = 1'b0;
+					rst = 1'b1;
+					end
+							
+			INITIAL_STATE:	begin
+					out_4 = 1'b0;
+					rst = 1'b0;
+					end
+					
+			FINAL_STATE:	begin
+					out_4 = 1'b1;
+					rst = 1'b0;
+					end
+		endcase
+	end
+
+endmodule
+
+//
+// Signal 5 FSM
+//
+module signal5_fsm (clk, reset, count, time_up_5, time_down_5, out_5);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_5, time_down_5;
+	output reg out_5;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_down_5)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_down_5)==time_up_5)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_5 = 1'b0;
+					end
+							
+			INITIAL_STATE:	begin
+					out_5 = 1'b0;
+					end
+					
+			FINAL_STATE:	begin
+					out_5 = 1'b1;
+					end
+		endcase
+	end
+
+endmodule
+
+
+//
+// Signal 7 FSM
+//
+module signal7_fsm (clk, reset, count, time_up_7, time_down_7, out_7);
+	input clk, reset;
+	input [11:0] count;
+	input [10:0] time_up_7, time_down_7;
+	output reg out_7;
+	reg [1:0] state;
+	reg [1:0] next_state;
+	
+	parameter IDLE = 2'b00; parameter INITIAL_STATE = 2'b01; parameter FINAL_STATE = 2'b10;
+
+	initial begin
+		state = 2'b00;
+	end
+	
+	always @(posedge clk or posedge reset)
+	begin
+		if (reset) state <= IDLE;
+		else state <= next_state;
+	end
+	
+	//Comparar entre counter y time_up/time_down, si counter alcanza valor
+	//de time_up/time_down -> pasa a siguiente etapa
+
+	always @(state or count)
+	begin
+		case (state)
+			IDLE:		next_state = INITIAL_STATE;
+
+			INITIAL_STATE:	if (count==time_down_7)
+						next_state = FINAL_STATE;
+					else
+						next_state = INITIAL_STATE;
+
+			FINAL_STATE: 	if ((count-time_down_7)==time_up_7)
+						next_state = IDLE;
+					else 
+						next_state = FINAL_STATE;
+		endcase
+	end
+	
+	always @(state)
+	begin
+		case (state)
+			IDLE: 		begin
+					out_7 = 1'b0;
+					end
+							
+			INITIAL_STATE:	begin
+					out_7 = 1'b0;
+					end
+					
+			FINAL_STATE:	begin
+					out_7 = 1'b1;
+					end
+		endcase
+	end
+
+endmodule
+
+
+//
+// 12-bit Counter with Enable
+//
+module counter (clk, reset_c, en_c, q);
+	input clk, reset_c, en_c;
+	output [11:0] q;
+	reg [11:0] tmp;
+
+	always @(posedge clk or posedge reset_c)
+	begin
+		if (reset_c)
+			tmp <= 12'b000000000000;
+		else if (en_c)
+			tmp <= tmp + 1'b1;
+	end
+
+	assign q = tmp;
+
+endmodule	
+
 
 
 // Complete Module Instantiation and Wiring
 
-module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analyzer_start, control_signals, rlbp_done, pxl_done_i, data_in, data_sel, data_out, d, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1, en, p_data_in, s_data_out, ready);
+module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analyzer_start, control_signals, rlbp_done, pxl_done_i, data_in, data_sel, data_out, d, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1, en, p_data_in, s_data_out, ready, count, time_up_1, time_down_1, out_1, time_up_2, time_down_2, out_2, time_up_3, time_down_3, out_3, time_up_4, time_down_4, rst, out_4, reset_c, time_up_5, time_down_5, out_5, time_up_7, time_down_7, out_7, en_c, q );
 	//clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analyzer_start, control_signals, rlbp_done, data_in, data_sel, data_out, d, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1
 	
-
-	input clk, ce_d1, ce_d2, ce_d3, reset, gpio_start, logic_analyzer_start, pxl_done_i, data_in, en;
+	input clk, ce_d1, ce_d2, ce_d3, reset, gpio_start, logic_analyzer_start, pxl_done_i, data_in, en, reset_c, en_c;
 	input [1:0] data_sel;  
 	input [3:0] d;
 	input [7:0] p_data_in;
+	input [10:0] time_up_1, time_down_1, time_up_2, time_down_2, time_up_3, time_down_3, time_up_4, time_down_4, time_up_5, time_down_5, time_up_7, time_down_7;
+	input [11:0] count;		//input a (triggers) FSMs 
 	output [3:0] data_out;
 	output [1:0] control_signals;
 	output reset_fsm, rlbp_done, q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1;
 	output s_data_out, ready;
+	output rst, out_1, out_2, out_3, out_4, out_5, out_7;	//rst -> counter reset
+	output [11:0] q;		//output counter
 
 
 //Define internal nets for wiring
@@ -396,6 +800,8 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analy
 	wire [1:0] sel_net;
 	wire [3:0] data_net;
 	wire [7:0] p_data_in_net;
+	wire rst_net;
+	wire [11:0] count_net;
 	assign sel_net = control_signals;
 	assign data_net = data_out;	
 	assign ce_d1_net = ce_d1;
@@ -403,7 +809,8 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analy
 	assign ce_d3_net = ce_d3;
 //	assign p_data_in_net = {q1_3, q1_2, q1_1, q2_3, q2_2, q2_1, q3_3, q3_2, q3_1};
 	assign p_data_in_net = {q3_1, q3_2, q3_3, q2_1, q2_2, q2_3, q1_1, q1_2, q1_3};
-
+	assign rst_net = rst;
+	assign count_net = q;
 	
 	rlbp_fsm inst1(
 	.clk(clk), 
@@ -450,6 +857,68 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, gpio_start, logic_analy
 	.p_data_in(p_data_in_net),
 	.s_data_out(s_data_out),
 	.ready(ready)
+	);
+	
+	signal1_fsm inst5(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_1(time_up_1),
+	.time_down_1(time_down_1),
+	.out_1(out_1)
+	);
+	
+	signal2_fsm inst6(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_2(time_up_2),
+	.time_down_2(time_down_2),
+	.out_2(out_2)
+	);
+	
+	signal3_fsm inst7(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_3(time_up_3),
+	.time_down_3(time_down_3),
+	.out_3(out_3)
+	);
+	
+	signal4_fsm inst8(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_4(time_up_4),
+	.time_down_4(time_down_4),
+	.rst(rst),
+	.out_4(out_4)
+	);
+	
+	signal5_fsm inst9(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_5(time_up_5),
+	.time_down_5(time_down_5),
+	.out_5(out_5)
+	);
+	
+	signal7_fsm inst10(
+	.clk(clk),
+	.reset(reset),
+	.count(count_net),
+	.time_up_7(time_up_7),
+	.time_down_7(time_down_7),
+	.out_7(out_7)
+	);
+	
+	counter inst11(
+	.clk(clk),
+	.reset_c(rst_net),
+	.en_c(en_c),
+	.q(q)
 	);
 	
 	

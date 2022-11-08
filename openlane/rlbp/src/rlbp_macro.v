@@ -52,10 +52,16 @@ module rlbp_macro #(
 
     // ---- Design Specific Ports 
 
-    output serial_data_rlbp_out
+    output serial_data_rlbp_out,
 
+    output rst,
+    output out_1,
+    output out_2, 
+    output out_3, 
+    output out_4, 
+    output out_5,
+    output out_7
 
-    
 );
 
     wire clk;
@@ -87,6 +93,49 @@ module rlbp_macro #(
     wire wire_data_in;
     wire [1:0] wire_data_sel; 
     wire [3:0] wire_d;
+
+
+    wire wire_reset_c;
+    wire wire_en_c;
+    wire wire_rst;
+    wire wire_out_1; 
+    wire wire_out_2; 
+    wire wire_out_3; 
+    wire wire_out_4; 
+    wire wire_out_5;
+    wire wire_out_7;
+
+    //registers
+    reg [10:0] reg_time_up_1;
+    reg [10:0] reg_time_down_1;
+    reg [10:0] reg_time_up_2;
+    reg [10:0] reg_time_down_2; 
+    reg [10:0] reg_time_up_3; 
+    reg [10:0] reg_time_down_3; 
+    reg [10:0] reg_time_up_4; 
+    reg [10:0] reg_time_down_4;
+    reg [10:0] reg_time_up_5; 
+    reg [10:0] reg_time_down_5;
+    reg [10:0] reg_time_up_7;
+    reg [10:0] reg_time_down_7;
+    reg [11:0] reg_count;
+    reg [11:0] reg_q;
+
+    //------ REGS ADDRs table (WSB)
+    localparam TIME_UP_1 = 0;
+    localparam TIME_DOWN_1 = 4;
+    localparam TIME_UP_2 = 8;
+    localparam TIME_DOWN_2 = 12;
+    localparam TIME_UP_3 = 16;
+    localparam TIME_DOWN_3 = 20;
+    localparam TIME_UP_4 = 24;
+    localparam TIME_DOWN_4 = 28;
+    localparam TIME_UP_5 = 32;
+    localparam TIME_DOWN_5 = 36;
+    localparam TIME_UP_7 = 40;
+    localparam TIME_DOWN_7 = 44;
+    localparam COUNT = 48;
+    localparam Q = 52;
 
 
 
@@ -124,10 +173,33 @@ module rlbp_macro #(
 
 
     //[127:96]
-    assign wire_p_data_in = la_data_in[103:96];            //in    FF  ###test 
+    assign wire_p_data_in = la_data_in[103:96];             //in    FF  ###test 
     assign wire_data_out = la_data_out[107:104];            //out   0
     assign wire_s_data_out = la_data_out[108];              //out
     assign wire_ready = la_data_out[109];                   //out
+
+    assign wire_rst = la_data_out[110];                     //out
+    assign wire_out_1 = la_data_out[111];                   //out   0
+    assign wire_out_2 = la_data_out[112];                   //out
+    assign wire_out_3 = la_data_out[113];                   //out
+    assign wire_out_4 = la_data_out[114];                   //out
+    assign wire_out_5 = la_data_out[115];                   //out   0
+    assign wire_out_7 = la_data_out[116];                   //out   116,117,118,119 -> 0
+    
+    assign wire_reset_c = la_data_in[120];                   //in   F   
+    assign wire_en_c = la_data_in[121];                      //in
+
+
+    //outputs RLBP MACRO
+    assign wire_rst = rst;
+    assign wire_out_1 = out_1;
+    assign wire_out_2 = out_2;
+    assign wire_out_3 = out_3; 
+    assign wire_out_4 = out_4; 
+    assign wire_out_5 = out_5;
+    assign wire_out_7 = out_7;
+
+
 
     //------ RLBP wires interconnection to RLBP control register
     // assign wire_p_data_in = control_reg_rlbp_fsm[7:0];
@@ -170,11 +242,89 @@ always@(posedge clk) begin
 
             //WB SLAVE INTERFACE
 			if (valid && addr_valid) begin  
-                rdata <= {{19{1'b0}}, control_reg_rlbp_fsm};  //fill 32 bits
+                // rdata <= {{19{1'b0}}, control_reg_rlbp_fsm};  //fill 32 bits
 
-                if(wstrb[0]) begin
-                    control_reg_rlbp_fsm <= wdata[12:0];
-                end
+                // if(wstrb[0]) begin
+                //     control_reg_rlbp_fsm <= wdata[12:0];
+                // end
+                case(wbs_adr_i[7:0])  
+
+                    TIME_UP_1: begin
+                        if(wstrb[0])
+                            reg_time_up_1 <= wdata[10:0];
+                    end
+
+                    TIME_DOWN_1: begin
+                        if(wstrb[0])
+                            reg_down_up_1 <= wdata[10:0];
+                    end       
+
+                    TIME_UP_2: begin
+                        if(wstrb[0])
+                            reg_time_up_2 <= wdata[10:0];
+                    end
+
+                    TIME_DOWN_2:  begin
+                        if(wstrb[0])
+                            reg_time_down_2 <= wdata[10:0];
+                    end
+
+                    TIME_UP_3: begin
+                        if(wstrb[0])
+                            reg_time_up_3 <= wdata[10:0];
+                    end
+
+                    TIME_DOWN_3: begin
+                        if(wstrb[0])
+                            reg_time_down_3 <= wdata[10:0];  
+                    end
+
+                    TIME_UP_4: begin
+                        if(wstrb[0])
+                            reg_time_up_4 <= wdata[10:0];  
+                    end
+
+                    TIME_DOWN_4:  begin
+                        if(wstrb[0])	
+                            reg_time_down_4 <= wdata[10:0];
+                    end
+
+                    TIME_UP_5: begin
+                        if(wstrb[0])
+                            reg_time_up_5 <= wdata[10:0];  
+                    end
+
+                    TIME_DOWN_5:  begin	
+                        if(wstrb[0])
+                            reg_time_down_5 <= wdata[10:0];
+                    end
+
+                    TIME_UP_7: begin
+                        if(wstrb[0])
+                            reg_time_up_7 <= wdata[10:0];  
+                    end
+
+                    TIME_DOWN_7:  begin
+                        if(wstrb[0])	
+                            reg_time_down_7 <= wdata[10:0];
+                    end
+
+                    COUNT: begin
+                        if(wstrb[0])
+                            reg_count <= wdata[11:0];  
+                    end
+
+                    Q:  begin
+                        if(wstrb[0])	
+                            reg_q <= wdata[11:0];
+                    end
+
+
+                    default: ;
+
+				endcase
+
+
             end	
         end
 end 
@@ -210,7 +360,31 @@ rlbp rlbp_inst0 (
     .en(wire_en), 
     .p_data_in(wire_p_data_in),  //parallel data in
     .s_data_out(wire_s_data_out), //serial data out
-    .ready(wire_ready) //P2S conversion ready
+    .ready(wire_ready), //P2S conversion ready
+    //fsm-counter-triggers
+    .reset_c(wire_reset_c),
+    .en_c(wire_en_c),
+    .time_up_1(reg_time_up_1), 
+    .time_down_1(reg_time_down_1), 
+    .time_up_2(reg_time_up_2), 
+    .time_down_2(reg_time_down_2), 
+    .time_up_3(reg_time_up_3), 
+    .time_down_3(reg_time_down_3), 
+    .time_up_4(reg_time_up_4), 
+    .time_down_4(reg_time_down_4), 
+    .time_up_5(reg_time_up_5), 
+    .time_down_5(reg_time_down_5), 
+    .time_up_7(reg_time_up_7), 
+    .time_down_7(reg_time_down_7),
+    .count(reg_count),
+    .q(reg_q),
+    .rst(wire_rst), 
+    .out_1(wire_out_1), 
+    .out_2(wire_out_2), 
+    .out_3(wire_out_3), 
+    .out_4(wire_out_4), 
+    .out_5(wire_out_5), 
+    .out_7(wire_out_7)
 );
 
 
