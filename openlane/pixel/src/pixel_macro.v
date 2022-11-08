@@ -122,18 +122,18 @@ module pixel_macro #(
     assign wire_pxl_start_out = la_data_out[21];    //out 22,23 -> 0
 
     //1byte per input (32bit RiscV)
-    assign wire_clk_in_ext = la_data_out[24];       //in 24,25,26,26 -> F
-    assign wire_clk_in_wb = la_data_out[28];        //in 28,29,30,31 -> F = >   0xFF000000  END [31:0]
+    assign wire_clk_in_ext = la_data_in[24];       //in 24,25,26,26 -> F
+    assign wire_clk_in_wb = la_data_in[28];        //in 28,29,30,31 -> F = >   0xFF000000  END [31:0]
 
 
     //begin [63:32]
-    assign wire_clk_sel = la_data_out[33:32];       //in 32,33,34,35 -> F
-    assign wire_reset_in_ext = la_data_out[36];     //in 36,37,38,39 -> F
-    assign wire_reset_in_wb = la_data_out[40];      //in 40,41,42,43 -> F
-    assign wire_reset_sel = la_data_out[45:44];     //in 44,45,46,47 -> F   
-    assign wire_pxl_start_in_ext = la_data_out[48]; //in 48,49,50,51 -> F
-    assign wire_pxl_start_in_wb = la_data_out[52];  //in 52,53,54,55 -> F
-    assign wire_pxl_start_sel = la_data_out[58:57]; //in 56,57,58,59 -> F
+    assign wire_clk_sel = la_data_in[33:32];       //in 32,33,34,35 -> F
+    assign wire_reset_in_ext = la_data_in[36];     //in 36,37,38,39 -> F
+    assign wire_reset_in_wb = la_data_in[40];      //in 40,41,42,43 -> F
+    assign wire_reset_sel = la_data_in[45:44];     //in 44,45,46,47 -> F   
+    assign wire_pxl_start_in_ext = la_data_in[48]; //in 48,49,50,51 -> F
+    assign wire_pxl_start_in_wb = la_data_in[52];  //in 52,53,54,55 -> F
+    assign wire_pxl_start_sel = la_data_in[58:57]; //in 56,57,58,59 -> F
                                                     // 60,61,62,63 free bits of the last byte 
                                                     //0x-FFFFFFF
                                                     //reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;

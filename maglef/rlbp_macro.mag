@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1667856469
+timestamp 1667872983
 << nwell >>
 rect 1066 56837 68854 57403
 rect 1066 55749 68854 56315
@@ -57,7 +57,7 @@ rect 1066 2437 68854 3003
 << obsli1 >>
 rect 1104 2159 68816 57681
 << obsm1 >>
-rect 1104 1640 68816 57712
+rect 1104 1368 68816 57712
 << metal2 >>
 rect 3514 59200 3570 60000
 rect 4066 59200 4122 60000
@@ -668,8 +668,6 @@ rect 57426 0 57482 800
 rect 57518 0 57574 800
 rect 57610 0 57666 800
 << obsm2 >>
-rect 2596 59144 3458 59242
-rect 3626 59144 4010 59242
 rect 4178 59144 4562 59242
 rect 4730 59144 5114 59242
 rect 5282 59144 5666 59242
@@ -783,19 +781,17 @@ rect 64346 59144 64730 59242
 rect 64898 59144 65282 59242
 rect 65450 59144 65834 59242
 rect 66002 59144 66386 59242
-rect 2596 856 66496 59144
-rect 2596 734 12290 856
-rect 57722 734 66496 856
+rect 4068 856 66496 59144
+rect 4068 800 12290 856
+rect 57722 800 66496 856
 << obsm3 >>
-rect 3509 2143 65966 57697
+rect 4210 2143 65966 57697
 << metal4 >>
 rect 4208 2128 4528 57712
 rect 19568 2128 19888 57712
 rect 34928 2128 35248 57712
 rect 50288 2128 50608 57712
 rect 65648 2128 65968 57712
-<< obsm4 >>
-rect 9259 2619 9693 9893
 << labels >>
 rlabel metal2 s 3514 59200 3570 60000 6 io_in[0]
 port 1 nsew signal input
@@ -2027,8 +2023,8 @@ port 610 nsew signal input
 string FIXED_BBOX 0 0 70000 60000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 2008112
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_07_18_26/results/signoff/rlbp_macro.magic.gds
-string GDS_START 237440
+string GDS_END 2285808
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_07_23_01/results/signoff/rlbp_macro.magic.gds
+string GDS_START 345668
 << end >>
 

@@ -110,20 +110,21 @@ module rlbp_macro #(
     assign wire_control_signals = la_data_out[78:75];       //out   00
 
 
-    assign wire_ce_d1 = la_data_out[83];                    //in
-    assign wire_ce_d2 = la_data_out[84];                    //in
-    assign wire_ce_d3 = la_data_out[85];                    //in
-    assign wire_gpio_start = la_data_out[86];               //in    F
-    assign wire_logic_analyzer_start = la_data_out[87];     //in
-    assign wire_data_in = la_data_out[88];                  //in
-    assign wire_data_sel = la_data_out[90:89];              //in
-    assign wire_en = la_data_out[91];                       //in    F
-    assign wire_d = la_data_out[95:92];                     //in    F
+    //pixel_macro [79:82] ...
+    assign wire_ce_d1 = la_data_in[83];                    //in
+    assign wire_ce_d2 = la_data_in[84];                    //in
+    assign wire_ce_d3 = la_data_in[85];                    //in
+    assign wire_gpio_start = la_data_in[86];               //in    F
+    assign wire_logic_analyzer_start = la_data_in[87];     //in
+    assign wire_data_in = la_data_in[88];                  //in
+    assign wire_data_sel = la_data_in[90:89];              //in
+    assign wire_en = la_data_in[91];                       //in    F
+    assign wire_d = la_data_in[95:92];                     //in    F
                                                             // pixel 79:82 | rlbp 83:95 -> 0x-FFFF0000 
 
 
     //[127:96]
-    assign wire_p_data_in = la_data_out[103:96];            //in    FF  ###test 
+    assign wire_p_data_in = la_data_in[103:96];            //in    FF  ###test 
     assign wire_data_out = la_data_out[107:104];            //out   0
     assign wire_s_data_out = la_data_out[108];              //out
     assign wire_ready = la_data_out[109];                   //out

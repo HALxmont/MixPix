@@ -17,7 +17,7 @@
 
 `timescale 1 ns / 1 ps
 
-module la_test1_tb;
+module la_test_MixPix_tb;
 	reg clock;
     reg RSTB;
 	reg CSB;
@@ -139,8 +139,8 @@ module la_test1_tb;
 	// assign mprj_io[3] = 1'b1;
 
 	initial begin
-		$dumpfile("RTL-la_test_MixPix.vcd");
-		$dumpvars(0, la_test1_tb);
+		$dumpfile("la_test_MixPix.vcd");
+		$dumpvars(0, la_test_MixPix_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (250) begin
@@ -163,7 +163,7 @@ module la_test1_tb;
 		wait(checkbits == 16'hAB41);
 		wait(checkbits == 16'hAB51);
 		$display("LA Test 2 passed");
-		#20000;
+		#10000;
 		$finish;
 	end
 
