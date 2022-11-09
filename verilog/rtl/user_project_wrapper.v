@@ -87,46 +87,46 @@ wire pxl_done;
 //#     User macros/projects ares instantiated  here    #
 //#######################################################
 
-pixel_macro pixel_macro0 (
+// pixel_macro pixel_macro0 (
 
-`ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-`endif
+// `ifdef USE_POWER_PINS
+// 	.vccd1(vccd1),	// User area 1 1.8V power
+// 	.vssd1(vssd1),	// User area 1 digital ground
+// `endif
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+//     .wb_clk_i(wb_clk_i),
+//     .wb_rst_i(wb_rst_i),
 
-    // MGMT SoC Wishbone Slave
+//     // MGMT SoC Wishbone Slave
 
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
+//     .wbs_cyc_i(wbs_cyc_i),
+//     .wbs_stb_i(wbs_stb_i),
+//     .wbs_we_i(wbs_we_i),
+//     .wbs_sel_i(wbs_sel_i),
+//     .wbs_adr_i(wbs_adr_i),
+//     .wbs_dat_i(wbs_dat_i),
+//     .wbs_ack_o(wbs_ack_o),
+//     .wbs_dat_o(wbs_dat_o),
 
-    // Logic Analyzer
+//     // Logic Analyzer
 
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
+//     .la_data_in(la_data_in),
+//     .la_data_out(la_data_out),
+//     .la_oenb (la_oenb),
 
-    // IO Pads
+//     // IO Pads
 
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
+//     .io_in (io_in),
+//     .io_out(io_out),
+//     .io_oeb(io_oeb),
 
-    // IRQ
-    .irq(user_irq),
+//     // IRQ
+//     .irq(user_irq),
 
-    .pxl_start_in_ext(pxl_start_in_ext),
-    .pxl_start_out(pxl_start_out),
-    .pxl_done(pxl_done)
-);
+//     .pxl_start_in_ext(pxl_start_in_ext),
+//     .pxl_start_out(pxl_start_out),
+//     .pxl_done(pxl_done)
+// );
 
   
 

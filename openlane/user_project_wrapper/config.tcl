@@ -46,8 +46,8 @@ set ::env(CLOCK_PERIOD) "10"
 ## Internal Macros
 ### Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-	rlbp_macro0 vccd1 vssd1 vccd1 vssd1, \
-	pixel_macro0 vccd1 vssd1 vccd1 vssd1"
+	rlbp_macro0 vccd1 vssd1 vccd1 vssd1"
+
 
 ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
@@ -55,17 +55,13 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../openlane/pixel/src/pixel_macro.v \
 	$script_dir/../../openlane/rlbp/src/rlbp_macro.v \
-	$script_dir/../../openlane/rlbp/src/rlbp.v \
-	$script_dir/../../openlane/pixel/src/Pixel.v"
+	$script_dir/../../openlane/rlbp/src/rlbp.v"
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/pixel_macro.lef \
 	$script_dir/../../lef/rlbp_macro.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/pixel_macro.gds \
 	$script_dir/../../gds/rlbp_macro.gds"
 	
 

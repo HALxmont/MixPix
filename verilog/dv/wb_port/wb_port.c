@@ -71,18 +71,51 @@ void main()
     reg_mprj_io_17 = GPIO_MODE_MGMT_STD_OUTPUT;
     reg_mprj_io_16 = GPIO_MODE_MGMT_STD_OUTPUT;
 
-     /* Apply configuration */
-    reg_mprj_xfer = 1;
-    while (reg_mprj_xfer == 1);
 
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+	/* Apply configuration */
+	reg_mprj_xfer = 1;
+	while (reg_mprj_xfer == 1);
 
-    // Flag start of the test
+
+    
+    /* Testbench start condition starts the simulation*/
 	reg_mprj_datal = 0xAB600000;
 
-    reg_mprj_slave = 0x00002710;
+
+    uint32_t *to_wb = (uint32_t *) &reg_mprj_slave;        //wb base addr
+
+    //------ REGS ADDRs table (WSB) 
+    uint8_t TIME_UP_1 = 0;           //1 0
+    uint8_t TIME_DOWN_1 = 1;         //2 4
+    uint8_t TIME_UP_2 = 2;           //3 8
+    uint8_t TIME_DOWN_2 = 3;        //.. C
+    uint8_t TIME_UP_3 = 4;          
+    // uint8_t TIME_DOWN_3 = 5;
+    // uint8_t TIME_UP_4 = 6;
+    // uint8_t TIME_DOWN_4 = 7;
+    // uint8_t TIME_UP_5 = 8;
+    // uint8_t TIME_DOWN_5 = 9;
+    // uint8_t TIME_UP_7 = 10;
+    // uint8_t TIME_DOWN_7 = 11;
+    // uint8_t COUNT = 12;
+    // uint8_t Q = 13;
+    // uint8_t VD1 = 14;
+    // uint8_t VD2 = 15;
+    // uint8_t SW1 = 16;
+    // uint8_t SW2 = 17;
+    // uint8_t SH = 18;
+    // uint8_t SH_COMP = 19;
+    // uint8_t SH_RST = 20;
+    // uint8_t COUNTER_RST = 21;
+    // uint8_t CMP_TMR = 22;
+
+    // Introducing data using WB inetrface
+    to_wb[TIME_DOWN_1] = 775;
+    to_wb[TIME_UP_1] = 776;
+    to_wb[TIME_UP_2] = 333;
+    to_wb[TIME_DOWN_2] = 444;
+
+    /* Testbench $finish condition stops the simulation*/
     reg_mprj_datal = 0xAB610000;
-    if (reg_mprj_slave == 0x2B3D) {
-        reg_mprj_datal = 0xAB610000;
-    }
+   
 }

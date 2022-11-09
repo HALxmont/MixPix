@@ -15,6 +15,7 @@
 
 `default_nettype none
 
+
 `timescale 1 ns / 1 ps
 
 module wb_port_tb;
@@ -45,7 +46,7 @@ module wb_port_tb;
 
 	`ifdef ENABLE_SDF
 		initial begin
-			$sdf_annotate("../../../sdf/user_proj_example.sdf", uut.mprj) ;
+			$sdf_annotate("../../../sdf/rlbp_macro.sdf", uut.mprj) ;
 			$sdf_annotate("../../../sdf/user_project_wrapper.sdf", uut.mprj.mprj) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/DFFRAM.sdf", uut.soc.DFFRAM_0) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/mgmt_core.sdf", uut.soc.core) ;
@@ -158,9 +159,9 @@ module wb_port_tb;
 	end
 
 	initial begin
-	   wait(checkbits == 16'hAB60);
+	   wait(checkbits == 16'h AB60);
 		$display("Monitor: MPRJ-Logic WB Started");
-		wait(checkbits == 16'hAB61);
+		wait(checkbits == 16'h AB61);
 		`ifdef GL
 	    	$display("Monitor: Mega-Project WB (GL) Passed");
 		`else
@@ -174,17 +175,35 @@ module wb_port_tb;
 		CSB  <= 1'b1;		// Force CSB high
 		#2000;
 		RSTB <= 1'b1;	    	// Release reset
-		#100000;
+		#170000;
 		CSB = 1'b0;		// CSB can be released
 	end
 
 	initial begin		// Power-up sequence
+		// power1 <= 1'b0;
+		// power2 <= 1'b0;
+		// #200;
+		// power1 <= 1'b1;
+		// #200;
+		// power2 <= 1'b1;
+
 		power1 <= 1'b0;
 		power2 <= 1'b0;
-		#200;
+		power3 <= 1'b0;
+		power4 <= 1'b0;
+		#100;
 		power1 <= 1'b1;
-		#200;
+		#100;
 		power2 <= 1'b1;
+		#100;
+		power3 <= 1'b1;
+		#100;
+		power4 <= 1'b1;
+	end
+
+
+	always @(mprj_io) begin
+		#1 $display("MPRJ-IO state = %b ", mprj_io[7:0]);
 	end
 
 	wire flash_csb;
