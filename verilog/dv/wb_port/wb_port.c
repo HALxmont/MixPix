@@ -72,15 +72,40 @@ void main()
     reg_mprj_io_16 = GPIO_MODE_MGMT_STD_OUTPUT;
 
 
+    reg_mprj_io_15 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_13 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_12 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_11 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_10 = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_9  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_8  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_7  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_5  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_4  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_3  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_2  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_1  = GPIO_MODE_USER_STD_OUTPUT;
+    reg_mprj_io_0  = GPIO_MODE_USER_STD_OUTPUT;
+
+    reg_mprj_io_6  = GPIO_MODE_MGMT_STD_OUTPUT;
+
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
 
 
-    
-    /* Testbench start condition starts the simulation*/
-	reg_mprj_datal = 0xAB600000;
 
+
+// Configure LA probes [31:0]  (pixel_macro)
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;	// [31:0]  (last two bits are FREE)
+	reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;	// [32:63] FREE
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;   // [95:64] FREE
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;   // [127:96] FREE
+
+
+
+// WB SETTINGS
 
     uint32_t *to_wb = (uint32_t *) &reg_mprj_slave;        //wb base addr
 
@@ -104,21 +129,30 @@ void main()
     uint8_t COUNT_VALUE = 16;
     uint8_t Q = 17;
 
-    // uint8_t VD1 = 14;
-    // uint8_t VD2 = 15;
-    // uint8_t SW1 = 16;
-    // uint8_t SW2 = 17;
-    // uint8_t SH = 18;
-    // uint8_t SH_COMP = 19;
-    // uint8_t SH_RST = 20;
-    // uint8_t COUNTER_RST = 21;
-    // uint8_t CMP_TMR = 22;
 
-    // Introducing data using WB inetrface
+
+
+    /* Testbench start condition starts the simulation*/
+	reg_mprj_datal = 0xAB600000;
+
+
+//  ################## FRIMAWRE TEST START ########################//
+
+//wirte values to LA probes [0:31]
+	reg_la0_data = 0x011111111;
+
+//Disable LA probes
+
+    reg_la0_oenb = reg_la0_iena = 0x00000000;	// [31:0]  
+
+
+// Introducing data using WB inetrface
     to_wb[TIME_DOWN_1] = 775;
     to_wb[TIME_UP_1] = 776; 
     to_wb[TIME_UP_2] = 333;
     to_wb[TIME_DOWN_2] = 444;
+
+//  ################## FRIMAWRE TEST END ########################//
 
     /* Testbench $finish condition stops the simulation*/
     reg_mprj_datal = 0xAB610000;

@@ -248,37 +248,37 @@ module rlbp_macro #(
     //[31:0]
     //reg_la0_oenb = reg_la0_iena = 0xFF000000;    // [31:0]  OUTPUTS (00, 24bits)  INPUTS(FF, last 8bits)
 
-    assign pd1_a = la_data_out[0];                  //out  
-    assign pd1_b = la_data_out[1];                  //out  
-    assign pd2_a = la_data_out[2];                  //out  
-    assign pd2_b = la_data_out[3];                  //out   0 
-    assign pd3_a = la_data_out[4];                  //out  
-    assign pd3_b = la_data_out[5];                  //out  
-    assign pd4_a = la_data_out[6];                  //out  
-    assign pd4_b = la_data_out[7];                  //out   0  
-    assign pd5_a = la_data_out[8];                  //out  
-    assign pd5_b = la_data_out[9];                  //out
-    assign pd6_a = la_data_out[10];                 //out  
-    assign pd6_b = la_data_out[11];                 //out   0 
-    assign pd7_a = la_data_out[12];                 //out  
-    assign pd7_b = la_data_out[13];                 //out  
-    assign pd8_a = la_data_out[14];                 //out  
-    assign pd8_b = la_data_out[15];                 //out   0 
-    assign pd9_a = la_data_out[16];                 //out
-    assign pd9_b = la_data_out[17];                 //out
-    assign pd10_a = la_data_out[18];                //out
-    assign pd10_b = la_data_out[19];                //out   0
-    assign pd11_a = la_data_out[20];                //out
-    assign pd11_b = la_data_out[21];                //out  
-    assign pd12_a = la_data_out[22];                //out  
-    assign pd12_b = la_data_out[23];                //out   0  
+    assign pd1_a = la_data_in[0];                  //out  
+    assign pd1_b = la_data_in[1];                  //out  
+    assign pd2_a = la_data_in[2];                  //out  
+    assign pd2_b = la_data_in[3];                  //out   0 
+    assign pd3_a = la_data_in[4];                  //out  
+    assign pd3_b = la_data_in[5];                  //out  
+    assign pd4_a = la_data_in[6];                  //out  
+    assign pd4_b = la_data_in[7];                  //out   0  
+    assign pd5_a = la_data_in[8];                  //out  
+    assign pd5_b = la_data_in[9];                  //out
+    assign pd6_a = la_data_in[10];                 //out  
+    assign pd6_b = la_data_in[11];                 //out   0 
+    assign pd7_a = la_data_in[12];                 //out  
+    assign pd7_b = la_data_in[13];                 //out  
+    assign pd8_a = la_data_in[14];                 //out  
+    assign pd8_b = la_data_in[15];                 //out   0 
+    assign pd9_a = la_data_in[16];                 //out
+    assign pd9_b = la_data_in[17];                 //out
+    assign pd10_a = la_data_in[18];                //out
+    assign pd10_b = la_data_in[19];                //out   0
+    assign pd11_a = la_data_in[20];                //out
+    assign pd11_b = la_data_in[21];                //out  
+    assign pd12_a = la_data_in[22];                //out  
+    assign pd12_b = la_data_in[23];                //out   0  
 
-    assign ota_out_c = la_data_out[24];             //out     
-    assign sh_out_c = la_data_out[25];              //out     
-    assign cmp_out_c = la_data_out[26];             //out     
-    assign ota_sh_c = la_data_out[27];              //out  0    
-    assign vref_cmp_c = la_data_out[28];            //out     
-    assign vref_sel_c = la_data_out[29];            //out  
+    assign ota_out_c = la_data_in[24];             //out     
+    assign sh_out_c = la_data_in[25];              //out     
+    assign cmp_out_c = la_data_in[26];             //out     
+    assign ota_sh_c = la_data_in[27];              //out  0    
+    assign vref_cmp_c = la_data_in[28];            //out     
+    assign vref_sel_c = la_data_in[29];            //out  
                                                            //0   
 
 
