@@ -1,11 +1,11 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1668044315
+timestamp 1668086682
 << obsli1 >>
 rect 121104 82159 188816 137681
 << obsm1 >>
-rect 566 1776 582438 703044
+rect 566 1232 582438 703044
 << metal2 >>
 rect 8086 703520 8198 704960
 rect 24278 703520 24390 704960
@@ -1674,7 +1674,7 @@ rect 560494 3299 564214 697237
 rect 564994 3299 568714 697237
 rect 569494 3299 573214 697237
 rect 573994 3299 577714 697237
-rect 578494 3299 580461 697237
+rect 578494 3299 580277 697237
 << metal5 >>
 rect -8726 710970 592650 711590
 rect -7766 710010 591690 710630
@@ -3797,8 +3797,8 @@ port 645 nsew signal input
 string FIXED_BBOX 0 0 584000 704000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 6644636
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_project_wrapper/runs/22_11_09_22_31/results/signoff/user_project_wrapper.magic.gds
-string GDS_START 4223144
+string GDS_END 6391076
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_project_wrapper/runs/22_11_10_10_18/results/signoff/user_project_wrapper.magic.gds
+string GDS_START 4242096
 << end >>
 

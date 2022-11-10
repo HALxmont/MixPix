@@ -98,7 +98,6 @@ module rlbp_macro #(
     wire [3:0] wire_d;
     wire wire_rst;
     wire [11:0] wire_q;
-    wire wire_start;
     wire wire_p2s_en;   
     wire wire_vd1;
     wire wire_vd2;
@@ -132,6 +131,7 @@ module rlbp_macro #(
     wire wire_ext_reset_temp; 
     wire wire_wb_start_temp;
     wire wire_ext_start_temp;
+
 
 
 
@@ -281,19 +281,19 @@ module rlbp_macro #(
     // #####    Module specific ports interconections   #####
 
     assign clk_o = wire_clk_out;  
-    assign rst_o = wire_rst_out;
+    assign rst_o = wire_reset_out;
     assign done_o = wire_rlbp_done;
     assign start_o = wire_start_out;
     assign data_o = wire_s_data_out;
     //assign CMP_tmr  #####
-    assign counter_rst = counter_reset;
-    assign Vd1 = vd1;
-    assign Vd2 = vd2;
-    assign Sw1 = sw1;
-    assign Sw2 = sw2;
-    assign Sh = sh;
-    assign Sh_cmp = sh_cmp;
-    assign Sh_rst = sh_reset;
+    assign counter_rst = wire_counter_reset;
+    assign Vd1 = wire_vd1;
+    assign Vd2 = wire_vd2;
+    assign Sw1 = wire_sw1;
+    assign Sw2 = wire_sw2;
+    assign Sh = wire_sh;
+    assign Sh_cmp = wire_sh_cmp;
+    assign Sh_rst = wire_sh_reset;
     
 
 always@(posedge clk) begin
@@ -485,29 +485,29 @@ rlbp rlbp_inst0 (
     .q(wire_q),
     .start(wire_start), 
     .p2s_en(wire_p2s_en),   
-    .time_up_vd1(wire_time_up_vd1), 
-    .time_down_vd1(wire_time_down_vd1), 
+    .time_up_vd1(time_up_vd1), 
+    .time_down_vd1(time_down_vd1), 
     .vd1(wire_vd1), 
-    .time_up_vd2(wire_time_up_vd2), 
-    .time_down_vd2(wire_time_down_vd2), 
+    .time_up_vd2(time_up_vd2), 
+    .time_down_vd2(time_down_vd2), 
     .vd2(wire_vd2), 
-    .time_up_sw1(wire_time_up_sw1), 
-    .time_down_sw1(wire_time_down_sw1), 
+    .time_up_sw1(time_up_sw1), 
+    .time_down_sw1(time_down_sw1), 
     .sw1(wire_sw1), 
-    .time_up_sw2(wire_time_up_sw2), 
-    .time_down_sw2(wire_time_down_sw2), 
+    .time_up_sw2(time_up_sw2),         
+    .time_down_sw2(time_down_sw2), 
     .sw2(wire_sw2), 
-    .time_up_sh(wire_time_up_sh), 
-    .time_down_sh(wire_time_down_sh), 
+    .time_up_sh(time_up_sh), 
+    .time_down_sh(time_down_sh), 
     .sh(wire_sh), 
-    .time_up_sh_cmp(wire_time_up_sh_cmp), 
-    .time_down_sh_cmp(wire_time_down_sh_cmp), 
+    .time_up_sh_cmp(time_up_sh_cmp), 
+    .time_down_sh_cmp(time_down_sh_cmp), 
     .sh_cmp(wire_sh_cmp), 
-    .time_up_sh_reset(wire_time_up_sh_reset), 
-    .time_down_sh_reset(wire_time_down_sh_reset), 
+    .time_up_sh_reset(time_up_sh_reset), 
+    .time_down_sh_reset(time_down_sh_reset), 
     .sh_reset(wire_sh_reset), 
-    .time_up_counter_reset_out(wire_time_up_counter_reset_out), 
-    .time_down_counter_reset_out(wire_time_down_counter_reset_out), 
+    .time_up_counter_reset_out(time_up_counter_reset_out), 
+    .time_down_counter_reset_out(time_down_counter_reset_out), 
     .counter_reset_out(wire_counter_reset_out), 
     .counter_reset(wire_counter_reset), 
     .ext_clk(wire_ext_clk), 
