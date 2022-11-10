@@ -399,7 +399,7 @@ endmodule
 module vd1_fsm (clk, reset, count, time_up_vd1, time_down_vd1, vd1);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_vd1, time_down_vd1;
+	input [11:0] time_up_vd1, time_down_vd1;
 	output reg vd1;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -465,7 +465,7 @@ endmodule
 module vd2_fsm (clk, reset, count, time_up_vd2, time_down_vd2, vd2);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_vd2, time_down_vd2;
+	input [11:0] time_up_vd2, time_down_vd2;
 	output reg vd2;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -527,7 +527,7 @@ endmodule
 module sw1_fsm (clk, reset, count, time_up_sw1, time_down_sw1, sw1);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_sw1, time_down_sw1;
+	input [11:0] time_up_sw1, time_down_sw1;
 	output reg sw1;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -589,7 +589,7 @@ endmodule
 module sw2_fsm (clk, reset, count, time_up_sw2, time_down_sw2, sw2);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_sw2, time_down_sw2;
+	input [11:0] time_up_sw2, time_down_sw2;
 	output reg sw2;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -651,7 +651,7 @@ endmodule
 module sh_fsm (clk, reset, count, time_up_sh, time_down_sh, sh);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_sh, time_down_sh;
+	input [11:0] time_up_sh, time_down_sh;
 	output reg sh;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -713,7 +713,7 @@ endmodule
 module sh_cmp_fsm (clk, reset, count, time_up_sh_cmp, time_down_sh_cmp, sh_cmp);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_sh_cmp, time_down_sh_cmp;
+	input [11:0] time_up_sh_cmp, time_down_sh_cmp;
 	output reg sh_cmp;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -775,7 +775,7 @@ endmodule
 module sh_reset_fsm (clk, reset, count, time_up_sh_reset, time_down_sh_reset, sh_reset);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_sh_reset, time_down_sh_reset;
+	input [11:0] time_up_sh_reset, time_down_sh_reset;
 	output reg sh_reset;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -837,7 +837,7 @@ endmodule
 module counter_reset_out_fsm (clk, reset, count, time_up_counter_reset_out, time_down_counter_reset_out, counter_reset_out);
 	input clk, reset;
 	input [11:0] count;
-	input [10:0] time_up_counter_reset_out, time_down_counter_reset_out;
+	input [11:0] time_up_counter_reset_out, time_down_counter_reset_out;
 	output reg counter_reset_out;
 	reg [1:0] state;
 	reg [1:0] next_state;
@@ -929,7 +929,7 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, start, control_signals,
 	input [1:0] data_sel;  
 	input [3:0] d;
 	input [7:0] p_data_in;
-	input [10:0] time_up_vd1, time_down_vd1, time_up_vd2, time_down_vd2, time_up_sw1, time_down_sw1, time_up_sw2, time_down_sw2, time_up_sh, time_down_sh, time_up_sh_cmp, time_down_sh_cmp, time_up_sh_reset, time_down_sh_reset, time_up_counter_reset_out, time_down_counter_reset_out;
+	input [11:0] time_up_vd1, time_down_vd1, time_up_vd2, time_down_vd2, time_up_sw1, time_down_sw1, time_up_sw2, time_down_sw2, time_up_sh, time_down_sh, time_up_sh_cmp, time_down_sh_cmp, time_up_sh_reset, time_down_sh_reset, time_up_counter_reset_out, time_down_counter_reset_out;
 	input [11:0] count; //input a (triggers) FSMs 
 	input ext_clk, wb_clk_macro, sel_clk, ext_reset, wb_reset, sel_reset, ext_start, wb_start, sel_start;
 	output [3:0] data_out;

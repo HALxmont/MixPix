@@ -116,7 +116,7 @@ void main()
 
     // Introducing data using WB inetrface
     to_wb[TIME_DOWN_1] = 775;
-    to_wb[TIME_UP_1] = 776;
+    to_wb[TIME_UP_1] = 776; 
     to_wb[TIME_UP_2] = 333;
     to_wb[TIME_DOWN_2] = 444;
 

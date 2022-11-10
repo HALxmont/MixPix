@@ -57,15 +57,53 @@ module rlbp_macro #(
     output done_o,
     output start_o,
     output data_o,
-    //output CMP_tmr,  //##
+    //output CMP_tmr,  //##             !!!!!!!!!!!!!!!!!!!!!!
     output counter_rst,
     output Vd1,
     output Vd2,
     output Sw1,
     output Sw2,
-    output Sh,
+    output Sh,          //check assign
     output Sh_cmp,
-    output Sh_rst
+    output Sh_rst,
+
+//exponer pdx_a, pdx_b (all in #N)
+    output Pd1_a, 
+    output Pd1_b,
+    output Pd2_a, 
+    output Pd2_b,
+    output Pd3_a, 
+    output Pd3_b,
+    output Pd4_a, 
+    output Pd4_b,
+    output Pd5_a, 
+    output Pd5_b,
+    output Pd6_a, 
+    output Pd6_b,
+    output Pd7_a, 
+    output Pd7_b,
+    output Pd8_a, 
+    output Pd8_b,
+    output Pd9_a, 
+    output Pd9_b,
+    output Pd10_a, 
+    output Pd10_b,
+    output Pd11_a, 
+    output Pd11_b,
+    output Pd12_a, 
+    output Pd12_b,
+
+    
+    //one hot encode (active high) 
+    output OTA_out_c,
+    output SH_out_c,
+    output CMP_out_c,
+    output OTA_sh_c,
+    output Vref_cmp_c,
+
+    //Vref selector (default = fixed)
+    output Vref_sel_c
+
 
 );
 
@@ -132,13 +170,6 @@ module rlbp_macro #(
     wire wire_wb_start_temp;
     wire wire_ext_start_temp;
 
-
-
-
-
-
-
-
     //to LA
     wire pd1_a, pd1_b;
     wire pd2_a, pd2_b;
@@ -154,34 +185,34 @@ module rlbp_macro #(
     wire pd12_a, pd12_b;
 
 
-    // que son estas??
-    wire OTA_out_c;
-    wire SH_out_c;
-    wire CMP_out_c;
-    wire OTA_sh_c;
-    wire Vref_cmp_c;
-    wire Vref_sel_c;
+    //to control TGates (one hot encode, ACTIVE HIGH)
+    wire ota_out_c;
+    wire sh_out_c;
+    wire cmp_out_c;
+    wire ota_sh_c;
+    wire vref_cmp_c;   
+    //############## end on hot
+
+    wire vref_sel_c;    // DEFAULT vref = fixed
 
 
-    //registers
-
-
-    reg [10:0] time_up_counter_reset_out;
-    reg [10:0] time_down_counter_reset_out; 
-    reg [10:0] time_up_vd1;
-    reg [10:0] time_down_vd1; 
-    reg [10:0] time_up_vd2; 
-    reg [10:0] time_down_vd2;
-    reg [10:0] time_up_sh_reset; 
-    reg [10:0] time_down_sh_reset; 
-    reg [10:0] time_up_sw1;
-    reg [10:0] time_down_sw1; 
-    reg [10:0] time_up_sw2; 
-    reg [10:0] time_down_sw2;
-    reg [10:0] time_up_sh; 
-    reg [10:0] time_down_sh; 
-    reg [10:0] time_up_sh_cmp; 
-    reg [10:0] time_down_sh_cmp; 
+    //registers (WB interface)
+    reg [11:0] time_up_counter_reset_out;
+    reg [11:0] time_down_counter_reset_out; 
+    reg [11:0] time_up_vd1;
+    reg [11:0] time_down_vd1; 
+    reg [11:0] time_up_vd2; 
+    reg [11:0] time_down_vd2;
+    reg [11:0] time_up_sh_reset; 
+    reg [11:0] time_down_sh_reset; 
+    reg [11:0] time_up_sw1;
+    reg [11:0] time_down_sw1; 
+    reg [11:0] time_up_sw2; 
+    reg [11:0] time_down_sw2;
+    reg [11:0] time_up_sh; 
+    reg [11:0] time_down_sh; 
+    reg [11:0] time_up_sh_cmp; 
+    reg [11:0] time_down_sh_cmp; 
     reg [11:0] reg_count;  //Counter
     reg [11:0] reg_q;
 
@@ -242,12 +273,12 @@ module rlbp_macro #(
     assign pd12_a = la_data_out[22];                //out  
     assign pd12_b = la_data_out[23];                //out   0  
 
-    assign OTA_out_c = la_data_out[24];             //out     
-    assign SH_out_c = la_data_out[25];              //out     
-    assign CMP_out_c = la_data_out[26];             //out     
-    assign OTA_sh_c = la_data_out[27];              //out  0    
-    assign Vref_cmp_c = la_data_out[28];            //out     
-    assign Vref_sel_c = la_data_out[29];            //out  
+    assign ota_out_c = la_data_out[24];             //out     
+    assign sh_out_c = la_data_out[25];              //out     
+    assign cmp_out_c = la_data_out[26];             //out     
+    assign ota_sh_c = la_data_out[27];              //out  0    
+    assign vref_cmp_c = la_data_out[28];            //out     
+    assign vref_sel_c = la_data_out[29];            //out  
                                                            //0   
 
 
@@ -294,6 +325,45 @@ module rlbp_macro #(
     assign Sh = wire_sh;
     assign Sh_cmp = wire_sh_cmp;
     assign Sh_rst = wire_sh_reset;
+
+     
+    assign Pd1_a = pd1_a;
+    assign Pd1_b = pd1_b;
+    assign Pd2_a = pd2_a;
+    assign Pd2_b = pd2_b;
+    assign Pd3_a = pd3_a;
+    assign Pd3_b = pd3_b;
+    assign Pd4_a = pd4_a;
+    assign Pd4_b = pd4_b;
+    assign Pd5_a = pd5_a;
+    assign Pd5_b = pd5_b;
+    assign Pd6_a = pd6_a;
+    assign Pd6_b = pd6_b;
+    assign Pd7_a = pd7_a; 
+    assign Pd7_b = pd7_b;
+    assign Pd8_a = pd8_a;
+    assign Pd8_b = pd8_b;
+    assign Pd9_a = pd9_a; 
+    assign Pd9_b = pd9_b;
+    assign Pd10_a = pd10_a;
+    assign Pd10_b = pd10_b;
+    assign Pd11_a = pd11_a;
+    assign Pd11_b = pd11_b;
+    assign Pd12_a = pd12_a;
+    assign Pd12_b = pd12_b;
+
+    
+    //one hot encode (active high) 
+    assign OTA_out_c = ota_out_c;
+    assign SH_out_c = sh_out_c;
+    assign CMP_out_c = cmp_out_c;
+    assign OTA_sh_c = ota_sh_c;
+    assign Vref_cmp_c = vref_cmp_c;
+
+    //Vref selector (default = fixed)
+    assign Vref_sel_c = vref_sel_c;
+
+
     
 
 always@(posedge clk) begin
@@ -335,97 +405,97 @@ always@(posedge clk) begin
                     TIME_UP_1: begin
                         rdata <= time_up_vd1;
                         if(wstrb[0])
-                            time_up_vd1 <= wdata[10:0];
+                            time_up_vd1 <= wdata[11:0];
                     end
 
                     TIME_DOWN_1: begin
                         rdata <= time_down_vd1;
                         if(wstrb[0])
-                            time_down_vd1 <= wdata[10:0];
+                            time_down_vd1 <= wdata[11:0];
                     end       
 
                     TIME_UP_2: begin
                         rdata <= time_up_vd2;
                         if(wstrb[0])
-                            time_up_vd2 <= wdata[10:0];
+                            time_up_vd2 <= wdata[11:0];
                     end
 
                     TIME_DOWN_2:  begin
                         rdata <= time_down_vd2;
                         if(wstrb[0])
-                            time_down_vd2 <= wdata[10:0];
+                            time_down_vd2 <= wdata[11:0];
                     end
 
                     TIME_UP_3: begin
                         rdata <= time_up_sw1;
                         if(wstrb[0])
-                            time_up_sw1 <= wdata[10:0];
+                            time_up_sw1 <= wdata[11:0];
                     end
 
                     TIME_DOWN_3: begin
                         rdata <= time_down_sw1;
                         if(wstrb[0])
-                            time_down_sw1 <= wdata[10:0];  
+                            time_down_sw1 <= wdata[11:0];  
                     end
 
                     TIME_UP_4: begin
                         rdata <= time_up_sw2;
                         if(wstrb[0])
-                            time_up_sw2 <= wdata[10:0];  
+                            time_up_sw2 <= wdata[11:0];  
                     end
 
                     TIME_DOWN_4:  begin
                         rdata <= time_down_sw2;
                         if(wstrb[0])	
-                            time_down_sw2 <= wdata[10:0];
+                            time_down_sw2 <= wdata[11:0];
                     end
 
                     TIME_UP_5: begin
                         rdata <= time_up_sh;
                         if(wstrb[0])
-                            time_up_sh <= wdata[10:0];  
+                            time_up_sh <= wdata[11:0];  
                     end
 
                     TIME_DOWN_5:  begin	
                         rdata <= time_down_sh;
                         if(wstrb[0])
-                            time_down_sh <= wdata[10:0];
+                            time_down_sh <= wdata[11:0];
                     end
 
                     TIME_UP_6: begin
                         rdata <= time_up_sh_cmp;
                         if(wstrb[0])
-                            time_up_sh_cmp <= wdata[10:0];  
+                            time_up_sh_cmp <= wdata[11:0];  
                     end
 
                     TIME_DOWN_6:  begin
                         rdata <= time_down_sh_cmp;
                         if(wstrb[0])	
-                            time_down_sh_cmp <= wdata[10:0];
+                            time_down_sh_cmp <= wdata[11:0];
                     end
 
                     TIME_UP_7: begin
                         rdata <= time_up_sh_reset;
                         if(wstrb[0])
-                            time_up_sh_reset <= wdata[10:0];  
+                            time_up_sh_reset <= wdata[11:0];  
                     end
 
                     TIME_DOWN_7:  begin
                         rdata <= time_down_sh_reset;
                         if(wstrb[0])	
-                            time_down_sh_reset <= wdata[10:0];
+                            time_down_sh_reset <= wdata[11:0];
                     end
 
                     COUNT_UP: begin
                         rdata <= time_up_counter_reset_out;
                         if(wstrb[0])
-                            time_up_counter_reset_out <= wdata[10:0];  
+                            time_up_counter_reset_out <= wdata[11:0];  
                     end
 
                     COUNT_DOWN: begin
                         rdata <= time_down_counter_reset_out;
                         if(wstrb[0])
-                            time_down_counter_reset_out <= wdata[10:0];  
+                            time_down_counter_reset_out <= wdata[11:0];  
                     end
 
                     COUNT_VALUE: begin
