@@ -53,9 +53,33 @@ module user_project_wrapper (user_clock2,
  output [31:0] wbs_dat_o;
  input [3:0] wbs_sel_i;
 
- wire serial_data_rlbp_out;
+ wire Sh;
+ wire Sh_cmp;
+ wire Sh_rst;
+ wire Sw1;
+ wire Sw2;
+ wire Vd1;
+ wire Vd2;
+ wire clk_o;
+ wire counter_rst;
+ wire data_o;
+ wire done_o;
+ wire rst_o;
+ wire start_o;
 
- rlbp_macro rlbp_macro0 (.serial_data_rlbp_out(serial_data_rlbp_out),
+ rlbp_macro rlbp_macro0 (.Sh(Sh),
+    .Sh_cmp(Sh_cmp),
+    .Sh_rst(Sh_rst),
+    .Sw1(Sw1),
+    .Sw2(Sw2),
+    .Vd1(Vd1),
+    .Vd2(Vd2),
+    .clk_o(clk_o),
+    .counter_rst(counter_rst),
+    .data_o(data_o),
+    .done_o(done_o),
+    .rst_o(rst_o),
+    .start_o(start_o),
     .vccd1(vccd1),
     .vssd1(vssd1),
     .wb_clk_i(wb_clk_i),

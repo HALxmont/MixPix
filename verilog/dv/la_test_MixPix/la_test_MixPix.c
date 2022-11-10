@@ -103,10 +103,10 @@ void main()
 
     // Configure LA probes [31:0]  (pixel_macro)
 	// Configure LA probes [63:32] (pixel_macro and rlbp_macro)
-	reg_la0_oenb = reg_la0_iena = 0xFF000000;	// [31:0]  pixel macro | OUTPUTS (00, 24bits)  2 INPUTS(FF, last 8bits)
+	reg_la0_oenb = reg_la0_iena = 0x00000000;	// [31:0]  pixel macro | OUTPUTS (00, 24bits)  2 INPUTS(FF, last 8bits)
 	reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;	// [32:63] pixel macro 7 inputs (last byte is free)
-	reg_la2_oenb = reg_la2_iena = 0xFFFFF000;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
-	reg_la3_oenb = reg_la3_iena = 0x000000FF;   // [127:96] rlbp macro 0 F F
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;   // [127:96] rlbp macro 0 F F
 
 
 	// Flag start of the test 

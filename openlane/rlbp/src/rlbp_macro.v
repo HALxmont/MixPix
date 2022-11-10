@@ -52,15 +52,20 @@ module rlbp_macro #(
 
     // ---- Design Specific Ports 
 
-    output serial_data_rlbp_out, //(data_o) DELETE IT!!!
-
-    output out_1,
-    output out_2, 
-    output out_3, 
-    output out_4, 
-    output out_5,
-    output out_7,
-    output rst_o
+    output clk_o,
+    output rst_o,
+    output done_o,
+    output start_o,
+    output data_o,
+    //output CMP_tmr,  //##
+    output counter_rst,
+    output Vd1,
+    output Vd2,
+    output Sw1,
+    output Sw2,
+    output Sh,
+    output Sh_cmp,
+    output Sh_rst
 
 );
 
@@ -88,22 +93,51 @@ module rlbp_macro #(
     wire wire_ce_d1;
     wire wire_ce_d2;
     wire wire_ce_d3;
-    wire wire_gpio_start;
-    wire wire_logic_analyzer_start;
     wire wire_data_in;
     wire [1:0] wire_data_sel; 
     wire [3:0] wire_d;
-
-
-    wire wire_reset_c;
-    wire wire_en_c;
     wire wire_rst;
-    wire wire_out_1; 
-    wire wire_out_2; 
-    wire wire_out_3; 
-    wire wire_out_4; 
-    wire wire_out_5;
-    wire wire_out_7;
+    wire [11:0] wire_q;
+    wire wire_start;
+    wire wire_p2s_en;   
+    wire wire_vd1;
+    wire wire_vd2;
+    wire wire_sw1;
+    wire wire_sw2;
+    wire wire_sh; 
+    wire wire_sh_cmp; 
+    wire wire_sh_reset;
+    wire wire_counter_reset_out;
+    wire wire_counter_reset; 
+    wire wire_start;
+    wire wire_ext_clk; 
+    wire wire_wb_clk_macro; 
+    wire wire_sel_clk; 
+    wire wire_clk_out; 
+    wire wire_ext_reset; 
+    wire wire_wb_reset; 
+    wire wire_sel_reset;
+    wire wire_reset_out; 
+    wire wire_ext_start; 
+    wire wire_wb_start; 
+    wire wire_sel_start; 
+    wire wire_start_out; 
+    wire wire_ext_clk_sync; 
+    wire wire_wb_reset_sync; 
+    wire wire_ext_reset_sync; 
+    wire wire_wb_start_sync;
+    wire wire_ext_start_sync; 
+    wire wire_ext_clk_temp; 
+    wire wire_wb_reset_temp;
+    wire wire_ext_reset_temp; 
+    wire wire_wb_start_temp;
+    wire wire_ext_start_temp;
+
+
+
+
+
+
 
     //to LA
     wire pd1_a, pd1_b;
@@ -119,6 +153,8 @@ module rlbp_macro #(
     wire pd11_a, pd11_b;
     wire pd12_a, pd12_b;
 
+
+    // que son estas??
     wire OTA_out_c;
     wire SH_out_c;
     wire CMP_out_c;
@@ -128,31 +164,28 @@ module rlbp_macro #(
 
 
     //registers
-    reg [10:0] reg_time_up_1;
-    reg [10:0] reg_time_down_1;
-    reg [10:0] reg_time_up_2;
-    reg [10:0] reg_time_down_2; 
-    reg [10:0] reg_time_up_3; 
-    reg [10:0] reg_time_down_3; 
-    reg [10:0] reg_time_up_4; 
-    reg [10:0] reg_time_down_4;
-    reg [10:0] reg_time_up_5; 
-    reg [10:0] reg_time_down_5;
-    reg [10:0] reg_time_up_7;
-    reg [10:0] reg_time_down_7;
+
+
+    reg [10:0] time_up_counter_reset_out;
+    reg [10:0] time_down_counter_reset_out; 
+    reg [10:0] time_up_vd1;
+    reg [10:0] time_down_vd1; 
+    reg [10:0] time_up_vd2; 
+    reg [10:0] time_down_vd2;
+    reg [10:0] time_up_sh_reset; 
+    reg [10:0] time_down_sh_reset; 
+    reg [10:0] time_up_sw1;
+    reg [10:0] time_down_sw1; 
+    reg [10:0] time_up_sw2; 
+    reg [10:0] time_down_sw2;
+    reg [10:0] time_up_sh; 
+    reg [10:0] time_down_sh; 
+    reg [10:0] time_up_sh_cmp; 
+    reg [10:0] time_down_sh_cmp; 
     reg [11:0] reg_count;  //Counter
     reg [11:0] reg_q;
 
-    reg [11:0] VD1_reg;
-    reg [11:0] VD2_reg;
-    reg [11:0] Sw1;
-    reg [11:0] Sw2;
-    reg [11:0] Sh;
-    reg [11:0] Sh_comp;
-    reg [11:0] Sh_rst;
-    reg [11:0] Counter_rst;
-    reg [11:0] CMP_tmr;
-    
+
 
     //------ REGS ADDRs table (WSB)
     localparam TIME_UP_1 = 0;           //1
@@ -165,20 +198,14 @@ module rlbp_macro #(
     localparam TIME_DOWN_4 = 28;
     localparam TIME_UP_5 = 32;
     localparam TIME_DOWN_5 = 36;
-    localparam TIME_UP_7 = 40;
-    localparam TIME_DOWN_7 = 44;
-    localparam COUNT = 48;
-    localparam Q = 52;
-
-    localparam VD1 = 56;
-    localparam VD2 = 60;
-    localparam SW1 = 64;
-    localparam SW2 = 68;
-    localparam SH = 72;
-    localparam SH_COMP = 76;
-    localparam SH_RST = 80;
-    localparam COUNTER_RST = 84;
-    localparam CMP_TMR = 88;
+    localparam TIME_UP_6 = 40;
+    localparam TIME_DOWN_6 = 44;
+    localparam TIME_UP_7 = 48;
+    localparam TIME_DOWN_7 = 52;
+    localparam COUNT_UP = 56;
+    localparam COUNT_DOWN = 60;
+    localparam COUNT_VALUE = 64;
+    localparam Q = 68;
 
 
 
@@ -214,80 +241,19 @@ module rlbp_macro #(
     assign pd11_b = la_data_out[21];                //out  
     assign pd12_a = la_data_out[22];                //out  
     assign pd12_b = la_data_out[23];                //out   0  
- 
 
-    // assign wire_loc_timer_max = la_data_out[16];    //out
-    // assign wire_adj_timer_max = la_data_out[17];    //out
-    // assign wire_kernel_done_o = la_data_out[18];    //out
-    // assign wire_clk_out = la_data_out[19];          //out  0 
-    // assign wire_reset_out = la_data_out[20];        //out
-    // assign wire_pxl_start_out = la_data_out[21];    //out 22,23 -> 0
-
-
-
-    // //[95:64]
-    // assign wire_reset_fsm = la_data_out[64];                //out
-    // assign wire_rlbp_done = la_data_out[65];                //out
-    // assign wire_q1_3 = la_data_out[66];                     //out
-    // assign wire_q1_2 = la_data_out[67];                     //out   0
-    // assign wire_q1_1 = la_data_out[68];                     //out
-    // assign wire_q2_3 = la_data_out[69];                     //out
-    // assign wire_q2_2 = la_data_out[70];                     //out
-    // assign wire_q2_1 = la_data_out[71];                     //out   0
-    // assign wire_q3_3 = la_data_out[72];                     //out
-    // assign wire_q3_2 = la_data_out[73];                     //out
-    // assign wire_q3_1 = la_data_out[74];                     //out
-    // assign wire_control_signals = la_data_out[78:75];       //out   00
-
-
-    // //pixel_macro [79:82] ...
-    // assign wire_ce_d1 = la_data_in[83];                    //in
-    // assign wire_ce_d2 = la_data_in[84];                    //in
-    // assign wire_ce_d3 = la_data_in[85];                    //in
-    // assign wire_gpio_start = la_data_in[86];               //in    F
-    // assign wire_logic_analyzer_start = la_data_in[87];     //in
-    // assign wire_data_in = la_data_in[88];                  //in
-    // assign wire_data_sel = la_data_in[90:89];              //in
-    // assign wire_en = la_data_in[91];                       //in    F
-    // assign wire_d = la_data_in[95:92];                     //in    F
-    //                                                         // pixel 79:82 | rlbp 83:95 -> 0x-FFFF0000 
-
-
-    // //[127:96]
-    // assign wire_p_data_in = la_data_in[103:96];             //in    FF  ###test 
-    // assign wire_data_out = la_data_out[107:104];            //out   0
-    // assign wire_s_data_out = la_data_out[108];              //out
-    // assign wire_ready = la_data_out[109];                   //out
-
-    // assign wire_rst = la_data_out[110];                     //out
-    // assign wire_out_1 = la_data_out[111];                   //out   0
-    // assign wire_out_2 = la_data_out[112];                   //out
-    // assign wire_out_3 = la_data_out[113];                   //out
-    // assign wire_out_4 = la_data_out[114];                   //out
-    // assign wire_out_5 = la_data_out[115];                   //out   0
-    // assign wire_out_7 = la_data_out[116];                   //out   116,117,118,119 -> 0
-    
-    // assign wire_reset_c = la_data_in[120];                   //in   F   
-    // assign wire_en_c = la_data_in[121];                      //in
-
-
-    //outputs RLBP MACRO
-    assign wire_rst = rst;
-    assign wire_out_1 = out_1;
-    assign wire_out_2 = out_2;
-    assign wire_out_3 = out_3; 
-    assign wire_out_4 = out_4; 
-    assign wire_out_5 = out_5;
-    assign wire_out_7 = out_7;
-
-    wire [11:0] wire_q;
-    assign wire_q = reg_q;
+    assign OTA_out_c = la_data_out[24];             //out     
+    assign SH_out_c = la_data_out[25];              //out     
+    assign CMP_out_c = la_data_out[26];             //out     
+    assign OTA_sh_c = la_data_out[27];              //out  0    
+    assign Vref_cmp_c = la_data_out[28];            //out     
+    assign Vref_sel_c = la_data_out[29];            //out  
+                                                           //0   
 
 
 
-    //------ RLBP wires interconnection to RLBP control register
-    // assign wire_p_data_in = control_reg_rlbp_fsm[7:0];
-    
+    assign wire_q = reg_q;  //q to reg
+
 
 
     // ------ WB slave interface
@@ -307,11 +273,28 @@ module rlbp_macro #(
     assign addr_valid = (wbs_adr_i[31:28] == 3) ? 1 : 0;
     assign wbs_ack_o  = wbs_done;
 
-    assign clk = wb_clk_i;   //ternary OP
-    assign rst = wb_rst_i;   //ternary OP
+    assign clk = wb_clk_i;   
+    assign rst = wb_rst_i;   
 
-    // Module ports
-    assign serial_data_rlbp_out = wire_s_data_out;
+
+
+    // #####    Module specific ports interconections   #####
+
+    assign clk_o = wire_clk_out;  
+    assign rst_o = wire_rst_out;
+    assign done_o = wire_rlbp_done;
+    assign start_o = wire_start_out;
+    assign data_o = wire_s_data_out;
+    //assign CMP_tmr  #####
+    assign counter_rst = counter_reset;
+    assign Vd1 = vd1;
+    assign Vd2 = vd2;
+    assign Sw1 = sw1;
+    assign Sw2 = sw2;
+    assign Sh = sh;
+    assign Sh_cmp = sh_cmp;
+    assign Sh_rst = sh_reset;
+    
 
 always@(posedge clk) begin
 		if(rst) begin
@@ -320,20 +303,25 @@ always@(posedge clk) begin
             rdata <= 0; 
             wbs_done <= 0;
 
-            reg_time_up_1 <= 0;
-            reg_time_down_1 <= 0;
-            reg_time_up_2 <= 0;
-            reg_time_down_2 <= 0; 
-            reg_time_up_3 <= 0; 
-            reg_time_down_3 <= 0; 
-            reg_time_up_4 <= 0; 
-            reg_time_down_4 <= 0;
-            reg_time_up_5 <= 0; 
-            reg_time_down_5 <= 0;
-            reg_time_up_7 <= 0;
-            reg_time_down_7 <= 0;
+            time_up_vd1 <= 0;
+            time_down_vd1 <= 0; 
+            time_up_vd2 <= 0; 
+            time_down_vd2 <= 0;
+            time_up_sw1 <= 0;
+            time_down_sw1 <= 0; 
+            time_up_sw2 <= 0;
+            time_down_sw2 <= 0;
+            time_up_sh <= 0;
+            time_down_sh <= 0;
+            time_up_sh_cmp <= 0; 
+            time_down_sh_cmp <= 0; 
+            time_up_sh_reset <= 0; 
+            time_down_sh_reset <= 0;
+            time_up_counter_reset_out <= 0;
+            time_down_counter_reset_out <= 0; 
             reg_count <= 0;  //Counter
             reg_q <= 0;
+
 		end
 
     	else begin
@@ -345,78 +333,102 @@ always@(posedge clk) begin
 
                     
                     TIME_UP_1: begin
-                        rdata <= reg_time_up_1;
+                        rdata <= time_up_vd1;
                         if(wstrb[0])
-                            reg_time_up_1 <= wdata[10:0];
+                            time_up_vd1 <= wdata[10:0];
                     end
 
                     TIME_DOWN_1: begin
-                        rdata <= reg_time_down_1;
+                        rdata <= time_down_vd1;
                         if(wstrb[0])
-                            reg_time_down_1 <= wdata[10:0];
+                            time_down_vd1 <= wdata[10:0];
                     end       
 
                     TIME_UP_2: begin
-                        rdata <= reg_time_up_2;
+                        rdata <= time_up_vd2;
                         if(wstrb[0])
-                            reg_time_up_2 <= wdata[10:0];
+                            time_up_vd2 <= wdata[10:0];
                     end
 
                     TIME_DOWN_2:  begin
-                        rdata <= reg_time_down_2;
+                        rdata <= time_down_vd2;
                         if(wstrb[0])
-                            reg_time_down_2 <= wdata[10:0];
+                            time_down_vd2 <= wdata[10:0];
                     end
 
                     TIME_UP_3: begin
-                        rdata <= reg_time_up_3;
+                        rdata <= time_up_sw1;
                         if(wstrb[0])
-                            reg_time_up_3 <= wdata[10:0];
+                            time_up_sw1 <= wdata[10:0];
                     end
 
                     TIME_DOWN_3: begin
-                        rdata <= reg_time_down_3;
+                        rdata <= time_down_sw1;
                         if(wstrb[0])
-                            reg_time_down_3 <= wdata[10:0];  
+                            time_down_sw1 <= wdata[10:0];  
                     end
 
                     TIME_UP_4: begin
-                        rdata <= reg_time_up_4;
+                        rdata <= time_up_sw2;
                         if(wstrb[0])
-                            reg_time_up_4 <= wdata[10:0];  
+                            time_up_sw2 <= wdata[10:0];  
                     end
 
                     TIME_DOWN_4:  begin
-                        rdata <= reg_time_down_4;
+                        rdata <= time_down_sw2;
                         if(wstrb[0])	
-                            reg_time_down_4 <= wdata[10:0];
+                            time_down_sw2 <= wdata[10:0];
                     end
 
                     TIME_UP_5: begin
-                        rdata <= reg_time_up_5;
+                        rdata <= time_up_sh;
                         if(wstrb[0])
-                            reg_time_up_5 <= wdata[10:0];  
+                            time_up_sh <= wdata[10:0];  
                     end
 
                     TIME_DOWN_5:  begin	
-                        rdata <= reg_time_down_5;
+                        rdata <= time_down_sh;
                         if(wstrb[0])
-                            reg_time_down_5 <= wdata[10:0];
+                            time_down_sh <= wdata[10:0];
+                    end
+
+                    TIME_UP_6: begin
+                        rdata <= time_up_sh_cmp;
+                        if(wstrb[0])
+                            time_up_sh_cmp <= wdata[10:0];  
+                    end
+
+                    TIME_DOWN_6:  begin
+                        rdata <= time_down_sh_cmp;
+                        if(wstrb[0])	
+                            time_down_sh_cmp <= wdata[10:0];
                     end
 
                     TIME_UP_7: begin
-                        rdata <= reg_time_up_7;
+                        rdata <= time_up_sh_reset;
                         if(wstrb[0])
-                            reg_time_up_7 <= wdata[10:0];  
+                            time_up_sh_reset <= wdata[10:0];  
                     end
 
                     TIME_DOWN_7:  begin
-                        rdata <= reg_time_down_7;
+                        rdata <= time_down_sh_reset;
                         if(wstrb[0])	
-                            reg_time_down_7 <= wdata[10:0];
+                            time_down_sh_reset <= wdata[10:0];
                     end
 
-                    COUNT: begin
+                    COUNT_UP: begin
+                        rdata <= time_up_counter_reset_out;
+                        if(wstrb[0])
+                            time_up_counter_reset_out <= wdata[10:0];  
+                    end
+
+                    COUNT_DOWN: begin
+                        rdata <= time_down_counter_reset_out;
+                        if(wstrb[0])
+                            time_down_counter_reset_out <= wdata[10:0];  
+                    end
+
+                    COUNT_VALUE: begin
                         rdata <= reg_count;
                         if(wstrb[0])
                             reg_count <= wdata[11:0];  
@@ -447,8 +459,6 @@ rlbp rlbp_inst0 (
     .ce_d3(wire_ce_d3),
     .reset(rst),
     .reset_fsm(wire_reset_fsm),
-    .gpio_start(wire_gpio_start),
-    .logic_analyzer_start(wire_logic_analyzer_start),
     .control_signals(wire_control_signals),
     .rlbp_done(wire_rlbp_done),
     .pxl_done_i(wire_pxl_done_i), //
@@ -470,29 +480,58 @@ rlbp rlbp_inst0 (
     .s_data_out(wire_s_data_out), //serial data out
     .ready(wire_ready), //P2S conversion ready
     //fsm-counter-triggers
-    .reset_c(wire_reset_c),
-    .en_c(wire_en_c),
-    .time_up_1(reg_time_up_1), 
-    .time_down_1(reg_time_down_1), 
-    .time_up_2(reg_time_up_2), 
-    .time_down_2(reg_time_down_2), 
-    .time_up_3(reg_time_up_3), 
-    .time_down_3(reg_time_down_3), 
-    .time_up_4(reg_time_up_4), 
-    .time_down_4(reg_time_down_4), 
-    .time_up_5(reg_time_up_5), 
-    .time_down_5(reg_time_down_5), 
-    .time_up_7(reg_time_up_7), 
-    .time_down_7(reg_time_down_7),
+
     .count(reg_count),
     .q(wire_q),
-    .rst(wire_rst), 
-    .out_1(wire_out_1), 
-    .out_2(wire_out_2), 
-    .out_3(wire_out_3), 
-    .out_4(wire_out_4), 
-    .out_5(wire_out_5), 
-    .out_7(wire_out_7)
+    .start(wire_start), 
+    .p2s_en(wire_p2s_en),   
+    .time_up_vd1(wire_time_up_vd1), 
+    .time_down_vd1(wire_time_down_vd1), 
+    .vd1(wire_vd1), 
+    .time_up_vd2(wire_time_up_vd2), 
+    .time_down_vd2(wire_time_down_vd2), 
+    .vd2(wire_vd2), 
+    .time_up_sw1(wire_time_up_sw1), 
+    .time_down_sw1(wire_time_down_sw1), 
+    .sw1(wire_sw1), 
+    .time_up_sw2(wire_time_up_sw2), 
+    .time_down_sw2(wire_time_down_sw2), 
+    .sw2(wire_sw2), 
+    .time_up_sh(wire_time_up_sh), 
+    .time_down_sh(wire_time_down_sh), 
+    .sh(wire_sh), 
+    .time_up_sh_cmp(wire_time_up_sh_cmp), 
+    .time_down_sh_cmp(wire_time_down_sh_cmp), 
+    .sh_cmp(wire_sh_cmp), 
+    .time_up_sh_reset(wire_time_up_sh_reset), 
+    .time_down_sh_reset(wire_time_down_sh_reset), 
+    .sh_reset(wire_sh_reset), 
+    .time_up_counter_reset_out(wire_time_up_counter_reset_out), 
+    .time_down_counter_reset_out(wire_time_down_counter_reset_out), 
+    .counter_reset_out(wire_counter_reset_out), 
+    .counter_reset(wire_counter_reset), 
+    .ext_clk(wire_ext_clk), 
+    .wb_clk_macro(wire_wb_clk_macro), 
+    .sel_clk(wire_sel_clk), 
+    .clk_out(wire_clk_out), 
+    .ext_reset(wire_ext_reset), 
+    .wb_reset(wire_wb_reset), 
+    .sel_reset(wire_sel_reset), 
+    .reset_out(wire_reset_out), 
+    .ext_start(wire_ext_start), 
+    .wb_start(wire_wb_start), 
+    .sel_start(wire_sel_start), 
+    .start_out(wire_start_out), 
+    .ext_clk_sync(wire_ext_clk_sync), 
+    .wb_reset_sync(wire_wb_reset_sync), 
+    .ext_reset_sync(wire_ext_reset_sync), 
+    .wb_start_sync(wire_wb_start_sync), 
+    .ext_start_sync(wire_ext_start_sync), 
+    .ext_clk_temp(wire_ext_clk_temp), 
+    .wb_reset_temp(wire_wb_reset_temp), 
+    .ext_reset_temp(wire_ext_reset_temp), 
+    .wb_start_temp(wire_wb_start_temp), 
+    .ext_start_temp(wire_ext_start_temp)
 );
 
 

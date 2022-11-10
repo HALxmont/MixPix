@@ -7,6 +7,94 @@ MACRO rlbp_macro
   FOREIGN rlbp_macro ;
   ORIGIN 0.000 0.000 ;
   SIZE 350.000 BY 300.000 ;
+  PIN Sh
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 224.570 296.000 224.850 300.000 ;
+    END
+  END Sh
+  PIN Sh_cmp
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 274.250 296.000 274.530 300.000 ;
+    END
+  END Sh_cmp
+  PIN Sh_rst
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 323.930 296.000 324.210 300.000 ;
+    END
+  END Sh_rst
+  PIN Sw1
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 125.210 296.000 125.490 300.000 ;
+    END
+  END Sw1
+  PIN Sw2
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 174.890 296.000 175.170 300.000 ;
+    END
+  END Sw2
+  PIN Vd1
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 25.850 296.000 26.130 300.000 ;
+    END
+  END Vd1
+  PIN Vd2
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met2 ;
+        RECT 75.530 296.000 75.810 300.000 ;
+    END
+  END Vd2
+  PIN clk_o
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 346.000 261.840 350.000 262.440 ;
+    END
+  END clk_o
+  PIN counter_rst
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 346.000 295.840 350.000 296.440 ;
+    END
+  END counter_rst
+  PIN data_o
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 346.000 289.040 350.000 289.640 ;
+    END
+  END data_o
+  PIN done_o
+    DIRECTION OUTPUT TRISTATE ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 346.000 275.440 350.000 276.040 ;
+    END
+  END done_o
   PIN io_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
@@ -620,7 +708,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 10.920 350.000 11.520 ;
+        RECT 346.000 3.440 350.000 4.040 ;
     END
   END io_out[0]
   PIN io_out[10]
@@ -628,7 +716,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 85.720 350.000 86.320 ;
+        RECT 346.000 71.440 350.000 72.040 ;
     END
   END io_out[10]
   PIN io_out[11]
@@ -636,7 +724,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 93.200 350.000 93.800 ;
+        RECT 346.000 78.240 350.000 78.840 ;
     END
   END io_out[11]
   PIN io_out[12]
@@ -644,7 +732,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 100.680 350.000 101.280 ;
+        RECT 346.000 85.040 350.000 85.640 ;
     END
   END io_out[12]
   PIN io_out[13]
@@ -652,7 +740,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 108.160 350.000 108.760 ;
+        RECT 346.000 91.840 350.000 92.440 ;
     END
   END io_out[13]
   PIN io_out[14]
@@ -660,7 +748,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 115.640 350.000 116.240 ;
+        RECT 346.000 98.640 350.000 99.240 ;
     END
   END io_out[14]
   PIN io_out[15]
@@ -668,7 +756,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 123.120 350.000 123.720 ;
+        RECT 346.000 105.440 350.000 106.040 ;
     END
   END io_out[15]
   PIN io_out[16]
@@ -676,7 +764,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 130.600 350.000 131.200 ;
+        RECT 346.000 112.240 350.000 112.840 ;
     END
   END io_out[16]
   PIN io_out[17]
@@ -684,7 +772,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 138.080 350.000 138.680 ;
+        RECT 346.000 119.040 350.000 119.640 ;
     END
   END io_out[17]
   PIN io_out[18]
@@ -692,7 +780,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 145.560 350.000 146.160 ;
+        RECT 346.000 125.840 350.000 126.440 ;
     END
   END io_out[18]
   PIN io_out[19]
@@ -700,7 +788,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 153.040 350.000 153.640 ;
+        RECT 346.000 132.640 350.000 133.240 ;
     END
   END io_out[19]
   PIN io_out[1]
@@ -708,7 +796,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 18.400 350.000 19.000 ;
+        RECT 346.000 10.240 350.000 10.840 ;
     END
   END io_out[1]
   PIN io_out[20]
@@ -716,7 +804,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 160.520 350.000 161.120 ;
+        RECT 346.000 139.440 350.000 140.040 ;
     END
   END io_out[20]
   PIN io_out[21]
@@ -724,7 +812,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 168.000 350.000 168.600 ;
+        RECT 346.000 146.240 350.000 146.840 ;
     END
   END io_out[21]
   PIN io_out[22]
@@ -732,7 +820,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 175.480 350.000 176.080 ;
+        RECT 346.000 153.040 350.000 153.640 ;
     END
   END io_out[22]
   PIN io_out[23]
@@ -740,7 +828,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 182.960 350.000 183.560 ;
+        RECT 346.000 159.840 350.000 160.440 ;
     END
   END io_out[23]
   PIN io_out[24]
@@ -748,7 +836,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 190.440 350.000 191.040 ;
+        RECT 346.000 166.640 350.000 167.240 ;
     END
   END io_out[24]
   PIN io_out[25]
@@ -756,7 +844,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 197.920 350.000 198.520 ;
+        RECT 346.000 173.440 350.000 174.040 ;
     END
   END io_out[25]
   PIN io_out[26]
@@ -764,7 +852,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 205.400 350.000 206.000 ;
+        RECT 346.000 180.240 350.000 180.840 ;
     END
   END io_out[26]
   PIN io_out[27]
@@ -772,7 +860,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 212.880 350.000 213.480 ;
+        RECT 346.000 187.040 350.000 187.640 ;
     END
   END io_out[27]
   PIN io_out[28]
@@ -780,7 +868,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 220.360 350.000 220.960 ;
+        RECT 346.000 193.840 350.000 194.440 ;
     END
   END io_out[28]
   PIN io_out[29]
@@ -788,7 +876,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 227.840 350.000 228.440 ;
+        RECT 346.000 200.640 350.000 201.240 ;
     END
   END io_out[29]
   PIN io_out[2]
@@ -796,7 +884,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 25.880 350.000 26.480 ;
+        RECT 346.000 17.040 350.000 17.640 ;
     END
   END io_out[2]
   PIN io_out[30]
@@ -804,7 +892,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 235.320 350.000 235.920 ;
+        RECT 346.000 207.440 350.000 208.040 ;
     END
   END io_out[30]
   PIN io_out[31]
@@ -812,7 +900,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 242.800 350.000 243.400 ;
+        RECT 346.000 214.240 350.000 214.840 ;
     END
   END io_out[31]
   PIN io_out[32]
@@ -820,7 +908,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 250.280 350.000 250.880 ;
+        RECT 346.000 221.040 350.000 221.640 ;
     END
   END io_out[32]
   PIN io_out[33]
@@ -828,7 +916,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 257.760 350.000 258.360 ;
+        RECT 346.000 227.840 350.000 228.440 ;
     END
   END io_out[33]
   PIN io_out[34]
@@ -836,7 +924,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 265.240 350.000 265.840 ;
+        RECT 346.000 234.640 350.000 235.240 ;
     END
   END io_out[34]
   PIN io_out[35]
@@ -844,7 +932,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 272.720 350.000 273.320 ;
+        RECT 346.000 241.440 350.000 242.040 ;
     END
   END io_out[35]
   PIN io_out[36]
@@ -852,7 +940,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 280.200 350.000 280.800 ;
+        RECT 346.000 248.240 350.000 248.840 ;
     END
   END io_out[36]
   PIN io_out[37]
@@ -860,7 +948,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 287.680 350.000 288.280 ;
+        RECT 346.000 255.040 350.000 255.640 ;
     END
   END io_out[37]
   PIN io_out[3]
@@ -868,7 +956,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 33.360 350.000 33.960 ;
+        RECT 346.000 23.840 350.000 24.440 ;
     END
   END io_out[3]
   PIN io_out[4]
@@ -876,7 +964,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 40.840 350.000 41.440 ;
+        RECT 346.000 30.640 350.000 31.240 ;
     END
   END io_out[4]
   PIN io_out[5]
@@ -884,7 +972,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 48.320 350.000 48.920 ;
+        RECT 346.000 37.440 350.000 38.040 ;
     END
   END io_out[5]
   PIN io_out[6]
@@ -892,7 +980,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 55.800 350.000 56.400 ;
+        RECT 346.000 44.240 350.000 44.840 ;
     END
   END io_out[6]
   PIN io_out[7]
@@ -900,7 +988,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 63.280 350.000 63.880 ;
+        RECT 346.000 51.040 350.000 51.640 ;
     END
   END io_out[7]
   PIN io_out[8]
@@ -908,7 +996,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 70.760 350.000 71.360 ;
+        RECT 346.000 57.840 350.000 58.440 ;
     END
   END io_out[8]
   PIN io_out[9]
@@ -916,7 +1004,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 346.000 78.240 350.000 78.840 ;
+        RECT 346.000 64.640 350.000 65.240 ;
     END
   END io_out[9]
   PIN irq[0]
@@ -4015,70 +4103,22 @@ MACRO rlbp_macro
         RECT 115.090 0.000 115.370 4.000 ;
     END
   END la_oenb[9]
-  PIN out_1
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 109.110 296.000 109.390 300.000 ;
-    END
-  END out_1
-  PIN out_2
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 152.810 296.000 153.090 300.000 ;
-    END
-  END out_2
-  PIN out_3
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 196.510 296.000 196.790 300.000 ;
-    END
-  END out_3
-  PIN out_4
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 240.210 296.000 240.490 300.000 ;
-    END
-  END out_4
-  PIN out_5
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 283.910 296.000 284.190 300.000 ;
-    END
-  END out_5
-  PIN out_7
-    DIRECTION OUTPUT TRISTATE ;
-    USE SIGNAL ;
-    PORT
-      LAYER met2 ;
-        RECT 327.610 296.000 327.890 300.000 ;
-    END
-  END out_7
   PIN rst_o
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 65.410 296.000 65.690 300.000 ;
+      LAYER met3 ;
+        RECT 346.000 268.640 350.000 269.240 ;
     END
   END rst_o
-  PIN serial_data_rlbp_out
+  PIN start_o
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
     PORT
-      LAYER met2 ;
-        RECT 21.710 296.000 21.990 300.000 ;
+      LAYER met3 ;
+        RECT 346.000 282.240 350.000 282.840 ;
     END
-  END serial_data_rlbp_out
+  END start_o
   PIN vccd1
     DIRECTION INOUT ;
     USE POWER ;
@@ -4959,101 +4999,110 @@ MACRO rlbp_macro
       LAYER li1 ;
         RECT 5.520 10.795 344.080 288.405 ;
       LAYER met1 ;
-        RECT 5.520 5.140 344.080 288.560 ;
+        RECT 5.520 0.720 344.080 288.560 ;
       LAYER met2 ;
-        RECT 7.000 295.720 21.430 296.000 ;
-        RECT 22.270 295.720 65.130 296.000 ;
-        RECT 65.970 295.720 108.830 296.000 ;
-        RECT 109.670 295.720 152.530 296.000 ;
-        RECT 153.370 295.720 196.230 296.000 ;
-        RECT 197.070 295.720 239.930 296.000 ;
-        RECT 240.770 295.720 283.630 296.000 ;
-        RECT 284.470 295.720 327.330 296.000 ;
-        RECT 328.170 295.720 340.770 296.000 ;
+        RECT 7.000 295.720 25.570 296.325 ;
+        RECT 26.410 295.720 75.250 296.325 ;
+        RECT 76.090 295.720 124.930 296.325 ;
+        RECT 125.770 295.720 174.610 296.325 ;
+        RECT 175.450 295.720 224.290 296.325 ;
+        RECT 225.130 295.720 273.970 296.325 ;
+        RECT 274.810 295.720 323.650 296.325 ;
+        RECT 324.490 295.720 340.770 296.325 ;
         RECT 7.000 4.280 340.770 295.720 ;
-        RECT 7.000 4.000 52.710 4.280 ;
-        RECT 297.350 4.000 340.770 4.280 ;
+        RECT 7.000 0.690 52.710 4.280 ;
+        RECT 297.350 0.690 340.770 4.280 ;
       LAYER met3 ;
-        RECT 12.485 287.280 345.600 288.485 ;
-        RECT 12.485 281.200 346.000 287.280 ;
-        RECT 12.485 279.800 345.600 281.200 ;
-        RECT 12.485 273.720 346.000 279.800 ;
-        RECT 12.485 272.320 345.600 273.720 ;
-        RECT 12.485 266.240 346.000 272.320 ;
-        RECT 12.485 264.840 345.600 266.240 ;
-        RECT 12.485 258.760 346.000 264.840 ;
-        RECT 12.485 257.360 345.600 258.760 ;
-        RECT 12.485 251.280 346.000 257.360 ;
-        RECT 12.485 249.880 345.600 251.280 ;
-        RECT 12.485 243.800 346.000 249.880 ;
-        RECT 12.485 242.400 345.600 243.800 ;
-        RECT 12.485 236.320 346.000 242.400 ;
-        RECT 12.485 234.920 345.600 236.320 ;
-        RECT 12.485 228.840 346.000 234.920 ;
-        RECT 12.485 227.440 345.600 228.840 ;
-        RECT 12.485 221.360 346.000 227.440 ;
-        RECT 12.485 219.960 345.600 221.360 ;
-        RECT 12.485 213.880 346.000 219.960 ;
-        RECT 12.485 212.480 345.600 213.880 ;
-        RECT 12.485 206.400 346.000 212.480 ;
-        RECT 12.485 205.000 345.600 206.400 ;
-        RECT 12.485 198.920 346.000 205.000 ;
-        RECT 12.485 197.520 345.600 198.920 ;
-        RECT 12.485 191.440 346.000 197.520 ;
-        RECT 12.485 190.040 345.600 191.440 ;
-        RECT 12.485 183.960 346.000 190.040 ;
-        RECT 12.485 182.560 345.600 183.960 ;
-        RECT 12.485 176.480 346.000 182.560 ;
-        RECT 12.485 175.080 345.600 176.480 ;
-        RECT 12.485 169.000 346.000 175.080 ;
-        RECT 12.485 167.600 345.600 169.000 ;
-        RECT 12.485 161.520 346.000 167.600 ;
-        RECT 12.485 160.120 345.600 161.520 ;
-        RECT 12.485 154.040 346.000 160.120 ;
-        RECT 12.485 152.640 345.600 154.040 ;
-        RECT 12.485 146.560 346.000 152.640 ;
-        RECT 12.485 145.160 345.600 146.560 ;
-        RECT 12.485 139.080 346.000 145.160 ;
-        RECT 12.485 137.680 345.600 139.080 ;
-        RECT 12.485 131.600 346.000 137.680 ;
-        RECT 12.485 130.200 345.600 131.600 ;
-        RECT 12.485 124.120 346.000 130.200 ;
-        RECT 12.485 122.720 345.600 124.120 ;
-        RECT 12.485 116.640 346.000 122.720 ;
-        RECT 12.485 115.240 345.600 116.640 ;
-        RECT 12.485 109.160 346.000 115.240 ;
-        RECT 12.485 107.760 345.600 109.160 ;
-        RECT 12.485 101.680 346.000 107.760 ;
-        RECT 12.485 100.280 345.600 101.680 ;
-        RECT 12.485 94.200 346.000 100.280 ;
-        RECT 12.485 92.800 345.600 94.200 ;
-        RECT 12.485 86.720 346.000 92.800 ;
-        RECT 12.485 85.320 345.600 86.720 ;
-        RECT 12.485 79.240 346.000 85.320 ;
-        RECT 12.485 77.840 345.600 79.240 ;
-        RECT 12.485 71.760 346.000 77.840 ;
-        RECT 12.485 70.360 345.600 71.760 ;
-        RECT 12.485 64.280 346.000 70.360 ;
-        RECT 12.485 62.880 345.600 64.280 ;
-        RECT 12.485 56.800 346.000 62.880 ;
-        RECT 12.485 55.400 345.600 56.800 ;
-        RECT 12.485 49.320 346.000 55.400 ;
-        RECT 12.485 47.920 345.600 49.320 ;
-        RECT 12.485 41.840 346.000 47.920 ;
-        RECT 12.485 40.440 345.600 41.840 ;
-        RECT 12.485 34.360 346.000 40.440 ;
-        RECT 12.485 32.960 345.600 34.360 ;
-        RECT 12.485 26.880 346.000 32.960 ;
-        RECT 12.485 25.480 345.600 26.880 ;
-        RECT 12.485 19.400 346.000 25.480 ;
-        RECT 12.485 18.000 345.600 19.400 ;
-        RECT 12.485 11.920 346.000 18.000 ;
-        RECT 12.485 10.520 345.600 11.920 ;
-        RECT 12.485 6.295 346.000 10.520 ;
+        RECT 9.265 295.440 345.600 296.305 ;
+        RECT 9.265 290.040 346.000 295.440 ;
+        RECT 9.265 288.640 345.600 290.040 ;
+        RECT 9.265 283.240 346.000 288.640 ;
+        RECT 9.265 281.840 345.600 283.240 ;
+        RECT 9.265 276.440 346.000 281.840 ;
+        RECT 9.265 275.040 345.600 276.440 ;
+        RECT 9.265 269.640 346.000 275.040 ;
+        RECT 9.265 268.240 345.600 269.640 ;
+        RECT 9.265 262.840 346.000 268.240 ;
+        RECT 9.265 261.440 345.600 262.840 ;
+        RECT 9.265 256.040 346.000 261.440 ;
+        RECT 9.265 254.640 345.600 256.040 ;
+        RECT 9.265 249.240 346.000 254.640 ;
+        RECT 9.265 247.840 345.600 249.240 ;
+        RECT 9.265 242.440 346.000 247.840 ;
+        RECT 9.265 241.040 345.600 242.440 ;
+        RECT 9.265 235.640 346.000 241.040 ;
+        RECT 9.265 234.240 345.600 235.640 ;
+        RECT 9.265 228.840 346.000 234.240 ;
+        RECT 9.265 227.440 345.600 228.840 ;
+        RECT 9.265 222.040 346.000 227.440 ;
+        RECT 9.265 220.640 345.600 222.040 ;
+        RECT 9.265 215.240 346.000 220.640 ;
+        RECT 9.265 213.840 345.600 215.240 ;
+        RECT 9.265 208.440 346.000 213.840 ;
+        RECT 9.265 207.040 345.600 208.440 ;
+        RECT 9.265 201.640 346.000 207.040 ;
+        RECT 9.265 200.240 345.600 201.640 ;
+        RECT 9.265 194.840 346.000 200.240 ;
+        RECT 9.265 193.440 345.600 194.840 ;
+        RECT 9.265 188.040 346.000 193.440 ;
+        RECT 9.265 186.640 345.600 188.040 ;
+        RECT 9.265 181.240 346.000 186.640 ;
+        RECT 9.265 179.840 345.600 181.240 ;
+        RECT 9.265 174.440 346.000 179.840 ;
+        RECT 9.265 173.040 345.600 174.440 ;
+        RECT 9.265 167.640 346.000 173.040 ;
+        RECT 9.265 166.240 345.600 167.640 ;
+        RECT 9.265 160.840 346.000 166.240 ;
+        RECT 9.265 159.440 345.600 160.840 ;
+        RECT 9.265 154.040 346.000 159.440 ;
+        RECT 9.265 152.640 345.600 154.040 ;
+        RECT 9.265 147.240 346.000 152.640 ;
+        RECT 9.265 145.840 345.600 147.240 ;
+        RECT 9.265 140.440 346.000 145.840 ;
+        RECT 9.265 139.040 345.600 140.440 ;
+        RECT 9.265 133.640 346.000 139.040 ;
+        RECT 9.265 132.240 345.600 133.640 ;
+        RECT 9.265 126.840 346.000 132.240 ;
+        RECT 9.265 125.440 345.600 126.840 ;
+        RECT 9.265 120.040 346.000 125.440 ;
+        RECT 9.265 118.640 345.600 120.040 ;
+        RECT 9.265 113.240 346.000 118.640 ;
+        RECT 9.265 111.840 345.600 113.240 ;
+        RECT 9.265 106.440 346.000 111.840 ;
+        RECT 9.265 105.040 345.600 106.440 ;
+        RECT 9.265 99.640 346.000 105.040 ;
+        RECT 9.265 98.240 345.600 99.640 ;
+        RECT 9.265 92.840 346.000 98.240 ;
+        RECT 9.265 91.440 345.600 92.840 ;
+        RECT 9.265 86.040 346.000 91.440 ;
+        RECT 9.265 84.640 345.600 86.040 ;
+        RECT 9.265 79.240 346.000 84.640 ;
+        RECT 9.265 77.840 345.600 79.240 ;
+        RECT 9.265 72.440 346.000 77.840 ;
+        RECT 9.265 71.040 345.600 72.440 ;
+        RECT 9.265 65.640 346.000 71.040 ;
+        RECT 9.265 64.240 345.600 65.640 ;
+        RECT 9.265 58.840 346.000 64.240 ;
+        RECT 9.265 57.440 345.600 58.840 ;
+        RECT 9.265 52.040 346.000 57.440 ;
+        RECT 9.265 50.640 345.600 52.040 ;
+        RECT 9.265 45.240 346.000 50.640 ;
+        RECT 9.265 43.840 345.600 45.240 ;
+        RECT 9.265 38.440 346.000 43.840 ;
+        RECT 9.265 37.040 345.600 38.440 ;
+        RECT 9.265 31.640 346.000 37.040 ;
+        RECT 9.265 30.240 345.600 31.640 ;
+        RECT 9.265 24.840 346.000 30.240 ;
+        RECT 9.265 23.440 345.600 24.840 ;
+        RECT 9.265 18.040 346.000 23.440 ;
+        RECT 9.265 16.640 345.600 18.040 ;
+        RECT 9.265 11.240 346.000 16.640 ;
+        RECT 9.265 9.840 345.600 11.240 ;
+        RECT 9.265 4.440 346.000 9.840 ;
+        RECT 9.265 3.575 345.600 4.440 ;
       LAYER met4 ;
-        RECT 53.655 13.775 97.440 138.545 ;
-        RECT 99.840 13.775 174.240 138.545 ;
-        RECT 176.640 13.775 178.185 138.545 ;
+        RECT 34.335 10.375 97.440 131.745 ;
+        RECT 99.840 10.375 101.825 131.745 ;
   END
 END rlbp_macro
 END LIBRARY

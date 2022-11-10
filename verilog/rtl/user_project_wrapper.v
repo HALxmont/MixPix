@@ -79,56 +79,19 @@ module user_project_wrapper #(
 );
 
 
-wire serial_data_rlbp_out;
-wire pxl_start_in_ext;
-wire pxl_start_out;
-wire pxl_done;
-//#######################################################
-//#     User macros/projects ares instantiated  here    #
-//#######################################################
-
-// pixel_macro pixel_macro0 (
-
-// `ifdef USE_POWER_PINS
-// 	.vccd1(vccd1),	// User area 1 1.8V power
-// 	.vssd1(vssd1),	// User area 1 digital ground
-// `endif
-
-//     .wb_clk_i(wb_clk_i),
-//     .wb_rst_i(wb_rst_i),
-
-//     // MGMT SoC Wishbone Slave
-
-//     .wbs_cyc_i(wbs_cyc_i),
-//     .wbs_stb_i(wbs_stb_i),
-//     .wbs_we_i(wbs_we_i),
-//     .wbs_sel_i(wbs_sel_i),
-//     .wbs_adr_i(wbs_adr_i),
-//     .wbs_dat_i(wbs_dat_i),
-//     .wbs_ack_o(wbs_ack_o),
-//     .wbs_dat_o(wbs_dat_o),
-
-//     // Logic Analyzer
-
-//     .la_data_in(la_data_in),
-//     .la_data_out(la_data_out),
-//     .la_oenb (la_oenb),
-
-//     // IO Pads
-
-//     .io_in (io_in),
-//     .io_out(io_out),
-//     .io_oeb(io_oeb),
-
-//     // IRQ
-//     .irq(user_irq),
-
-//     .pxl_start_in_ext(pxl_start_in_ext),
-//     .pxl_start_out(pxl_start_out),
-//     .pxl_done(pxl_done)
-// );
-
-  
+wire clk_o;
+wire rst_o;
+wire done_o;
+wire start_o;
+wire data_o;
+wire counter_rst;
+wire Vd1;
+wire Vd2;
+wire Sw1;
+wire Sw2;
+wire Sh;
+wire Sh_cmp;
+wire Sh_rst;
 
 rlbp_macro rlbp_macro0 (
 
@@ -165,7 +128,19 @@ rlbp_macro rlbp_macro0 (
 
     // IRQ
     .irq(user_irq),
-    .serial_data_rlbp_out(serial_data_rlbp_out)
+    .clk_o(clk_o),
+    .rst_o(rst_o),
+    .done_o(done_o),
+    .start_o(start_o),
+    .data_o(data_o),
+    .counter_rst(counter_rst),
+    .Vd1(Vd1),
+    .Vd2(Vd2),
+    .Sw1(Sw1),
+    .Sw2(Sw2),
+    .Sh(Sh),
+    .Sh_cmp(Sh_cmp),
+    .Sh_rst(Sh_rst)
 );
 
 
