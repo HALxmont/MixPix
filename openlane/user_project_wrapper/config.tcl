@@ -46,7 +46,9 @@ set ::env(CLOCK_PERIOD) "10"
 ## Internal Macros
 ### Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-	rlbp_macro0 vccd1 vssd1 vccd1 vssd1"
+	rlbp_macro0 vccd1 vssd1 vccd1 vssd1,\
+	PD1_macro0 vdda1 vssa1 VDD VSS, \
+	sl_macro0 vdda1 vssa1 VDD VSS"
 
 
 ### Macro Placement
@@ -56,13 +58,19 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../openlane/rlbp/src/rlbp_macro.v \
-	$script_dir/../../openlane/rlbp/src/rlbp.v"
+	$script_dir/../../openlane/rlbp/src/rlbp.v \
+	$script_dir/../../openlane/PD1/src/PD1.v \
+	$script_dir/../../openlane/SystemLevel/src/SystemLevel.v"
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/rlbp_macro.lef"
+	$script_dir/../../lef/rlbp_macro.lef \
+	$script_dir/../../lef/PD1.lef \
+	$script_dir/../../lef/SystemLevel.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/rlbp_macro.gds"
+	$script_dir/../../gds/rlbp_macro.gds \
+	$script_dir/../../gds/PD1.gds \
+	$script_dir/../../gds/SystemLevel.gds"
 	
 
 # set ::env(GLB_RT_MAXLAYER) 5
@@ -96,4 +104,7 @@ set ::env(CLOCK_TREE_SYNTH) 0
 ##custom configurations
 
 set ::env(DRT_OPT_ITERS) 64
+set ::env(ROUTING_CORES) 4
 
+## Ignorar congestión
+set ::env(GLB_RT_ALLOW_CONGESTION) 1
