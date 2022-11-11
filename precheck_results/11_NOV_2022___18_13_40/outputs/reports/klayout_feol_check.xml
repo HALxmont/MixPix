@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>SKY130 DRC runset</description>
+ <original-file/>
+ <generator>drc: script='/home/mxmont/mpw_precheck/checks/tech-files/sky130A_mr.drc'</generator>
+ <top-cell>user_project_wrapper</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>dnwell.2</name>
+   <description>dnwell.2 : min. dnwell width : 3.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.1</name>
+   <description>nwell.1 : min. nwell width : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.2a</name>
+   <description>nwell.2a : min. nwell spacing (merged if less) : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.6</name>
+   <description>nwell.6 : min enclosure of nwellHole by dnwell : 1.03um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp.1</name>
+   <description>hvtp.1 : min. hvtp width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp.2</name>
+   <description>hvtp.2 : min. hvtp spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.1</name>
+   <description>hvtr.1 : min. hvtr width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.2</name>
+   <description>hvtr.2 : min. hvtr spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.2_a</name>
+   <description>hvtr.2_a : hvtr must not overlap hvtp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn.1a</name>
+   <description>lvtn.1a : min. lvtn width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn.2</name>
+   <description>lvtn.2 : min. lvtn spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm.1</name>
+   <description>ncm.1 : min. ncm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm.2a</name>
+   <description>ncm.2a : min. ncm spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1</name>
+   <description>difftap.1 : min. diff width across areaid:ce : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_a</name>
+   <description>difftap.1_a : min. diff width in periphery : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_b</name>
+   <description>difftap.1_b : min. tap width across areaid:ce : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_c</name>
+   <description>difftap.1_c : min. tap width in periphery : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.3</name>
+   <description>difftap.3 : min. difftap spacing : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm.1</name>
+   <description>tunm.1 : min. tunm width : 0.41um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm.2</name>
+   <description>tunm.2 : min. tunm spacing : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly.1a</name>
+   <description>poly.1a : min. poly width : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly.2</name>
+   <description>poly.2 : min. poly spacing : 0.21um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm.1a</name>
+   <description>rpm.1a : min. rpm width : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm.2</name>
+   <description>rpm.2 : min. rpm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>urpm.1a</name>
+   <description>urpm.1a : min. rpm width : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>urpm.2</name>
+   <description>urpm.2 : min. rpm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc.1</name>
+   <description>npc.1 : min. npc width : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc.2</name>
+   <description>npc.2 : min. npc spacing, should be manually merged if less than : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsd.1</name>
+   <description>nsd.1 : min. nsdm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsd.2</name>
+   <description>nsd.2 : min. nsdm spacing, should be manually merged if less than : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psd.1</name>
+   <description>psd.1 : min. psdm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psd.2</name>
+   <description>psd.2 : min. psdm spacing, should be manually merged if less than : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.1</name>
+   <description>licon.1 : licon should be rectangle</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.1_a/b</name>
+   <description>licon.1_a/b : minimum/maximum width of licon : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.13</name>
+   <description>licon.13 : min. difftap licon spacing to npc : 0.09um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.13_a</name>
+   <description>licon.13_a : licon of diffTap in periphery must not overlap npc</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.17</name>
+   <description>licon.17 : Licons may not overlap both poly and (diff or tap)</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.1</name>
+   <description>capm.1 : min. capm width : 1.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2a</name>
+   <description>capm.2a : min. capm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2b</name>
+   <description>capm.2b : min. capm spacing : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2b_a</name>
+   <description>capm.2b_a : min. spacing of m3_bot_plate : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.3</name>
+   <description>capm.3 : min. capm and m3 enclosure of m3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.3_a</name>
+   <description>capm.3_a : min. m3 enclosure of capm : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.4</name>
+   <description>capm.4 : min. capm enclosure of via3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.5</name>
+   <description>capm.5 : min. capm spacing to via3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.11</name>
+   <description>capm.11 : Min spacing of capm and met3 not overlapping capm : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.1</name>
+   <description>cap2m.1 : min. cap2m width : 1.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2a</name>
+   <description>cap2m.2a : min. cap2m spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2b</name>
+   <description>cap2m.2b : min. cap2m spacing : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2b_a</name>
+   <description>cap2m.2b_a : min. spacing of m4_bot_plate : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.3</name>
+   <description>cap2m.3 : min. m4 enclosure of cap2m : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.3_a</name>
+   <description>cap2m.3_a : min. m4 enclosure of cap2m : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.4</name>
+   <description>cap2m.4 : min. cap2m enclosure of via4 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.5</name>
+   <description>cap2m.5 : min. cap2m spacing to via4 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.11</name>
+   <description>cap2m.11 : Min spacing of cap2m and met4 not overlapping cap2m : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi.1</name>
+   <description>hvi.1 : min. hvi width : 0.6um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi.2a</name>
+   <description>hvi.2a : min. hvi spacing : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm.1</name>
+   <description>hvntm.1 : min. hvntm width : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm.2</name>
+   <description>hvntm.2 : min. hvntm spacing : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>user_project_wrapper</name>
+   <variant/>
+   <references>
+   </references>
+  </cell>
+  <cell>
+   <name>rlbp_macro</name>
+   <variant/>
+   <references>
+    <ref>
+     <parent>user_project_wrapper</parent>
+     <trans>r0 *1 600,400</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>sky130_fd_sc_hd__and4bb_1</name>
+   <variant/>
+   <references>
+    <ref>
+     <parent>user_project_wrapper</parent>
+     <trans>r180 *1 629.44,427.2</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>sky130_fd_sc_hd__or4bb_2</name>
+   <variant/>
+   <references>
+    <ref>
+     <parent>user_project_wrapper</parent>
+     <trans>m0 *1 658.42,427.2</trans>
+    </ref>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'hvtp.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (127.175,149.166;127.175,149.695)|(127.205,150.074;127.205,149.545)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (37.42,24.855;37.42,24.905)|(37.045,24.966;37.045,24.855)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (22.235,94.95;22.235,95.46)|(21.86,95.521;21.86,94.95)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (121.02,68.375;121.042,68.375)|(120.765,68.635;120.743,68.635)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (45.735,46.185;45.735,46.586)|(45.36,46.525;45.36,46.185)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (168.87,117.323;168.87,117.33)|(168.605,117.602;168.605,117.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (194.74,100.39;194.74,100.695)|(194.365,100.695;194.365,100.329)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (176.37,166.11;176.37,166.29)|(175.995,166.351;175.995,166.11)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (163.72,100.005;163.788,100.005)|(163.465,100.205;163.397,100.205)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (163.72,99.923;163.72,100.005)|(163.465,100.287;163.465,100.205)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (121.02,68.353;121.02,68.375)|(120.765,68.657;120.765,68.635)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (89.26,19.225;89.26,19.41)|(88.885,19.471;88.885,19.225)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (150.92,90.135;150.942,90.135)|(150.665,90.395;150.643,90.395)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (123.53,160.169;123.53,160.535)|(123.155,160.535;123.155,160.23)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (50.725,176.55;50.725,176.555)|(50.35,176.555;50.35,176.489)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (150.92,90.113;150.92,90.135)|(150.665,90.417;150.665,90.395)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (61.395,160.425;61.395,160.791)|(61.02,160.73;61.02,160.425)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (192.035,160.425;192.035,160.791)|(191.66,160.73;191.66,160.425)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (81.12,171.305;81.12,171.61)|(80.745,171.671;80.745,171.305)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (191.575,29.865;191.575,30.231)|(191.2,30.17;191.2,29.865)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (98.035,110.885;98.215,110.885)|(98.535,111.09;98.355,111.09)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (98.215,110.885;98.215,110.737)|(98.355,111.09;98.355,111.238)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (129.42,106.025;129.42,106.33)|(129.045,106.391;129.045,106.025)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (168.87,117.33;168.877,117.33)|(168.605,117.595;168.598,117.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (131.45,84.755;131.463,84.755)|(131.14,84.955;131.127,84.955)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'hvtp.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (131.45,84.735;131.45,84.755)|(131.14,84.975;131.14,84.955)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'npc.2'</category>
+   <cell>sky130_fd_sc_hd__and4bb_1</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1.275,1.48;1.275,1.845)|(1.01,1.825;1.01,1.48)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'npc.2'</category>
+   <cell>sky130_fd_sc_hd__or4bb_2</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (1.485,0.975;1.485,1.345)|(1.22,1.345;1.22,0.975)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (108.58,32.445;108.58,32.394)|(108.225,32.53;108.225,32.581)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (108.595,32.445;108.58,32.445)|(108.21,32.53;108.225,32.53)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (31.315,54.205;31.3,54.205)|(30.93,54.29;30.945,54.29)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (31.3,54.205;31.3,54.154)|(30.945,54.29;30.945,54.341)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (134.456,108.605;134.34,108.605)|(134.234,108.97;134.35,108.97)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (121.47,119.51;121.354,119.51)|(121.46,119.875;121.576,119.875)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (44.125,125.23;43.81,125.23)|(44.18,125.315;44.495,125.315)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (44.125,124.939;44.125,125.23)|(44.18,125.606;44.18,125.315)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (31.416,163.005;31.3,163.005)|(31.194,163.37;31.31,163.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (148.01,179.63;148.005,179.63)|(147.635,179.715;147.64,179.715)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (148.005,179.63;148.005,179.609)|(147.64,179.715;147.64,179.736)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (57.51,21.42;57.794,21.42)|(57.445,21.57;57.161,21.57)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (57.51,21.196;57.51,21.42)|(57.445,21.794;57.445,21.57)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (149.865,21.69;149.865,22.245)|(149.49,22.306;149.49,21.69)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (57.82,97.669;57.82,98.03)|(57.445,98.03;57.445,97.73)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (70.285,179.45;70.285,179.715)|(69.91,179.776;69.91,179.45)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (44.6,18.845;44.465,18.845)|(44.835,18.93;44.97,18.93)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (44.6,18.631;44.6,18.845)|(44.835,19.144;44.835,18.93)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (108.225,35.419;108.225,35.47)|(108.58,35.606;108.58,35.555)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (108.225,35.47;108.21,35.47)|(108.58,35.555;108.595,35.555)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (30.945,57.179;30.945,57.23)|(31.3,57.366;31.3,57.315)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (30.945,57.23;30.93,57.23)|(31.3,57.315;31.315,57.315)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (96.12,78.679;96.12,78.685)|(96.495,78.746;96.495,78.74)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (96.12,78.685;96.119,78.685)|(96.495,78.74;96.496,78.74)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (30.955,111.63;30.93,111.63)|(31.3,111.715;31.325,111.715)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.1'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (30.955,111.556;30.955,111.63)|(31.3,111.789;31.3,111.715)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (83.165,35.25;83.165,35.555)|(82.79,35.616;82.79,35.25)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (130.17,35.675;130.23,35.675)|(130.291,36.05;130.17,36.05)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.2'</category>
+   <cell>rlbp_macro</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <image/>
+   <values>
+    <value>edge-pair: (208.399,94.51;208.52,94.51)|(208.52,94.885;208.46,94.885)</value>
+   </values>
+  </item>
+ </items>
+</report-database>

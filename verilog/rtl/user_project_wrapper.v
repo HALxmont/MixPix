@@ -229,7 +229,7 @@ SystemLevel sl_macro0(
 
 `ifdef USE_POWER_PINS
     .VDD(vdda1),
-    .VSS(vssa1),
+    .VSS(vssd1),
 `endif
 
     .Ibias(analog_io[27]),
@@ -289,10 +289,10 @@ SystemLevel sl_macro0(
 
 PD1 PD1_macro0(
 
-`ifdef USE_POWER_PINS
-    .VDD(vdda1),
-    .VSS(vssa1),
-`endif
+// `ifdef USE_POWER_PINS
+//     .VDD(vccd1),
+//     .VSS(vssd1),
+// `endif
 
     .PD1(pd1),
     .PD2(pd2),
