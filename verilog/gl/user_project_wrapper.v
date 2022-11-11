@@ -58,7 +58,6 @@ module user_project_wrapper (user_clock2,
  wire counter_rst;
  wire data_o;
  wire done_o;
- wire ibias;
  wire ota_out_c;
  wire ota_sh_c;
  wire pd1;
@@ -782,7 +781,7 @@ module user_project_wrapper (user_clock2,
     .PD1(pd1),
     .pd1_a(pd1_a),
     .pd1_b(pd1_b),
-    .Ibias(ibias),
+    .Ibias(analog_io[27]),
     .Vd1(vd1),
     .Vd2(vd2),
     .sw1(sw1),

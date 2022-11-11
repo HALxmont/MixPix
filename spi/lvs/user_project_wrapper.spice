@@ -218,7 +218,7 @@ XPD1_macro0 sl_macro0/PD1 sl_macro0/PD2 sl_macro0/PD3 sl_macro0/PD4 sl_macro0/PD
 + sl_macro0/PD6 sl_macro0/PD7 sl_macro0/PD8 sl_macro0/PD9 sl_macro0/PD10 sl_macro0/PD11
 + sl_macro0/PD12 vssa1 vdda1 PD1
 Xsl_macro0 analog_io[26] vdda1 vssa1 sl_macro0/PD1 sl_macro0/pd1_a sl_macro0/pd1_b
-+ sl_macro0/Ibias sl_macro0/Vd1 sl_macro0/Vd2 sl_macro0/sw1 sl_macro0/sw2 sl_macro0/sh
++ analog_io[27] sl_macro0/Vd1 sl_macro0/Vd2 sl_macro0/sw1 sl_macro0/sw2 sl_macro0/sh
 + sl_macro0/sh_cmp sl_macro0/sh_rst sl_macro0/OTA_out_c sl_macro0/SH_out_c sl_macro0/Vref_cmp_c
 + sl_macro0/OTA_sh_c sl_macro0/CMP_out_c sl_macro0/PD2 sl_macro0/pd2_a sl_macro0/pd2_b
 + sl_macro0/PD3 sl_macro0/pd3_a sl_macro0/pd3_b sl_macro0/PD4 sl_macro0/pd4_a sl_macro0/pd4_b

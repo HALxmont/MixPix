@@ -1,0 +1,20 @@
+2022-11-11 01:36:49 - [INFO] - {{EXTRACTING FILES}} Extracting compressed files in: /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix
+2022-11-11 01:36:51 - [INFO] - {{Project Type Info}} digital
+2022-11-11 01:36:51 - [INFO] - {{Project GDS Info}} user_project_wrapper: bed94d6371df292071c406bca79a7846132e3563
+2022-11-11 01:36:52 - [INFO] - {{Tools Info}} KLayout: v0.27.10 | Magic: v8.3.315
+2022-11-11 01:36:52 - [ERROR] - MPW Precheck failed to get Open PDKs & Skywater PDK versions: Command '['git', '-C', '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/dependencies/pdks/open_pdks', 'rev-parse', '--verify', 'HEAD']' returned non-zero exit status 128.
+2022-11-11 01:36:52 - [INFO] - {{START}} Precheck Started, the full log 'precheck.log' will be located in '/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/precheck_results/11_NOV_2022___01_36_49/logs'
+2022-11-11 01:36:52 - [INFO] - {{PRECHECK SEQUENCE}} Precheck will run the following checks: [License, Makefile, Default, Documentation, Consistency, XOR, Magic DRC, Klayout FEOL, Klayout BEOL, Klayout Offgrid, Klayout Metal Minimum Clear Area Density, Klayout Pin Label Purposes Overlapping Drawing, Klayout ZeroArea]
+2022-11-11 01:36:52 - [INFO] - {{STEP UPDATE}} Executing Check 1 of 13: License
+2022-11-11 01:36:53 - [INFO] - An approved LICENSE (Apache-2.0) was found in /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix.
+2022-11-11 01:36:53 - [INFO] - {{MAIN LICENSE CHECK PASSED}} An approved LICENSE was found in project root.
+2022-11-11 01:36:54 - [INFO] - An approved LICENSE (Apache-2.0) was found in /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix.
+2022-11-11 01:36:55 - [INFO] - An approved LICENSE (Apache-2.0) was found in /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix.
+2022-11-11 01:36:57 - [INFO] - An approved LICENSE (Apache-2.0) was found in /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix.
+2022-11-11 01:36:59 - [INFO] - An approved LICENSE (Apache-2.0) was found in /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix.
+2022-11-11 01:36:59 - [INFO] - {{SUBMODULES LICENSE CHECK PASSED}} No prohibited LICENSE file(s) was found in project submodules
+2022-11-11 01:37:01 - [ERROR] - SPDX COMPLIANCE FILE UNICODE DECODE EXCEPTION in (/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/mgmt_core_wrapper/lvs/examples/utils/vlog2Spice): 'utf-8' codec can't decode byte 0xf8 in position 96: invalid start byte
+2022-11-11 01:37:01 - [ERROR] - SPDX COMPLIANCE FILE UNICODE DECODE EXCEPTION in (/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/mgmt_core_wrapper/lvs/utils/vlog2Spice): 'utf-8' codec can't decode byte 0xf8 in position 96: invalid start byte
+2022-11-11 01:37:16 - [ERROR] - SPDX COMPLIANCE FILE UNICODE DECODE EXCEPTION in (/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/mgmt_core_wrapper/verilog/dv/tests-standalone/spi_master/spi_master.vcd.hier): 'utf-8' codec can't decode byte 0xfc in position 0: invalid start byte
+2022-11-11 01:37:16 - [ERROR] - SPDX COMPLIANCE FILE UNICODE DECODE EXCEPTION in (/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/mgmt_core_wrapper/verilog/rtl/ibex/sv-source-orig/sv2v): 'utf-8' codec can't decode byte 0xcf in position 0: invalid continuation byte
+2022-11-11 01:37:17 - [ERROR] - SPDX COMPLIANCE FILE UNICODE DECODE EXCEPTION in (/home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/analog/doc/fig/OTA_initial_Layout.jpeg): 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte

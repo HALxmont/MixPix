@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1668130056
+timestamp 1668186315
 << obsli1 >>
 rect 52100 82159 402300 241984
 << obsm1 >>
@@ -1627,7 +1627,7 @@ rect 590110 -5734 590730 709670
 rect 591070 -6694 591690 710630
 rect 592030 -7654 592650 711590
 << obsm4 >>
-rect 46000 228564 173637 241996
+rect 46000 228564 173269 241996
 rect 46000 3299 46714 228564
 rect 47494 3299 51214 228564
 rect 51994 3299 55714 228564
@@ -1650,8 +1650,7 @@ rect 123994 141920 127714 228564
 rect 128494 141920 132214 228564
 rect 132994 141920 168214 228564
 rect 168994 141920 172714 228564
-rect 173494 141920 173637 228564
-rect 114994 78080 173637 141920
+rect 114994 78080 173269 141920
 rect 114994 3299 118714 78080
 rect 119494 3299 123214 78080
 rect 123994 3299 127714 78080
@@ -1665,7 +1664,6 @@ rect 155494 3299 159214 78080
 rect 159994 3299 163714 78080
 rect 164494 3299 168214 78080
 rect 168994 3299 172714 78080
-rect 173494 3299 173637 78080
 << metal5 >>
 rect -8726 710970 592650 711590
 rect -7766 710010 591690 710630
@@ -3930,8 +3928,8 @@ port 645 nsew signal input
 string FIXED_BBOX 0 0 584000 704000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 8693684
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_project_wrapper/runs/22_11_10_22_23/results/signoff/user_project_wrapper.magic.gds
+string GDS_END 8683956
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/user_project_wrapper/runs/22_11_11_14_00/results/signoff/user_project_wrapper.magic.gds
 string GDS_START 6471978
 << end >>
 

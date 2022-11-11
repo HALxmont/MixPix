@@ -232,7 +232,7 @@ SystemLevel sl_macro0(
     .VSS(vssa1),
 `endif
 
-    .Ibias(ibias),
+    .Ibias(analog_io[27]),
     .OTA_out_c(ota_out_c),
     .SH_out_c(sh_out_c),
     .Vref_cmp_c(vref_cmp_c),
