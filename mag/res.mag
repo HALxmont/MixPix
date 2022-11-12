@@ -1,0 +1,93 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1668260569
+<< metal1 >>
+rect -556 900 -550 1000
+rect -450 900 -200 1000
+rect 900 900 1550 1000
+rect 1650 900 2300 1000
+rect 4150 900 4250 906
+rect 3600 800 4150 900
+rect 4250 800 4800 900
+rect 4150 794 4250 800
+rect 350 300 450 306
+rect 2850 300 2950 306
+rect -200 200 350 300
+rect 450 200 900 300
+rect 2300 200 2850 300
+rect 2950 200 3600 300
+rect 4800 200 5050 300
+rect 5150 200 5200 300
+rect 350 194 450 200
+rect 2850 194 2950 200
+<< via1 >>
+rect -550 900 -450 1000
+rect 1550 900 1650 1000
+rect 4150 800 4250 900
+rect 350 200 450 300
+rect 2850 200 2950 300
+rect 5050 200 5150 300
+<< metal2 >>
+rect 800 1700 2300 4100
+rect 3500 1700 5000 4100
+rect -3500 1000 -1100 1700
+rect 1550 1020 1650 1700
+rect -550 1000 -450 1006
+rect -3500 900 -550 1000
+rect -3500 200 -1100 900
+rect -550 894 -450 900
+rect 1540 1000 1660 1020
+rect 1540 900 1550 1000
+rect 1650 900 1660 1000
+rect 4150 900 4250 1700
+rect 1540 890 1660 900
+rect 4144 800 4150 900
+rect 4250 800 4256 900
+rect 5050 300 5150 306
+rect 5800 300 8200 1100
+rect 344 200 350 300
+rect 450 200 456 300
+rect 2844 200 2850 300
+rect 2950 200 2956 300
+rect 5150 200 8200 300
+rect 350 -400 450 200
+rect 2850 -400 2950 200
+rect 5050 194 5150 200
+rect 5800 -400 8200 200
+rect -400 -2800 1100 -400
+rect 2200 -2800 3700 -400
+use sky130_fd_pr__res_xhigh_po_0p35_R8G9WK  sky130_fd_pr__res_xhigh_po_0p35_R8G9WK_0
+timestamp 1668205804
+transform 1 0 -199 0 1 598
+box -201 -698 201 698
+use sky130_fd_pr__res_xhigh_po_0p35_R8G9WK  sky130_fd_pr__res_xhigh_po_0p35_R8G9WK_1
+timestamp 1668205804
+transform 1 0 901 0 1 598
+box -201 -698 201 698
+use sky130_fd_pr__res_xhigh_po_0p35_R8G9WK  sky130_fd_pr__res_xhigh_po_0p35_R8G9WK_2
+timestamp 1668205804
+transform 1 0 2301 0 1 598
+box -201 -698 201 698
+use sky130_fd_pr__res_xhigh_po_0p35_R8G9WK  sky130_fd_pr__res_xhigh_po_0p35_R8G9WK_3
+timestamp 1668205804
+transform 1 0 3601 0 1 598
+box -201 -698 201 698
+use sky130_fd_pr__res_xhigh_po_0p35_R8G9WK  sky130_fd_pr__res_xhigh_po_0p35_R8G9WK_4
+timestamp 1668205804
+transform 1 0 4801 0 1 598
+box -201 -698 201 698
+<< labels >>
+flabel metal2 400 -650 400 -650 0 FreeSans 1600 0 0 0 in1
+port 0 nsew signal input
+flabel metal2 2900 -650 2900 -650 0 FreeSans 1600 0 0 0 in2
+port 1 nsew signal input
+flabel metal2 1600 1850 1600 1850 0 FreeSans 1600 0 0 0 out1
+port 2 nsew signal output
+flabel metal2 4200 1850 4200 1850 0 FreeSans 1600 0 0 0 out2
+port 3 nsew signal output
+flabel metal2 -3400 900 -3400 900 0 FreeSans 1600 0 0 0 VDD
+port 4 nsew power input
+flabel metal2 8100 300 8100 300 0 FreeSans 1600 0 0 0 VSS
+port 5 nsew ground input
+<< end >>

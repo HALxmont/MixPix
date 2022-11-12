@@ -229,7 +229,7 @@ SystemLevel sl_macro0(
 
 `ifdef USE_POWER_PINS
     .VDD(vdda1),
-    .VSS(vssd1),
+    .VSS(vssa1),
 `endif
 
     .Ibias(analog_io[27]),
@@ -287,12 +287,12 @@ SystemLevel sl_macro0(
 
 
 
-PD1 PD1_macro0(
+PD_M1_M2 PD_M1_M2_macro0(
 
-// `ifdef USE_POWER_PINS
-//     .VDD(vccd1),
-//     .VSS(vssd1),
-// `endif
+`ifdef USE_POWER_PINS
+    .VDD(vdda2),   
+    .VSS(vssa1),
+`endif
 
     .PD1(pd1),
     .PD2(pd2),
@@ -307,6 +307,21 @@ PD1 PD1_macro0(
     .PD11(pd11),
     .PD12(pd12),
 );
+
+
+// res res_macro0(
+
+// `ifdef USE_POWER_PINS
+//     .VDD(vdda1),
+//     .VSS(vssa1),
+// `endif
+
+// .in1(analog_io[20]),
+// .in2(analog_io[21]),
+// .out1(analog_io[22]),
+// .out2(analog_io[23])
+
+// );
 
 
 
