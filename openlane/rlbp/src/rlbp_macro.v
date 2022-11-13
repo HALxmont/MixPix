@@ -52,12 +52,16 @@ module rlbp_macro #(
 
     // ---- Design Specific Ports 
 
+
+    input ext_clk,
+    input ext_start,
+    input ext_reset,
+
     output clk_o,
     output rst_o,
     output done_o,
     output start_o,
     output data_o,
-    //output CMP_tmr,  //##             !!!!!!!!!!!!!!!!!!!!!!
     output counter_rst,
     output Vd1,
     output Vd2,
@@ -93,7 +97,16 @@ module rlbp_macro #(
     output Pd12_a, 
     output Pd12_b,
 
-    
+    output Q1_3,
+    output Q1_2,
+    output Q1_1,
+    output Q2_3,
+    output Q2_1,
+    output Q3_3,
+    output Q3_2,
+    output Q3_1,
+    output Pxl_done_i,
+
     //one hot encode (active high) 
     output OTA_out_c,
     output SH_out_c,
@@ -311,6 +324,10 @@ module rlbp_macro #(
 
     // #####    Module specific ports interconections   #####
 
+    assign ext_clk = wire_ext_clk;
+    assign ext_start = wire_ext_start;
+    assign ext_reset = wire_ext_reset;
+
     assign clk_o = wire_clk_out;  
     assign rst_o = wire_reset_out;
     assign done_o = wire_rlbp_done;
@@ -326,7 +343,17 @@ module rlbp_macro #(
     assign Sh_cmp = wire_sh_cmp;
     assign Sh_rst = wire_sh_reset;
 
-     
+    assign Q1_3 = wire_q1_3;
+    assign Q1_2 = wire_q1_2;
+    assign Q1_1 = wire_q1_1;
+    assign Q2_3 = wire_q2_3;
+    assign Q2_1 = wire_q2_1;
+    assign Q3_3 = wire_q3_3;
+    assign Q3_2 = wire_q3_2;
+    assign Q3_1 = wire_q3_1;
+    assign Pxl_done_i = wire_pxl_done_i;
+
+
     assign Pd1_a = pd1_a;
     assign Pd1_b = pd1_b;
     assign Pd2_a = pd2_a;

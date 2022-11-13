@@ -210,6 +210,23 @@ rlbp_macro rlbp_macro0 (
     .Pd12_a(pd12_a), 
     .Pd12_b(pd12_b),
 
+    .Pxl_done_i(io_out[31]),
+    .Q1_3(io_out[30]),
+    .Q1_2(io_out[29]),
+    .Q1_1(io_out[28]),
+    .Q2_3(io_out[27]),
+    .Q2_1(io_out[26]),
+    .Q3_3(io_out[25]),
+    .Q3_2(io_out[24]),
+    .Q3_1(io_out[23]),
+    
+
+    //ins
+    .ext_clk(io_in[37]),
+    .ext_reset(io_in[36]), 
+    .ext_start(io_in[33]), 
+
+
     
     //one hot encode (active high) 
     .OTA_out_c(ota_out_c),
@@ -230,9 +247,10 @@ SystemLevel sl_macro0(
 `ifdef USE_POWER_PINS
     .VDD(vdda1),
     .VSS(vssa1),
+    .Ibias(vdda2),
 `endif
 
-    .Ibias(analog_io[27]),
+    
     .OTA_out_c(ota_out_c),
     .SH_out_c(sh_out_c),
     .Vref_cmp_c(vref_cmp_c),
@@ -287,7 +305,7 @@ SystemLevel sl_macro0(
 
 
 
-PD_M1_M2 PD_M1_M2_macro0(
+PD_M1_M2 PD_M1_M2_macro0 (
 
 `ifdef USE_POWER_PINS
     .VDD(vdda2),   
@@ -305,7 +323,8 @@ PD_M1_M2 PD_M1_M2_macro0(
     .PD9(pd9),
     .PD10(pd10),
     .PD11(pd11),
-    .PD12(pd12),
+    .PD12(pd12)
+
 );
 
 

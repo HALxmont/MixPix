@@ -48,6 +48,7 @@ set ::env(CLOCK_PERIOD) "10"
 set ::env(FP_PDN_MACRO_HOOKS) "\
 	rlbp_macro0 vccd1 vssd1 vccd1 vssd1,\
 	PD_M1_M2_macro0 vdda2 vssa1 VDD VSS, 
+	sl_macro0 vssa1 vdda2 VSS Ibias,
 	sl_macro0 vdda1 vssa1 VDD VSS "
 
 

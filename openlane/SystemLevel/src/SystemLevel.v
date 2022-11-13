@@ -4,9 +4,9 @@ module SystemLevel(
 `ifdef USE_POWER_PINS
     input   VDD,
     input   VSS,
-`endif
-    
     input   Ibias,
+`endif
+      
     input   OTA_out_c,    
     input   SH_out_c,
     input   Vref_cmp_c,
