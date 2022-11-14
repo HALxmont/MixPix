@@ -52,17 +52,8 @@ module rlbp_macro #(
 
     // ---- Design Specific Ports 
 
+    input DATA_IN,
 
-    input ext_clk,
-    input ext_start,
-    input ext_reset,
-
-    output clk_o,
-    output rst_o,
-    output done_o,
-    output start_o,
-    output data_o,
-    output counter_rst,
     output Vd1,
     output Vd2,
     output Sw1,
@@ -70,7 +61,6 @@ module rlbp_macro #(
     output Sh,          //check assign
     output Sh_cmp,
     output Sh_rst,
-
 //exponer pdx_a, pdx_b (all in #N)
     output Pd1_a, 
     output Pd1_b,
@@ -96,16 +86,6 @@ module rlbp_macro #(
     output Pd11_b,
     output Pd12_a, 
     output Pd12_b,
-
-    output Q1_3,
-    output Q1_2,
-    output Q1_1,
-    output Q2_3,
-    output Q2_1,
-    output Q3_3,
-    output Q3_2,
-    output Q3_1,
-    output Pxl_done_i,
 
     //one hot encode (active high) 
     output OTA_out_c,
@@ -228,6 +208,7 @@ module rlbp_macro #(
     reg [11:0] time_down_sh_cmp; 
     reg [11:0] reg_count;  //Counter
     reg [11:0] reg_q;
+    reg [11:0] time_cmp;
 
 
 
@@ -250,6 +231,7 @@ module rlbp_macro #(
     localparam COUNT_DOWN = 60;
     localparam COUNT_VALUE = 64;
     localparam Q = 68;
+    localparam TIME_CMP = 72;
 
 
 
@@ -292,12 +274,17 @@ module rlbp_macro #(
     assign ota_sh_c = la_data_in[27];              //out  0    
     assign vref_cmp_c = la_data_in[28];            //out     
     assign vref_sel_c = la_data_in[29];            //out  
-                                                           //0   
+
+    assign wire_sel_start = la_data_in[30];
+    assign wire_sel_reset = la_data_in[31];  
+    assign wire_sel_clk = la_data_in[32];                                                  //0   
+    assign wire_wb_start = la_data_in[33]; 
+    assign rst = la_data_in[34];
+
 
 
 
     assign wire_q = reg_q;  //q to reg
-
 
 
     // ------ WB slave interface
@@ -317,24 +304,16 @@ module rlbp_macro #(
     assign addr_valid = (wbs_adr_i[31:28] == 3) ? 1 : 0;
     assign wbs_ack_o  = wbs_done;
 
-    assign clk = wb_clk_i;   
-    assign rst = wb_rst_i;   
-
+    //assign clk = wb_clk_i;   
+    //assign rst = wb_rst_i;   
 
 
     // #####    Module specific ports interconections   #####
 
-    assign ext_clk = wire_ext_clk;
-    assign ext_start = wire_ext_start;
-    assign ext_reset = wire_ext_reset;
+    assign wire_ext_clk = io_in[15];
+    assign wire_ext_start = io_in[16];
+    assign wire_ext_reset = io_in[17];
 
-    assign clk_o = wire_clk_out;  
-    assign rst_o = wire_reset_out;
-    assign done_o = wire_rlbp_done;
-    assign start_o = wire_start_out;
-    assign data_o = wire_s_data_out;
-    //assign CMP_tmr  #####
-    assign counter_rst = wire_counter_reset;
     assign Vd1 = wire_vd1;
     assign Vd2 = wire_vd2;
     assign Sw1 = wire_sw1;
@@ -342,16 +321,6 @@ module rlbp_macro #(
     assign Sh = wire_sh;
     assign Sh_cmp = wire_sh_cmp;
     assign Sh_rst = wire_sh_reset;
-
-    assign Q1_3 = wire_q1_3;
-    assign Q1_2 = wire_q1_2;
-    assign Q1_1 = wire_q1_1;
-    assign Q2_3 = wire_q2_3;
-    assign Q2_1 = wire_q2_1;
-    assign Q3_3 = wire_q3_3;
-    assign Q3_2 = wire_q3_2;
-    assign Q3_1 = wire_q3_1;
-    assign Pxl_done_i = wire_pxl_done_i;
 
 
     assign Pd1_a = pd1_a;
@@ -379,7 +348,6 @@ module rlbp_macro #(
     assign Pd12_a = pd12_a;
     assign Pd12_b = pd12_b;
 
-    
     //one hot encode (active high) 
     assign OTA_out_c = ota_out_c;
     assign SH_out_c = sh_out_c;
@@ -418,6 +386,7 @@ always@(posedge clk) begin
             time_down_counter_reset_out <= 0; 
             reg_count <= 0;  //Counter
             reg_q <= 0;
+            time_cmp <= 0;
 
 		end
 
@@ -537,6 +506,12 @@ always@(posedge clk) begin
                             reg_q <= wdata[11:0];
                     end
 
+                    TIME_CMP:  begin
+                        rdata <= time_cmp;
+                        if(wstrb[0])	
+                            time_cmp <= wdata[11:0];
+                    end
+
 
                     default: ;
 
@@ -547,93 +522,113 @@ always@(posedge clk) begin
 end 
 
 
-// ------- CUSTOM MODULE INSTANTIATION ----- //
-
-rlbp rlbp_inst0 (
-    .clk(clk),
-    .ce_d1(wire_ce_d1),
-    .ce_d2(wire_ce_d2),
-    .ce_d3(wire_ce_d3),
-    .reset(rst),
-    .reset_fsm(wire_reset_fsm),
-    .control_signals(wire_control_signals),
-    .rlbp_done(wire_rlbp_done),
-    .pxl_done_i(wire_pxl_done_i), //
-    .data_in(wire_data_in),
-    .data_sel(wire_data_sel),
-    .data_out(wire_data_out),
-    .d(wire_d),
-    .q1_3(wire_q1_3),
-    .q1_2(wire_q1_2),
-    .q1_1(wire_q1_1),
-    .q2_3(wire_q2_3),
-    .q2_2(wire_q2_2), 
-    .q2_1(wire_q2_1), 
-    .q3_3(wire_q3_3), 
-    .q3_2(wire_q3_2), 
-    .q3_1(wire_q3_1),
-    .en(wire_en), 
-    .p_data_in(wire_p_data_in),  //parallel data in
-    .s_data_out(wire_s_data_out), //serial data out
-    .ready(wire_ready), //P2S conversion ready
-    //fsm-counter-triggers
-
-    .count(reg_count),
-    .q(wire_q),
-    .start(wire_start), 
-    .p2s_en(wire_p2s_en),   
-    .time_up_vd1(time_up_vd1), 
-    .time_down_vd1(time_down_vd1), 
-    .vd1(wire_vd1), 
-    .time_up_vd2(time_up_vd2), 
-    .time_down_vd2(time_down_vd2), 
-    .vd2(wire_vd2), 
-    .time_up_sw1(time_up_sw1), 
-    .time_down_sw1(time_down_sw1), 
-    .sw1(wire_sw1), 
-    .time_up_sw2(time_up_sw2),         
-    .time_down_sw2(time_down_sw2), 
-    .sw2(wire_sw2), 
-    .time_up_sh(time_up_sh), 
-    .time_down_sh(time_down_sh), 
-    .sh(wire_sh), 
-    .time_up_sh_cmp(time_up_sh_cmp), 
-    .time_down_sh_cmp(time_down_sh_cmp), 
-    .sh_cmp(wire_sh_cmp), 
-    .time_up_sh_reset(time_up_sh_reset), 
-    .time_down_sh_reset(time_down_sh_reset), 
-    .sh_reset(wire_sh_reset), 
-    .time_up_counter_reset_out(time_up_counter_reset_out), 
-    .time_down_counter_reset_out(time_down_counter_reset_out), 
-    .counter_reset_out(wire_counter_reset_out), 
-    .counter_reset(wire_counter_reset), 
-    .ext_clk(wire_ext_clk), 
-    .wb_clk_macro(wire_wb_clk_macro), 
-    .sel_clk(wire_sel_clk), 
-    .clk_out(wire_clk_out), 
-    .ext_reset(wire_ext_reset), 
-    .wb_reset(wire_wb_reset), 
-    .sel_reset(wire_sel_reset), 
-    .reset_out(wire_reset_out), 
-    .ext_start(wire_ext_start), 
-    .wb_start(wire_wb_start), 
-    .sel_start(wire_sel_start), 
-    .start_out(wire_start_out), 
-    .ext_clk_sync(wire_ext_clk_sync), 
-    .wb_reset_sync(wire_wb_reset_sync), 
-    .ext_reset_sync(wire_ext_reset_sync), 
-    .wb_start_sync(wire_wb_start_sync), 
-    .ext_start_sync(wire_ext_start_sync), 
-    .ext_clk_temp(wire_ext_clk_temp), 
-    .wb_reset_temp(wire_wb_reset_temp), 
-    .ext_reset_temp(wire_ext_reset_temp), 
-    .wb_start_temp(wire_wb_start_temp), 
-    .ext_start_temp(wire_ext_start_temp)
-);
+// ------- CUSTOM MODULE ----- //
 
 
 
+wire [11:0] cnt;
+wire start;
+//Multiplexers for Clock, Reset and Enable
 
+	assign clk = wire_sel_clk ? wire_ext_clk : wb_clk_i;
+	//assign rst = wire_sel_reset ? ext_reset_sync : wb_rst_i;
+	assign start = wire_sel_start ? ext_start_sync : wire_wb_start;
+
+//Syncronizers for Clock, Reset and Enable Signals
+//Clock External Signal Synchronized
+
+reg ext_clk_sync , ext_reset_sync , ext_start_sync;
+reg ext_clk_temp, ext_reset_temp, ext_start_temp;
+
+
+	always @(posedge wb_clk_i)
+	begin 
+        if (wb_rst_i) begin
+		ext_clk_temp <= 0;
+		ext_clk_sync <= 0;
+        end
+        else begin
+        ext_clk_temp <= wire_ext_clk;
+		ext_clk_sync <= ext_clk_temp;
+        end
+	end
+
+	always @(posedge wb_clk_i)
+	begin
+
+        if (wb_rst_i) begin
+		ext_reset_temp <= 0;
+		ext_reset_sync <= 0;
+        end
+        else begin
+		ext_reset_temp <= wire_ext_reset;
+		ext_reset_sync <= ext_reset_temp;
+        end
+	end	
+	
+	always @(posedge wb_clk_i)
+	begin
+
+        if (wb_rst_i) begin
+		ext_start_temp <= 0;
+		ext_start_sync <= 0;
+        end
+        else begin
+		ext_start_temp <= wire_ext_start;
+		ext_start_sync <= ext_start_temp;
+        end
+
+	end
+
+
+counter counter0(clk, rst, start, cnt);
+sh_cmp_fsm sh_cmp_fsm0(clk, rst, cnt, time_up_sh_cmp, time_down_sh_cmp, wire_sh_cmp);
+sh_fsm sh_fsm0(clk, rst, cnt, time_up_sh, time_down_sh, wire_sh);
+
+vd1_fsm vd1_fsm0(clk, rst, cnt, time_up_vd1, time_down_vd1, wire_vd1);
+vd2_fsm vd2_fsm0(clk, rst, cnt, time_up_vd2, time_down_vd2, wire_vd2);
+sw1_fsm sw1_fsm0(clk, rst, cnt, time_up_sw1, time_down_sw1, wire_sw1);
+sw2_fsm sw2_fsm0(clk, rst, cnt, time_up_sw2, time_down_sw2, wire_sw2);
+sh_reset_fsm sh_reset_fsm0(clk, rst, cnt, time_up_sh_reset, time_down_sh_reset, wire_sh_reset);
+
+//rlbp_fsm rlbp_fsm0(clk, rst, reset_fsm, start, ce_d1, ce_d2, ce_d3, pxl_done_i, control_signals, rlbp_done, p2s_en);
+
+//shift_register shift_register0(clk, ce_d1, ce_d2, ce_d3, rst, data_in, wire_q1_3, wire_q1_2, wire_q1_1, wire_q2_3, wire_q2_2, wire_q2_1, wire_q3_3, wire_q3_2, wire_q3_1);
+
+
+wire cmp_valid;
+wire DATA_IN;
+wire clr;
+
+assign cmp_valid = (cnt == time_cmp) ? 1 : 0;
+reg [7:0] sr;
+always @(posedge clk) begin
+    if (rst)
+        sr <= 0;
+    else begin
+        if (cmp_valid)
+            sr <= {sr[6:0], DATA_IN};    
+    end
+end
+
+    
+    assign io_out[30] = sr[7]; 
+    assign io_out[29] = sr[6];
+    assign io_out[28] = sr[5];
+    assign io_out[27] = sr[4];
+    assign io_out[26] = sr[3];
+    assign io_out[25] = sr[2];
+    assign io_out[24] = sr[1];
+    assign io_out[23] = sr[0];
+
+    assign io_out[22] = cmp_valid;   //data valid pulse
+
+    assign io_out[21] = clk;
+    assign io_out[20] = rst;
+    assign io_out[19] = start;
+
+    
 endmodule
+
 
 `default_nettype wire

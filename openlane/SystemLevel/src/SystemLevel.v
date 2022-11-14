@@ -58,13 +58,12 @@ module SystemLevel(
     output  PD10,
     output  PD11,
     output  PD12,
-    output  Aout,
+    output  CMP,
+    output  Aout
 
-//output o output wire?
 );
 
 
-//assign out = (in_p) ? in_m : 1'bx;
 
 endmodule
 `default_nettype wire

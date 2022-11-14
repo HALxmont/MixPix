@@ -41,8 +41,8 @@ module la_test_MixPix_tb;
 	`ifdef ENABLE_SDF
 		initial begin
 			//$sdf_annotate("../../../sdf/pixel.sdf", uut.mprj) ;
-			$sdf_annotate("../../../sdf/pixel_macro.sdf", uut.mprj) ;
-			//$sdf_annotate("../../../sdf/rlbp.sdf", uut.mprj) ;
+			//$sdf_annotate("../../../sdf/pixel_macro.sdf", uut.mprj) ;
+			$sdf_annotate("../../../sdf/rlbp.sdf", uut.mprj) ;
 			$sdf_annotate("../../../sdf/rlbp_macro.sdf", uut.mprj) ;
 			$sdf_annotate("../../../sdf/user_project_wrapper.sdf", uut.mprj.mprj) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/DFFRAM.sdf", uut.soc.DFFRAM_0) ;
@@ -136,14 +136,13 @@ module la_test_MixPix_tb;
 		end
 	`endif 
 
-	// assign mprj_io[3] = 1'b1;
 
 	initial begin
 		$dumpfile("la_test_MixPix.vcd");
 		$dumpvars(0, la_test_MixPix_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (250) begin
+		repeat (50) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end

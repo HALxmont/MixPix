@@ -145,7 +145,7 @@ module wb_port_tb;
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (70) begin
-			repeat (1000) @(posedge clock);
+			repeat (2000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
@@ -180,12 +180,6 @@ module wb_port_tb;
 	end
 
 	initial begin		// Power-up sequence
-		// power1 <= 1'b0;
-		// power2 <= 1'b0;
-		// #200;
-		// power1 <= 1'b1;
-		// #200;
-		// power2 <= 1'b1;
 
 		power1 <= 1'b0;
 		power2 <= 1'b0;

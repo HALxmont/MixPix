@@ -902,14 +902,18 @@ module counter (clk, counter_reset, start, q);
 	output [11:0] q;
 	reg [11:0] tmp;
 
-	always @(posedge clk or posedge counter_reset)
+	always @(posedge clk)
 	begin
 		if (counter_reset)
 			tmp <= 12'b000000000000;
-		else if (start)
-			tmp <= tmp + 1'b1;
-	//	else
-	//		tmp <= 12'b000000000000;
+
+		else begin 
+			if (start == 0) 
+				tmp <= 0;
+			else
+				tmp <= tmp + 1;
+		end
+
 	end
 
 	assign q = tmp;
@@ -938,7 +942,7 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, start, control_signals,
 	output s_data_out, ready;
 	output vd1, vd2, sw1, sw2, sh, sh_cmp, sh_reset, counter_reset_out;	//counter_reset_out 
 	output [11:0] q; //output counter
-	output clk_out, reset_out, start_out;
+	inout clk_out, reset_out, start_out;
 	output reg ext_clk_sync, wb_reset_sync, ext_reset_sync, wb_start_sync, ext_start_sync;
  	output reg ext_clk_temp, wb_reset_temp, ext_reset_temp, wb_start_temp, ext_start_temp;
 
@@ -953,14 +957,14 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, start, control_signals,
 
 //Reset Signals Synchronized
 
-	always @(posedge clk_out)
-	begin
-		wb_reset_temp <= wb_reset;
-		wb_reset_sync <= wb_reset_temp;	
-	end	
+	// always @(posedge clk_out)
+	// begin
+	// 	wb_reset_temp <= wb_reset;
+	// 	wb_reset_sync <= wb_reset_temp;	
+	// end	
 	
 	
-	always @(posedge clk_out)
+	always @(posedge wb_clk_macro)
 	begin
 		ext_reset_temp <= ext_reset;
 		ext_reset_sync <= ext_reset_temp;	
@@ -969,23 +973,26 @@ module rlbp (clk, ce_d1, ce_d2, ce_d3, reset, reset_fsm, start, control_signals,
 
 //Counter Enable Signals Sychronized	
 	
-	always @(posedge clk_out)
-	begin
-		wb_start_temp <= wb_start;
-		wb_start_sync <= wb_start_temp;	
-	end
+	// always @(posedge clk_out)
+	// begin
+	// 	wb_start_temp <= wb_start;
+	// 	wb_start_sync <= wb_start_temp;	
+	// end
 	
-	always @(posedge clk_out)
+	always @(posedge wb_clk_macro)
 	begin
 		ext_start_temp <= ext_start;
 		ext_start_sync <= ext_start_temp;	
 	end
+
+
 
 //Multiplexers for Clock, Reset and Enable
 
 	assign clk_out = sel_clk ? ext_clk_sync : wb_clk_macro;
 	assign reset_out = sel_reset ? ext_reset_sync : wb_reset_sync;
 	assign start_out = sel_start ? ext_start_sync : wb_start_sync;
+
 
 
 

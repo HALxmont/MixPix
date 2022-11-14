@@ -139,22 +139,28 @@ void main()
 //  ################## FRIMAWRE TEST START ########################//
 
 //wirte values to LA probes [0:31]
-	reg_la0_data = 0x011111111;
+	//reg_la0_data = 0x00000000;
+
+    //reg_la1_data = 0x00000004;
+    //reg_la1_data = 0x00000000;
+
+    //reg_la1_data = 0x00000002;
+    reg_mprj_datal = 0xAB610000;
 
 //Disable LA probes
 
-    reg_la0_oenb = reg_la0_iena = 0x00000000;	// [31:0]  
+//    reg_la0_oenb = reg_la0_iena = 0x00000000;	// [31:0]  
 
 
 // Introducing data using WB inetrface
-    to_wb[TIME_DOWN_1] = 775;
-    to_wb[TIME_UP_1] = 776; 
-    to_wb[TIME_UP_2] = 333;
-    to_wb[TIME_DOWN_2] = 444;
+    // to_wb[TIME_DOWN_1] = 775;
+    // to_wb[TIME_UP_1] = 776; 
+    // to_wb[TIME_UP_2] = 333;
+    // to_wb[TIME_DOWN_2] = 444;
 
 //  ################## FRIMAWRE TEST END ########################//
 
     /* Testbench $finish condition stops the simulation*/
-    reg_mprj_datal = 0xAB610000;
+   // reg_mprj_datal = 0xAB610000;
    
 }

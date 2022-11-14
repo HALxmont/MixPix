@@ -36,7 +36,7 @@ set ::env(DIE_AREA) "0 0 300 300"
 set ::env(FP_PIN_ORDER_CFG) $script_dir/../../openlane/rlbp/pin_order.cfg
 
 set ::env(PL_BASIC_PLACEMENT) 0
-set ::env(PL_TARGET_DENSITY) 0.3
+set ::env(PL_TARGET_DENSITY) 0.35
 
 set ::env(FP_PDN_MACRO_HOOKS) "\
 	rlbp_macro vccd1 vssd1 vccd1 vssd1"

@@ -79,12 +79,9 @@ module user_project_wrapper #(
 );
 
 
-wire clk_o;
-wire rst_o;
-wire done_o;
-wire start_o;
-wire data_o;
-wire counter_rst;
+
+// -------------- wires to connect rlbp and system level
+
 wire vd1;
 wire vd2;
 wire sw1;
@@ -106,21 +103,6 @@ wire pd10_a, pd10_b;
 wire pd11_a, pd11_b;
 wire pd12_a, pd12_b;
 
-
-//to control TGates (one hot encode, ACTIVE HIGH)
-wire ota_out_c;
-wire sh_out_c;
-wire cmp_out_c;
-wire ota_sh_c;
-wire vref_cmp_c;   
-//############## end on hot
-
-wire vref_sel_c;    // DEFAULT vref = fixed
-
-
-
-//analog macro
-wire ibias;
 wire pd1;
 wire pd2;
 wire pd3;
@@ -133,6 +115,19 @@ wire pd9;
 wire pd10;
 wire pd11;
 wire pd12;
+
+
+//to control TGates (one hot encode, ACTIVE HIGH)
+wire ota_out_c;
+wire sh_out_c;
+wire cmp_out_c;
+wire ota_sh_c;
+wire vref_cmp_c;   
+//############## end on hot
+
+wire vref_sel_c;    // DEFAULT vref = fixed
+
+//-----------------------------------------------------------------------
 
 
 
@@ -170,13 +165,8 @@ rlbp_macro rlbp_macro0 (
     .io_oeb(io_oeb),
 
     // IRQ
+    
     .irq(user_irq),
-    .clk_o(clk_o),
-    .rst_o(rst_o),
-    .done_o(done_o),
-    .start_o(start_o),
-    .data_o(data_o),
-    .counter_rst(counter_rst),
     .Vd1(vd1),
     .Vd2(vd2),
     .Sw1(sw1),
@@ -184,7 +174,7 @@ rlbp_macro rlbp_macro0 (
     .Sh(sh),
     .Sh_cmp(sh_cmp),
     .Sh_rst(sh_rst),
-
+    
     .Pd1_a(pd1_a), 
     .Pd1_b(pd1_b),
     .Pd2_a(pd2_a), 
@@ -210,33 +200,14 @@ rlbp_macro rlbp_macro0 (
     .Pd12_a(pd12_a), 
     .Pd12_b(pd12_b),
 
-    .Pxl_done_i(io_out[31]),
-    .Q1_3(io_out[30]),
-    .Q1_2(io_out[29]),
-    .Q1_1(io_out[28]),
-    .Q2_3(io_out[27]),
-    .Q2_1(io_out[26]),
-    .Q3_3(io_out[25]),
-    .Q3_2(io_out[24]),
-    .Q3_1(io_out[23]),
-    
-
-    //ins
-    .ext_clk(io_in[37]),
-    .ext_reset(io_in[36]), 
-    .ext_start(io_in[33]), 
-
-
-    
-    //one hot encode (active high) 
     .OTA_out_c(ota_out_c),
     .SH_out_c(sh_out_c),
     .CMP_out_c(cmp_out_c),
     .OTA_sh_c(ota_sh_c),
     .Vref_cmp_c(vref_cmp_c),
+    .Vref_sel_c(vref_sel_c),
+    .DATA_IN(io_in[4])
 
-    //Vref selector (default = fixed)
-    .Vref_sel_c(vref_sel_c)
 );
 
 
@@ -300,6 +271,7 @@ SystemLevel sl_macro0(
     .PD10(pd10),
     .PD11(pd11),
     .PD12(pd12),
+    .CMP(io_out[18])
     .Aout(analog_io[26])
 );
 
@@ -328,19 +300,38 @@ PD_M1_M2 PD_M1_M2_macro0 (
 );
 
 
-// res res_macro0(
+// APS APS_macro0 (
 
 // `ifdef USE_POWER_PINS
-//     .VDD(vdda1),
+//     .VDD(vdda2),   
 //     .VSS(vssa1),
 // `endif
 
-// .in1(analog_io[20]),
-// .in2(analog_io[21]),
-// .out1(analog_io[22]),
-// .out2(analog_io[23])
+// .RST(io_in[7]),
+// .IP(analog_io[0]),
+// .OUT(analog_io[1])
 
 // );
+
+
+
+// muler muler_macro0 (
+
+// `ifdef USE_POWER_PINS
+//     .VDD(vccd1),   
+//     .VSS(vssd1),
+// `endif
+
+// .M(io_in[4]),
+// .P(io_in[5]),
+// .C(io_in[6]),
+// .OUT(io_out[5])
+
+// );
+
+
+
+
 
 
 

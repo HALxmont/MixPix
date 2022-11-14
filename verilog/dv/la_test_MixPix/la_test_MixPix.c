@@ -97,45 +97,38 @@ void main()
 	// reg_uart_clkdiv = 625;
 	reg_uart_enable = 1;
 
-    // Now, apply the configuration
+   // Now, apply the configuration
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
-    // Configure LA probes [31:0]  (pixel_macro)
-	// Configure LA probes [63:32] (pixel_macro and rlbp_macro)
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;	// [31:0]  pixel macro | OUTPUTS (00, 24bits)  2 INPUTS(FF, last 8bits)
-	reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;	// [32:63] pixel macro 7 inputs (last byte is free)
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;   // [127:96] rlbp macro 0 F F
-
-
+    // Configure LA probes [31:0], [127:64] as inputs to the cpu 
+	// Configure LA probes [63:32] as outputs from the cpu
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;	// [31:0]  (last two bits are FREE)
+	reg_la1_oenb = reg_la1_iena = 0x0FFFFFFF;	// [32:63] FREE
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;   // [95:64] FREE
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;   // [127:96] FREE
 	// Flag start of the test 
+
 	reg_mprj_datal = 0xAB400000;
 
-	// Set LA probes [0:31]
-	reg_la0_data = 0x03000000;
-	reg_la1_data = 0x11000001;
-	reg_la2_data = 0x11000000;
-	reg_la3_data = 0x11000007;
+	reg_la0_data = 0x00000000;
 
-	reg_la0_oenb = reg_la0_iena = 0x00000000;	// [31:0]  pixel macro | OUTPUTS (00, 24bits)  2 INPUTS(FF, last 8bits)
-	reg_la1_oenb = reg_la1_iena = 0x00000000;	// [32:63] pixel macro 7 inputs (last byte is free)
-	reg_la2_oenb = reg_la2_iena = 0x00000000;   // [95:64] rlbp macro outs  (5 MSB bytes are free. First 3 LSB bytes needs to be set 0)
-	reg_la3_oenb = reg_la3_iena = 0x00000000;   // [127:96] rlbp macro 0 F F
+    reg_la1_data = 0x00000004;
 
-	reg_mprj_datal = 0xAB410000; // Flag success of the test
+    reg_la1_data = 0x00000000;
 
-	// Set LA probes [63:32]
-	//reg_la1_data = 0x11111111;
+    reg_la1_data = 0x00000002;  
 
-	// Configure LA probes from [63:32] as inputs to disable counter write
-	//reg_la1_oenb = reg_la1_iena = 0x00000000;    
+	//reg_la1_data = 0x0000000A; 
+	reg_la1_data = 0x00000004; 
 
-	//reg_la2_oenb = 0x01000000;
-	//reg_la3_data = 0x11000003;
+	reg_la1_data = 0x00000002;  
 
-	//print("\n");
-	//print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
-	//reg_mprj_datal = 0xAB510000;
+	while (1) {
+		if (reg_la0_data_in > 0x1F4) {
+			reg_mprj_datal = 0xAB410000;
+			break;
+		}
+	}
 }
 
