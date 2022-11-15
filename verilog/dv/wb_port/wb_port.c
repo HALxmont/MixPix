@@ -124,10 +124,8 @@ void main()
     uint8_t TIME_DOWN_6 = 11;
     uint8_t TIME_UP_7 = 12;
     uint8_t TIME_DOWN_7 = 13;
-    uint8_t COUNT_UP = 14;
-    uint8_t COUNT_DOWN = 15;
-    uint8_t COUNT_VALUE = 16;
-    uint8_t Q = 17;
+    uint8_t COUNT_RST = 14;
+    uint8_t TIME_CMP = 15;
 
 
 

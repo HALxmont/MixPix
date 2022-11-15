@@ -115,7 +115,7 @@ wire pd9;
 wire pd10;
 wire pd11;
 wire pd12;
-
+wire cmp;
 
 //to control TGates (one hot encode, ACTIVE HIGH)
 wire ota_out_c;
@@ -206,7 +206,7 @@ rlbp_macro rlbp_macro0 (
     .OTA_sh_c(ota_sh_c),
     .Vref_cmp_c(vref_cmp_c),
     .Vref_sel_c(vref_sel_c),
-    .DATA_IN(io_in[4])
+    .CMP(cmp)
 
 );
 
@@ -271,7 +271,7 @@ SystemLevel sl_macro0(
     .PD10(pd10),
     .PD11(pd11),
     .PD12(pd12),
-    .CMP(io_out[18])
+    .CMP(cmp),
     .Aout(analog_io[26])
 );
 
@@ -328,11 +328,6 @@ PD_M1_M2 PD_M1_M2_macro0 (
 // .OUT(io_out[5])
 
 // );
-
-
-
-
-
 
 
 endmodule	// user_project_wrapper

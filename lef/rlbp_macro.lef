@@ -7,6 +7,14 @@ MACRO rlbp_macro
   FOREIGN rlbp_macro ;
   ORIGIN 0.000 0.000 ;
   SIZE 300.000 BY 300.000 ;
+  PIN CMP
+    DIRECTION INPUT ;
+    USE SIGNAL ;
+    PORT
+      LAYER met3 ;
+        RECT 0.000 291.760 4.000 292.360 ;
+    END
+  END CMP
   PIN CMP_out_c
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
@@ -15,14 +23,6 @@ MACRO rlbp_macro
         RECT 235.610 296.000 235.890 300.000 ;
     END
   END CMP_out_c
-  PIN DATA_IN
-    DIRECTION INPUT ;
-    USE SIGNAL ;
-    PORT
-      LAYER met3 ;
-        RECT 0.000 291.760 4.000 292.360 ;
-    END
-  END DATA_IN
   PIN OTA_out_c
     DIRECTION OUTPUT TRISTATE ;
     USE SIGNAL ;
@@ -316,7 +316,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 7.520 4.000 8.120 ;
+        RECT 296.000 10.920 300.000 11.520 ;
     END
   END io_in[0]
   PIN io_in[10]
@@ -324,7 +324,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 82.320 4.000 82.920 ;
+        RECT 296.000 85.720 300.000 86.320 ;
     END
   END io_in[10]
   PIN io_in[11]
@@ -332,7 +332,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 89.800 4.000 90.400 ;
+        RECT 296.000 93.200 300.000 93.800 ;
     END
   END io_in[11]
   PIN io_in[12]
@@ -340,7 +340,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 97.280 4.000 97.880 ;
+        RECT 296.000 100.680 300.000 101.280 ;
     END
   END io_in[12]
   PIN io_in[13]
@@ -348,7 +348,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 104.760 4.000 105.360 ;
+        RECT 296.000 108.160 300.000 108.760 ;
     END
   END io_in[13]
   PIN io_in[14]
@@ -356,7 +356,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 112.240 4.000 112.840 ;
+        RECT 296.000 115.640 300.000 116.240 ;
     END
   END io_in[14]
   PIN io_in[15]
@@ -364,7 +364,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 119.720 4.000 120.320 ;
+        RECT 296.000 123.120 300.000 123.720 ;
     END
   END io_in[15]
   PIN io_in[16]
@@ -372,7 +372,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 127.200 4.000 127.800 ;
+        RECT 296.000 130.600 300.000 131.200 ;
     END
   END io_in[16]
   PIN io_in[17]
@@ -380,7 +380,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 134.680 4.000 135.280 ;
+        RECT 296.000 138.080 300.000 138.680 ;
     END
   END io_in[17]
   PIN io_in[18]
@@ -388,7 +388,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 142.160 4.000 142.760 ;
+        RECT 296.000 145.560 300.000 146.160 ;
     END
   END io_in[18]
   PIN io_in[19]
@@ -396,7 +396,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 149.640 4.000 150.240 ;
+        RECT 296.000 153.040 300.000 153.640 ;
     END
   END io_in[19]
   PIN io_in[1]
@@ -404,7 +404,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 15.000 4.000 15.600 ;
+        RECT 296.000 18.400 300.000 19.000 ;
     END
   END io_in[1]
   PIN io_in[20]
@@ -412,7 +412,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 157.120 4.000 157.720 ;
+        RECT 296.000 160.520 300.000 161.120 ;
     END
   END io_in[20]
   PIN io_in[21]
@@ -420,7 +420,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 164.600 4.000 165.200 ;
+        RECT 296.000 168.000 300.000 168.600 ;
     END
   END io_in[21]
   PIN io_in[22]
@@ -428,7 +428,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 172.080 4.000 172.680 ;
+        RECT 296.000 175.480 300.000 176.080 ;
     END
   END io_in[22]
   PIN io_in[23]
@@ -436,7 +436,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 179.560 4.000 180.160 ;
+        RECT 296.000 182.960 300.000 183.560 ;
     END
   END io_in[23]
   PIN io_in[24]
@@ -444,7 +444,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 187.040 4.000 187.640 ;
+        RECT 296.000 190.440 300.000 191.040 ;
     END
   END io_in[24]
   PIN io_in[25]
@@ -452,7 +452,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 194.520 4.000 195.120 ;
+        RECT 296.000 197.920 300.000 198.520 ;
     END
   END io_in[25]
   PIN io_in[26]
@@ -460,7 +460,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 202.000 4.000 202.600 ;
+        RECT 296.000 205.400 300.000 206.000 ;
     END
   END io_in[26]
   PIN io_in[27]
@@ -468,7 +468,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 209.480 4.000 210.080 ;
+        RECT 296.000 212.880 300.000 213.480 ;
     END
   END io_in[27]
   PIN io_in[28]
@@ -476,7 +476,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 216.960 4.000 217.560 ;
+        RECT 296.000 220.360 300.000 220.960 ;
     END
   END io_in[28]
   PIN io_in[29]
@@ -484,7 +484,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 224.440 4.000 225.040 ;
+        RECT 296.000 227.840 300.000 228.440 ;
     END
   END io_in[29]
   PIN io_in[2]
@@ -492,7 +492,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 22.480 4.000 23.080 ;
+        RECT 296.000 25.880 300.000 26.480 ;
     END
   END io_in[2]
   PIN io_in[30]
@@ -500,7 +500,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 231.920 4.000 232.520 ;
+        RECT 296.000 235.320 300.000 235.920 ;
     END
   END io_in[30]
   PIN io_in[31]
@@ -508,7 +508,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 239.400 4.000 240.000 ;
+        RECT 296.000 242.800 300.000 243.400 ;
     END
   END io_in[31]
   PIN io_in[32]
@@ -516,7 +516,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 246.880 4.000 247.480 ;
+        RECT 296.000 250.280 300.000 250.880 ;
     END
   END io_in[32]
   PIN io_in[33]
@@ -524,7 +524,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 254.360 4.000 254.960 ;
+        RECT 296.000 257.760 300.000 258.360 ;
     END
   END io_in[33]
   PIN io_in[34]
@@ -532,7 +532,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 261.840 4.000 262.440 ;
+        RECT 296.000 265.240 300.000 265.840 ;
     END
   END io_in[34]
   PIN io_in[35]
@@ -540,7 +540,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 269.320 4.000 269.920 ;
+        RECT 296.000 272.720 300.000 273.320 ;
     END
   END io_in[35]
   PIN io_in[36]
@@ -548,7 +548,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 276.800 4.000 277.400 ;
+        RECT 296.000 280.200 300.000 280.800 ;
     END
   END io_in[36]
   PIN io_in[37]
@@ -556,7 +556,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 284.280 4.000 284.880 ;
+        RECT 296.000 287.680 300.000 288.280 ;
     END
   END io_in[37]
   PIN io_in[3]
@@ -564,7 +564,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 29.960 4.000 30.560 ;
+        RECT 296.000 33.360 300.000 33.960 ;
     END
   END io_in[3]
   PIN io_in[4]
@@ -572,7 +572,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 37.440 4.000 38.040 ;
+        RECT 296.000 40.840 300.000 41.440 ;
     END
   END io_in[4]
   PIN io_in[5]
@@ -580,7 +580,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 44.920 4.000 45.520 ;
+        RECT 296.000 48.320 300.000 48.920 ;
     END
   END io_in[5]
   PIN io_in[6]
@@ -588,7 +588,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 52.400 4.000 53.000 ;
+        RECT 296.000 55.800 300.000 56.400 ;
     END
   END io_in[6]
   PIN io_in[7]
@@ -596,7 +596,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 59.880 4.000 60.480 ;
+        RECT 296.000 63.280 300.000 63.880 ;
     END
   END io_in[7]
   PIN io_in[8]
@@ -604,7 +604,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 67.360 4.000 67.960 ;
+        RECT 296.000 70.760 300.000 71.360 ;
     END
   END io_in[8]
   PIN io_in[9]
@@ -612,7 +612,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 0.000 74.840 4.000 75.440 ;
+        RECT 296.000 78.240 300.000 78.840 ;
     END
   END io_in[9]
   PIN io_oeb[0]
@@ -924,7 +924,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 10.920 300.000 11.520 ;
+        RECT 0.000 7.520 4.000 8.120 ;
     END
   END io_out[0]
   PIN io_out[10]
@@ -932,7 +932,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 85.720 300.000 86.320 ;
+        RECT 0.000 82.320 4.000 82.920 ;
     END
   END io_out[10]
   PIN io_out[11]
@@ -940,7 +940,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 93.200 300.000 93.800 ;
+        RECT 0.000 89.800 4.000 90.400 ;
     END
   END io_out[11]
   PIN io_out[12]
@@ -948,7 +948,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 100.680 300.000 101.280 ;
+        RECT 0.000 97.280 4.000 97.880 ;
     END
   END io_out[12]
   PIN io_out[13]
@@ -956,7 +956,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 108.160 300.000 108.760 ;
+        RECT 0.000 104.760 4.000 105.360 ;
     END
   END io_out[13]
   PIN io_out[14]
@@ -964,7 +964,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 115.640 300.000 116.240 ;
+        RECT 0.000 112.240 4.000 112.840 ;
     END
   END io_out[14]
   PIN io_out[15]
@@ -972,7 +972,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 123.120 300.000 123.720 ;
+        RECT 0.000 119.720 4.000 120.320 ;
     END
   END io_out[15]
   PIN io_out[16]
@@ -980,7 +980,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 130.600 300.000 131.200 ;
+        RECT 0.000 127.200 4.000 127.800 ;
     END
   END io_out[16]
   PIN io_out[17]
@@ -988,7 +988,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 138.080 300.000 138.680 ;
+        RECT 0.000 134.680 4.000 135.280 ;
     END
   END io_out[17]
   PIN io_out[18]
@@ -996,7 +996,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 145.560 300.000 146.160 ;
+        RECT 0.000 142.160 4.000 142.760 ;
     END
   END io_out[18]
   PIN io_out[19]
@@ -1004,7 +1004,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 153.040 300.000 153.640 ;
+        RECT 0.000 149.640 4.000 150.240 ;
     END
   END io_out[19]
   PIN io_out[1]
@@ -1012,7 +1012,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 18.400 300.000 19.000 ;
+        RECT 0.000 15.000 4.000 15.600 ;
     END
   END io_out[1]
   PIN io_out[20]
@@ -1020,7 +1020,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 160.520 300.000 161.120 ;
+        RECT 0.000 157.120 4.000 157.720 ;
     END
   END io_out[20]
   PIN io_out[21]
@@ -1028,7 +1028,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 168.000 300.000 168.600 ;
+        RECT 0.000 164.600 4.000 165.200 ;
     END
   END io_out[21]
   PIN io_out[22]
@@ -1036,7 +1036,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 175.480 300.000 176.080 ;
+        RECT 0.000 172.080 4.000 172.680 ;
     END
   END io_out[22]
   PIN io_out[23]
@@ -1044,7 +1044,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 182.960 300.000 183.560 ;
+        RECT 0.000 179.560 4.000 180.160 ;
     END
   END io_out[23]
   PIN io_out[24]
@@ -1052,7 +1052,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 190.440 300.000 191.040 ;
+        RECT 0.000 187.040 4.000 187.640 ;
     END
   END io_out[24]
   PIN io_out[25]
@@ -1060,7 +1060,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 197.920 300.000 198.520 ;
+        RECT 0.000 194.520 4.000 195.120 ;
     END
   END io_out[25]
   PIN io_out[26]
@@ -1068,7 +1068,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 205.400 300.000 206.000 ;
+        RECT 0.000 202.000 4.000 202.600 ;
     END
   END io_out[26]
   PIN io_out[27]
@@ -1076,7 +1076,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 212.880 300.000 213.480 ;
+        RECT 0.000 209.480 4.000 210.080 ;
     END
   END io_out[27]
   PIN io_out[28]
@@ -1084,7 +1084,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 220.360 300.000 220.960 ;
+        RECT 0.000 216.960 4.000 217.560 ;
     END
   END io_out[28]
   PIN io_out[29]
@@ -1092,7 +1092,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 227.840 300.000 228.440 ;
+        RECT 0.000 224.440 4.000 225.040 ;
     END
   END io_out[29]
   PIN io_out[2]
@@ -1100,7 +1100,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 25.880 300.000 26.480 ;
+        RECT 0.000 22.480 4.000 23.080 ;
     END
   END io_out[2]
   PIN io_out[30]
@@ -1108,7 +1108,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 235.320 300.000 235.920 ;
+        RECT 0.000 231.920 4.000 232.520 ;
     END
   END io_out[30]
   PIN io_out[31]
@@ -1116,7 +1116,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 242.800 300.000 243.400 ;
+        RECT 0.000 239.400 4.000 240.000 ;
     END
   END io_out[31]
   PIN io_out[32]
@@ -1124,7 +1124,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 250.280 300.000 250.880 ;
+        RECT 0.000 246.880 4.000 247.480 ;
     END
   END io_out[32]
   PIN io_out[33]
@@ -1132,7 +1132,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 257.760 300.000 258.360 ;
+        RECT 0.000 254.360 4.000 254.960 ;
     END
   END io_out[33]
   PIN io_out[34]
@@ -1140,7 +1140,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 265.240 300.000 265.840 ;
+        RECT 0.000 261.840 4.000 262.440 ;
     END
   END io_out[34]
   PIN io_out[35]
@@ -1148,7 +1148,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 272.720 300.000 273.320 ;
+        RECT 0.000 269.320 4.000 269.920 ;
     END
   END io_out[35]
   PIN io_out[36]
@@ -1156,7 +1156,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 280.200 300.000 280.800 ;
+        RECT 0.000 276.800 4.000 277.400 ;
     END
   END io_out[36]
   PIN io_out[37]
@@ -1164,7 +1164,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 287.680 300.000 288.280 ;
+        RECT 0.000 284.280 4.000 284.880 ;
     END
   END io_out[37]
   PIN io_out[3]
@@ -1172,7 +1172,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 33.360 300.000 33.960 ;
+        RECT 0.000 29.960 4.000 30.560 ;
     END
   END io_out[3]
   PIN io_out[4]
@@ -1180,7 +1180,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 40.840 300.000 41.440 ;
+        RECT 0.000 37.440 4.000 38.040 ;
     END
   END io_out[4]
   PIN io_out[5]
@@ -1188,7 +1188,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 48.320 300.000 48.920 ;
+        RECT 0.000 44.920 4.000 45.520 ;
     END
   END io_out[5]
   PIN io_out[6]
@@ -1196,7 +1196,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 55.800 300.000 56.400 ;
+        RECT 0.000 52.400 4.000 53.000 ;
     END
   END io_out[6]
   PIN io_out[7]
@@ -1204,7 +1204,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 63.280 300.000 63.880 ;
+        RECT 0.000 59.880 4.000 60.480 ;
     END
   END io_out[7]
   PIN io_out[8]
@@ -1212,7 +1212,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 70.760 300.000 71.360 ;
+        RECT 0.000 67.360 4.000 67.960 ;
     END
   END io_out[8]
   PIN io_out[9]
@@ -1220,7 +1220,7 @@ MACRO rlbp_macro
     USE SIGNAL ;
     PORT
       LAYER met3 ;
-        RECT 296.000 78.240 300.000 78.840 ;
+        RECT 0.000 74.840 4.000 75.440 ;
     END
   END io_out[9]
   PIN irq[0]
@@ -5195,7 +5195,7 @@ MACRO rlbp_macro
       LAYER li1 ;
         RECT 5.520 10.795 294.400 288.405 ;
       LAYER met1 ;
-        RECT 5.520 4.120 294.400 288.960 ;
+        RECT 5.520 4.460 294.400 288.560 ;
       LAYER met2 ;
         RECT 6.990 295.720 8.550 296.210 ;
         RECT 9.390 295.720 16.370 296.210 ;
@@ -5234,10 +5234,10 @@ MACRO rlbp_macro
         RECT 267.450 295.720 274.430 296.210 ;
         RECT 275.270 295.720 282.250 296.210 ;
         RECT 283.090 295.720 290.070 296.210 ;
-        RECT 290.910 295.720 291.540 296.210 ;
-        RECT 6.990 4.280 291.540 295.720 ;
+        RECT 290.910 295.720 291.090 296.210 ;
+        RECT 6.990 4.280 291.090 295.720 ;
         RECT 6.990 4.000 27.410 4.280 ;
-        RECT 272.050 4.000 291.540 4.280 ;
+        RECT 272.050 4.000 291.090 4.280 ;
       LAYER met3 ;
         RECT 4.400 291.360 296.000 292.225 ;
         RECT 4.000 288.680 296.000 291.360 ;
@@ -5389,12 +5389,15 @@ MACRO rlbp_macro
         RECT 4.000 16.000 296.000 18.000 ;
         RECT 4.400 14.600 296.000 16.000 ;
         RECT 4.000 11.920 296.000 14.600 ;
-        RECT 4.000 10.715 295.600 11.920 ;
+        RECT 4.000 10.520 295.600 11.920 ;
+        RECT 4.000 8.520 296.000 10.520 ;
+        RECT 4.400 7.655 296.000 8.520 ;
       LAYER met4 ;
-        RECT 9.495 11.055 20.640 283.385 ;
-        RECT 23.040 11.055 97.440 283.385 ;
-        RECT 99.840 11.055 174.240 283.385 ;
-        RECT 176.640 11.055 249.945 283.385 ;
+        RECT 19.615 10.240 20.640 284.065 ;
+        RECT 23.040 10.240 97.440 284.065 ;
+        RECT 99.840 10.240 174.240 284.065 ;
+        RECT 176.640 10.240 225.105 284.065 ;
+        RECT 19.615 7.655 225.105 10.240 ;
   END
 END rlbp_macro
 END LIBRARY

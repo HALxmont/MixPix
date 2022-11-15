@@ -4,16 +4,19 @@ assign wire_ext_clk = io_in[15];
 assign wire_ext_start = io_in[16];
 assign wire_ext_reset = io_in[17];
 
-DATA_IN(io_in[4])
+
+
+
 
 
 //aps
-
 .RST(io_in[7]),
 .IP(analog_io[0]),
 .OUT(analog_io[1])
 
-//muler
+
+
+//muller
 
 .M(io_in[4]),
 .P(io_in[5]),
@@ -43,44 +46,45 @@ assign io_out[19] = start;
 
 
 //system level
-.CMP(io_out[18])
+.CMP(io_in[18])
 
 //muler
 .OUT(io_out[5])
 
 
-// ------ LA
+// ------ LA interconnection
 
-assign pd1_a = la_data_in[0];                  //out  
-assign pd1_b = la_data_in[1];                  //out  
-assign pd2_a = la_data_in[2];                  //out  
-assign pd2_b = la_data_in[3];                  //out   0 
-assign pd3_a = la_data_in[4];                  //out  
-assign pd3_b = la_data_in[5];                  //out  
-assign pd4_a = la_data_in[6];                  //out  
-assign pd4_b = la_data_in[7];                  //out   0  
-assign pd5_a = la_data_in[8];                  //out  
-assign pd5_b = la_data_in[9];                  //out
-assign pd6_a = la_data_in[10];                 //out  
-assign pd6_b = la_data_in[11];                 //out   0 
-assign pd7_a = la_data_in[12];                 //out  
-assign pd7_b = la_data_in[13];                 //out  
-assign pd8_a = la_data_in[14];                 //out  
-assign pd8_b = la_data_in[15];                 //out   0 
-assign pd9_a = la_data_in[16];                 //out
-assign pd9_b = la_data_in[17];                 //out
-assign pd10_a = la_data_in[18];                //out
-assign pd10_b = la_data_in[19];                //out   0
-assign pd11_a = la_data_in[20];                //out
-assign pd11_b = la_data_in[21];                //out  
-assign pd12_a = la_data_in[22];                //out  
-assign pd12_b = la_data_in[23];                //out   0  
+assign pd1_a = la_data_in[0];                     
+assign pd1_b = la_data_in[1];                     
+assign pd2_a = la_data_in[2];                     
+assign pd2_b = la_data_in[3];                    
+assign pd3_a = la_data_in[4];                     
+assign pd3_b = la_data_in[5];                     
+assign pd4_a = la_data_in[6];                     
+assign pd4_b = la_data_in[7];                     
+assign pd5_a = la_data_in[8];                     
+assign pd5_b = la_data_in[9];                   
+assign pd6_a = la_data_in[10];                    
+assign pd6_b = la_data_in[11];                   
+assign pd7_a = la_data_in[12];                    
+assign pd7_b = la_data_in[13];                    
+assign pd8_a = la_data_in[14];                    
+assign pd8_b = la_data_in[15];                   
+assign pd9_a = la_data_in[16];                  
+assign pd9_b = la_data_in[17];                  
+assign pd10_a = la_data_in[18];                 
+assign pd10_b = la_data_in[19];                 
+assign pd11_a = la_data_in[20];                 
+assign pd11_b = la_data_in[21];                   
+assign pd12_a = la_data_in[22];                   
+assign pd12_b = la_data_in[23];                   
 
-assign ota_out_c = la_data_in[24];             //out     
-assign sh_out_c = la_data_in[25];              //out     assign cmp_out_c = la_data_in[26];             //out     
-assign ota_sh_c = la_data_in[27];              //out  0    
-assign vref_cmp_c = la_data_in[28];            //out     
-assign vref_sel_c = la_data_in[29];            //out  
+assign ota_out_c = la_data_in[24];                   
+assign sh_out_c = la_data_in[25];                    
+assign cmp_out_c = la_data_in[26]; 
+assign ota_sh_c = la_data_in[27];                   
+assign vref_cmp_c = la_data_in[28];                  
+assign vref_sel_c = la_data_in[29];               
 
 assign wire_sel_start = la_data_in[30];
 assign wire_sel_reset = la_data_in[31];  
@@ -88,4 +92,13 @@ assign wire_sel_clk = la_data_in[32];                                           
 assign wire_wb_start = la_data_in[33]; 
 assign rst = la_data_in[34];
 assign clr = la_data_in[35];
+
+
+
+
+
+
+
+
+
 

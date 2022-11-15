@@ -24,6 +24,7 @@ module rlbp_macro #(
     inout vssd1,	// User area 1 digital ground
 `endif
 
+
     // Wishbone Slave ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
@@ -50,42 +51,28 @@ module rlbp_macro #(
     // IRQ
     output [2:0] irq,
 
-    // ---- Design Specific Ports 
+// ------------------- Design Specific Ports ----------------- //
 
-    input DATA_IN,
-
+    input CMP,
     output Vd1,
     output Vd2,
     output Sw1,
     output Sw2,
-    output Sh,          //check assign
+    output Sh,          
     output Sh_cmp,
     output Sh_rst,
-//exponer pdx_a, pdx_b (all in #N)
-    output Pd1_a, 
-    output Pd1_b,
-    output Pd2_a, 
-    output Pd2_b,
-    output Pd3_a, 
-    output Pd3_b,
-    output Pd4_a, 
-    output Pd4_b,
-    output Pd5_a, 
-    output Pd5_b,
-    output Pd6_a, 
-    output Pd6_b,
-    output Pd7_a, 
-    output Pd7_b,
-    output Pd8_a, 
-    output Pd8_b,
-    output Pd9_a, 
-    output Pd9_b,
-    output Pd10_a, 
-    output Pd10_b,
-    output Pd11_a, 
-    output Pd11_b,
-    output Pd12_a, 
-    output Pd12_b,
+    output Pd1_a, Pd1_b,
+    output Pd2_a, Pd2_b,
+    output Pd3_a, Pd3_b,
+    output Pd4_a, Pd4_b,
+    output Pd5_a, Pd5_b,
+    output Pd6_a, Pd6_b,
+    output Pd7_a, Pd7_b,
+    output Pd8_a, Pd8_b,
+    output Pd9_a, Pd9_b,
+    output Pd10_a, Pd10_b,
+    output Pd11_a, Pd11_b,
+    output Pd12_a, Pd12_b,
 
     //one hot encode (active high) 
     output OTA_out_c,
@@ -100,70 +87,14 @@ module rlbp_macro #(
 
 );
 
-    wire clk;
-    wire rst;
 
 
-    //---------RLBP control register
-    reg [12:0] control_reg_rlbp_fsm;
 
-    //------ RLBP wires
+// #-------------  RLBP wires interconnection to Caravel LA -----------#
 
-    wire wire_reset_fsm;
-    wire wire_rlbp_done;
-    wire wire_q1_3, wire_q1_2, wire_q1_1, wire_q2_3, wire_q2_2, wire_q2_1, wire_q3_3, wire_q3_2, wire_q3_1;
-    wire [3:0] wire_data_out;
-    wire [1:0] wire_control_signals;
+    //in and outs are relative to the macros
+    //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
 
-    wire wire_pxl_done_i;
-    wire [7:0] wire_p_data_in;
-    wire wire_s_data_out;
-    wire wire_ready;
-
-    wire wire_en;
-    wire wire_ce_d1;
-    wire wire_ce_d2;
-    wire wire_ce_d3;
-    wire wire_data_in;
-    wire [1:0] wire_data_sel; 
-    wire [3:0] wire_d;
-    wire wire_rst;
-    wire [11:0] wire_q;
-    wire wire_p2s_en;   
-    wire wire_vd1;
-    wire wire_vd2;
-    wire wire_sw1;
-    wire wire_sw2;
-    wire wire_sh; 
-    wire wire_sh_cmp; 
-    wire wire_sh_reset;
-    wire wire_counter_reset_out;
-    wire wire_counter_reset; 
-    wire wire_start;
-    wire wire_ext_clk; 
-    wire wire_wb_clk_macro; 
-    wire wire_sel_clk; 
-    wire wire_clk_out; 
-    wire wire_ext_reset; 
-    wire wire_wb_reset; 
-    wire wire_sel_reset;
-    wire wire_reset_out; 
-    wire wire_ext_start; 
-    wire wire_wb_start; 
-    wire wire_sel_start; 
-    wire wire_start_out; 
-    wire wire_ext_clk_sync; 
-    wire wire_wb_reset_sync; 
-    wire wire_ext_reset_sync; 
-    wire wire_wb_start_sync;
-    wire wire_ext_start_sync; 
-    wire wire_ext_clk_temp; 
-    wire wire_wb_reset_temp;
-    wire wire_ext_reset_temp; 
-    wire wire_wb_start_temp;
-    wire wire_ext_start_temp;
-
-    //to LA
     wire pd1_a, pd1_b;
     wire pd2_a, pd2_b;
     wire pd3_a, pd3_b;
@@ -176,22 +107,73 @@ module rlbp_macro #(
     wire pd10_a, pd10_b;
     wire pd11_a, pd11_b;
     wire pd12_a, pd12_b;
+    wire wire_sel_reset;
+    wire wire_wb_start; 
+    wire wire_sel_start; 
+    wire wire_sel_clk;
+    wire vref_sel_c;    
+
+    assign pd1_a = la_data_in[0];                    
+    assign pd1_b = la_data_in[1];                     
+    assign pd2_a = la_data_in[2];                     
+    assign pd2_b = la_data_in[3];                    
+    assign pd3_a = la_data_in[4];                     
+    assign pd3_b = la_data_in[5];                     
+    assign pd4_a = la_data_in[6];                     
+    assign pd4_b = la_data_in[7];                     
+    assign pd5_a = la_data_in[8];                     
+    assign pd5_b = la_data_in[9];                   
+    assign pd6_a = la_data_in[10];                    
+    assign pd6_b = la_data_in[11];                   
+    assign pd7_a = la_data_in[12];                    
+    assign pd7_b = la_data_in[13];                    
+    assign pd8_a = la_data_in[14];                    
+    assign pd8_b = la_data_in[15];                   
+    assign pd9_a = la_data_in[16];                  
+    assign pd9_b = la_data_in[17];                  
+    assign pd10_a = la_data_in[18];                 
+    assign pd10_b = la_data_in[19];                 
+    assign pd11_a = la_data_in[20];                 
+    assign pd11_b = la_data_in[21];                   
+    assign pd12_a = la_data_in[22];                   
+    assign pd12_b = la_data_in[23];                   
+
+    assign ota_out_c = la_data_in[24];                   
+    assign sh_out_c = la_data_in[25];                    
+    assign cmp_out_c = la_data_in[26];                   
+    assign ota_sh_c = la_data_in[27];                   
+    assign vref_cmp_c = la_data_in[28];                  
+    assign vref_sel_c = la_data_in[29];               
+
+    assign wire_sel_start = la_data_in[30];
+    assign wire_sel_reset = la_data_in[31];  
+    assign wire_sel_clk = la_data_in[32];                                                  //0   
+    assign wire_wb_start = la_data_in[33]; 
 
 
-    //to control TGates (one hot encode, ACTIVE HIGH)
-    wire ota_out_c;
-    wire sh_out_c;
-    wire cmp_out_c;
-    wire ota_sh_c;
-    wire vref_cmp_c;   
-    //############## end on hot
-
-    wire vref_sel_c;    // DEFAULT vref = fixed
+    //assign rst = la_data_in[34];
 
 
-    //registers (WB interface)
-    reg [11:0] time_up_counter_reset_out;
-    reg [11:0] time_down_counter_reset_out; 
+
+// ---------------------------- WB interface ---------------------------//
+ 
+    reg         wbs_done;
+    reg  [31:0] rdata; 
+    wire [31:0] wdata;
+    wire        valid;
+    wire [3:0]  wstrb;
+    wire        addr_valid;
+
+    // Wishbone
+    assign valid = wbs_cyc_i && wbs_stb_i; 
+    assign wstrb = wbs_sel_i & {4{wbs_we_i}};
+    assign wbs_dat_o = rdata; // out
+    assign wdata = wbs_dat_i; // in
+    assign addr_valid = (wbs_adr_i[31:28] == 3) ? 1 : 0;
+    assign wbs_ack_o  = wbs_done;
+
+    //registers (WB slave interface)
+    reg [11:0] time_counter_reset; 
     reg [11:0] time_up_vd1;
     reg [11:0] time_down_vd1; 
     reg [11:0] time_up_vd2; 
@@ -206,13 +188,11 @@ module rlbp_macro #(
     reg [11:0] time_down_sh; 
     reg [11:0] time_up_sh_cmp; 
     reg [11:0] time_down_sh_cmp; 
-    reg [11:0] reg_count;  //Counter
-    reg [11:0] reg_q;
     reg [11:0] time_cmp;
 
 
 
-    //------ REGS ADDRs table (WSB)
+    // WB REGS ADDRs values 
     localparam TIME_UP_1 = 0;           //1
     localparam TIME_DOWN_1 = 4;         //2
     localparam TIME_UP_2 = 8;           //3
@@ -227,93 +207,51 @@ module rlbp_macro #(
     localparam TIME_DOWN_6 = 44;
     localparam TIME_UP_7 = 48;
     localparam TIME_DOWN_7 = 52;
-    localparam COUNT_UP = 56;
-    localparam COUNT_DOWN = 60;
-    localparam COUNT_VALUE = 64;
-    localparam Q = 68;
-    localparam TIME_CMP = 72;
+    localparam COUNT_RST = 56;
+    localparam TIME_CMP = 60;
 
-
-
-    //------ RLBP wires interconnection to Caravel LA
-
-    //in and outs are relative to the macros
-    //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
-
-    //[31:0]
-    //reg_la0_oenb = reg_la0_iena = 0xFF000000;    // [31:0]  OUTPUTS (00, 24bits)  INPUTS(FF, last 8bits)
-
-    assign pd1_a = la_data_in[0];                  //out  
-    assign pd1_b = la_data_in[1];                  //out  
-    assign pd2_a = la_data_in[2];                  //out  
-    assign pd2_b = la_data_in[3];                  //out   0 
-    assign pd3_a = la_data_in[4];                  //out  
-    assign pd3_b = la_data_in[5];                  //out  
-    assign pd4_a = la_data_in[6];                  //out  
-    assign pd4_b = la_data_in[7];                  //out   0  
-    assign pd5_a = la_data_in[8];                  //out  
-    assign pd5_b = la_data_in[9];                  //out
-    assign pd6_a = la_data_in[10];                 //out  
-    assign pd6_b = la_data_in[11];                 //out   0 
-    assign pd7_a = la_data_in[12];                 //out  
-    assign pd7_b = la_data_in[13];                 //out  
-    assign pd8_a = la_data_in[14];                 //out  
-    assign pd8_b = la_data_in[15];                 //out   0 
-    assign pd9_a = la_data_in[16];                 //out
-    assign pd9_b = la_data_in[17];                 //out
-    assign pd10_a = la_data_in[18];                //out
-    assign pd10_b = la_data_in[19];                //out   0
-    assign pd11_a = la_data_in[20];                //out
-    assign pd11_b = la_data_in[21];                //out  
-    assign pd12_a = la_data_in[22];                //out  
-    assign pd12_b = la_data_in[23];                //out   0  
-
-    assign ota_out_c = la_data_in[24];             //out     
-    assign sh_out_c = la_data_in[25];              //out     
-    assign cmp_out_c = la_data_in[26];             //out     
-    assign ota_sh_c = la_data_in[27];              //out  0    
-    assign vref_cmp_c = la_data_in[28];            //out     
-    assign vref_sel_c = la_data_in[29];            //out  
-
-    assign wire_sel_start = la_data_in[30];
-    assign wire_sel_reset = la_data_in[31];  
-    assign wire_sel_clk = la_data_in[32];                                                  //0   
-    assign wire_wb_start = la_data_in[33]; 
-    assign rst = la_data_in[34];
-
-
-
-
-    assign wire_q = reg_q;  //q to reg
-
-
-    // ------ WB slave interface
-    reg         wbs_done;
-    reg  [31:0] rdata; 
-    wire [31:0] wdata;
-    wire        valid;
-    wire [3:0]  wstrb;
-    wire        addr_valid;
-
-
-    // Wishbone
-    assign valid = wbs_cyc_i && wbs_stb_i; 
-    assign wstrb = wbs_sel_i & {4{wbs_we_i}};
-    assign wbs_dat_o = rdata; // out
-    assign wdata = wbs_dat_i; // in
-    assign addr_valid = (wbs_adr_i[31:28] == 3) ? 1 : 0;
-    assign wbs_ack_o  = wbs_done;
-
-    //assign clk = wb_clk_i;   
-    //assign rst = wb_rst_i;   
-
-
-    // #####    Module specific ports interconections   #####
+// ------------------- assigns to IOs pins ------------------------------- //
+    wire wire_ext_clk; 
+    wire wire_ext_start; 
+    wire wire_ext_reset; 
 
     assign wire_ext_clk = io_in[15];
     assign wire_ext_start = io_in[16];
     assign wire_ext_reset = io_in[17];
+    
+    assign io_out[18] = CMP; 
+    assign io_out[19] = start;
+    assign io_out[20] = rst;
+    assign io_out[21] = clk;
+    assign io_out[22] = cmp_valid;   //data valid pulse
 
+    assign io_out[23] = sr[0];
+    assign io_out[24] = sr[1];
+    assign io_out[25] = sr[2];
+    assign io_out[26] = sr[3];
+    assign io_out[27] = sr[4];
+    assign io_out[28] = sr[5];
+    assign io_out[29] = sr[6];
+    assign io_out[30] = sr[7];
+
+     
+// ---------------- Module specific ports interconections ------------------//
+
+    wire wire_vd1;
+    wire wire_vd2;
+    wire wire_sw1;
+    wire wire_sw2;
+    wire wire_sh; 
+    wire wire_sh_cmp; 
+    wire wire_sh_reset; 
+   //to control TGates (one hot encode, ACTIVE HIGH)
+    wire ota_out_c;  
+    wire sh_out_c;
+    wire cmp_out_c;
+    wire ota_sh_c;
+    wire vref_cmp_c; 
+
+    //to sate machines
     assign Vd1 = wire_vd1;
     assign Vd2 = wire_vd2;
     assign Sw1 = wire_sw1;
@@ -321,8 +259,7 @@ module rlbp_macro #(
     assign Sh = wire_sh;
     assign Sh_cmp = wire_sh_cmp;
     assign Sh_rst = wire_sh_reset;
-
-
+    //transistors siganls
     assign Pd1_a = pd1_a;
     assign Pd1_b = pd1_b;
     assign Pd2_a = pd2_a;
@@ -349,22 +286,112 @@ module rlbp_macro #(
     assign Pd12_b = pd12_b;
 
     //one hot encode (active high) 
-    assign OTA_out_c = ota_out_c;
+    assign OTA_out_c = ota_out_c;   
     assign SH_out_c = sh_out_c;
     assign CMP_out_c = cmp_out_c;
     assign OTA_sh_c = ota_sh_c;
     assign Vref_cmp_c = vref_cmp_c;
 
     //Vref selector (default = fixed)
-    assign Vref_sel_c = vref_sel_c;
+    assign Vref_sel_c = vref_sel_c; 
 
 
+
+//-------------------- Multiplexers for Clock, Reset and Enable ------------------- //
+    wire [11:0] cnt;
+    wire start;
+    wire clk;
+    wire rst;
+	assign clk = wire_sel_clk ? ext_clk_sync : wb_clk_i;  //wire_ext_clk no deberia ser wire_ext_clk_sync???
+	assign rst = wire_sel_reset ? ext_reset_sync : wb_rst_i;
+	assign start = wire_sel_start ? ext_start_sync : wire_wb_start;
+
+
+
+// -------------------- Syncronizers for Clock, Reset and Enable Signals ----------------//
+
+
+reg ext_clk_sync , ext_reset_sync , ext_start_sync;
+reg ext_clk_temp, ext_reset_temp, ext_start_temp;
+
+
+	always @(posedge wb_clk_i)
+	begin 
+        if (wb_rst_i) begin
+            ext_clk_temp <= 0;
+            ext_clk_sync <= 0;
+        end
+        else begin
+            ext_clk_temp <= wire_ext_clk;
+            ext_clk_sync <= ext_clk_temp;
+        end
+	end
+
+	always @(posedge wb_clk_i)
+	begin
+
+        if (wb_rst_i) begin
+            ext_reset_temp <= 0;
+            ext_reset_sync <= 0;
+        end
+        else begin
+            ext_reset_temp <= wire_ext_reset;
+            ext_reset_sync <= ext_reset_temp;
+        end
+	end	
+	
+	always @(posedge wb_clk_i)
+	begin
+
+        if (wb_rst_i) begin
+            ext_start_temp <= 0;
+            ext_start_sync <= 0;
+        end
+        else begin
+            ext_start_temp <= wire_ext_start;
+            ext_start_sync <= ext_start_temp;
+        end
+
+	end
+
+
+// ------------------------ Triggers state machines ----------------------------- //
+
+    counter counter0(clk, rst, start, clr, cnt);
+    sh_cmp_fsm sh_cmp_fsm0(clk, rst, cnt, time_up_sh_cmp, time_down_sh_cmp, wire_sh_cmp);
+    sh_fsm sh_fsm0(clk, rst, cnt, time_up_sh, time_down_sh, wire_sh);
+
+    vd1_fsm vd1_fsm0(clk, rst, cnt, time_up_vd1, time_down_vd1, wire_vd1);
+    vd2_fsm vd2_fsm0(clk, rst, cnt, time_up_vd2, time_down_vd2, wire_vd2);
+    sw1_fsm sw1_fsm0(clk, rst, cnt, time_up_sw1, time_down_sw1, wire_sw1);
+    sw2_fsm sw2_fsm0(clk, rst, cnt, time_up_sw2, time_down_sw2, wire_sw2);
+    sh_reset_fsm sh_reset_fsm0(clk, rst, cnt, time_up_sh_reset, time_down_sh_reset, wire_sh_reset);
+
+    //sampling 
+    wire cmp_valid;
+    wire clr;
+
+    assign clr = (cnt == time_counter_reset) ? 1 : 0;
+    assign cmp_valid = (cnt == time_cmp) ? 1 : 0;
     
+    //RLBP OUTS
+    reg [7:0] sr;
+    always @(posedge clk) begin
+        if (rst)
+            sr <= 0;
+        else begin
+            if (cmp_valid)
+                sr <= {sr[6:0], CMP};    
+        end
+    end
+
+
+
+// --------------------- WB slave interface -------------------------------------- //  
 
 always@(posedge clk) begin
 		if(rst) begin
 
-            control_reg_rlbp_fsm <= 0;
             rdata <= 0; 
             wbs_done <= 0;
 
@@ -382,10 +409,8 @@ always@(posedge clk) begin
             time_down_sh_cmp <= 0; 
             time_up_sh_reset <= 0; 
             time_down_sh_reset <= 0;
-            time_up_counter_reset_out <= 0;
-            time_down_counter_reset_out <= 0; 
+            time_counter_reset <= 0; 
             reg_count <= 0;  //Counter
-            reg_q <= 0;
             time_cmp <= 0;
 
 		end
@@ -482,28 +507,11 @@ always@(posedge clk) begin
                             time_down_sh_reset <= wdata[11:0];
                     end
 
-                    COUNT_UP: begin
-                        rdata <= time_up_counter_reset_out;
-                        if(wstrb[0])
-                            time_up_counter_reset_out <= wdata[11:0];  
-                    end
 
-                    COUNT_DOWN: begin
-                        rdata <= time_down_counter_reset_out;
+                    COUNT_RST: begin
+                        rdata <= time_counter_reset;
                         if(wstrb[0])
-                            time_down_counter_reset_out <= wdata[11:0];  
-                    end
-
-                    COUNT_VALUE: begin
-                        rdata <= reg_count;
-                        if(wstrb[0])
-                            reg_count <= wdata[11:0];  
-                    end
-
-                    Q:  begin
-                        rdata <= reg_q;
-                        if(wstrb[0])	
-                            reg_q <= wdata[11:0];
+                            time_counter_reset <= wdata[11:0];  
                     end
 
                     TIME_CMP:  begin
@@ -521,113 +529,6 @@ always@(posedge clk) begin
         end
 end 
 
-
-// ------- CUSTOM MODULE ----- //
-
-
-
-wire [11:0] cnt;
-wire start;
-//Multiplexers for Clock, Reset and Enable
-
-	assign clk = wire_sel_clk ? wire_ext_clk : wb_clk_i;
-	//assign rst = wire_sel_reset ? ext_reset_sync : wb_rst_i;
-	assign start = wire_sel_start ? ext_start_sync : wire_wb_start;
-
-//Syncronizers for Clock, Reset and Enable Signals
-//Clock External Signal Synchronized
-
-reg ext_clk_sync , ext_reset_sync , ext_start_sync;
-reg ext_clk_temp, ext_reset_temp, ext_start_temp;
-
-
-	always @(posedge wb_clk_i)
-	begin 
-        if (wb_rst_i) begin
-		ext_clk_temp <= 0;
-		ext_clk_sync <= 0;
-        end
-        else begin
-        ext_clk_temp <= wire_ext_clk;
-		ext_clk_sync <= ext_clk_temp;
-        end
-	end
-
-	always @(posedge wb_clk_i)
-	begin
-
-        if (wb_rst_i) begin
-		ext_reset_temp <= 0;
-		ext_reset_sync <= 0;
-        end
-        else begin
-		ext_reset_temp <= wire_ext_reset;
-		ext_reset_sync <= ext_reset_temp;
-        end
-	end	
-	
-	always @(posedge wb_clk_i)
-	begin
-
-        if (wb_rst_i) begin
-		ext_start_temp <= 0;
-		ext_start_sync <= 0;
-        end
-        else begin
-		ext_start_temp <= wire_ext_start;
-		ext_start_sync <= ext_start_temp;
-        end
-
-	end
-
-
-counter counter0(clk, rst, start, cnt);
-sh_cmp_fsm sh_cmp_fsm0(clk, rst, cnt, time_up_sh_cmp, time_down_sh_cmp, wire_sh_cmp);
-sh_fsm sh_fsm0(clk, rst, cnt, time_up_sh, time_down_sh, wire_sh);
-
-vd1_fsm vd1_fsm0(clk, rst, cnt, time_up_vd1, time_down_vd1, wire_vd1);
-vd2_fsm vd2_fsm0(clk, rst, cnt, time_up_vd2, time_down_vd2, wire_vd2);
-sw1_fsm sw1_fsm0(clk, rst, cnt, time_up_sw1, time_down_sw1, wire_sw1);
-sw2_fsm sw2_fsm0(clk, rst, cnt, time_up_sw2, time_down_sw2, wire_sw2);
-sh_reset_fsm sh_reset_fsm0(clk, rst, cnt, time_up_sh_reset, time_down_sh_reset, wire_sh_reset);
-
-//rlbp_fsm rlbp_fsm0(clk, rst, reset_fsm, start, ce_d1, ce_d2, ce_d3, pxl_done_i, control_signals, rlbp_done, p2s_en);
-
-//shift_register shift_register0(clk, ce_d1, ce_d2, ce_d3, rst, data_in, wire_q1_3, wire_q1_2, wire_q1_1, wire_q2_3, wire_q2_2, wire_q2_1, wire_q3_3, wire_q3_2, wire_q3_1);
-
-
-wire cmp_valid;
-wire DATA_IN;
-wire clr;
-
-assign cmp_valid = (cnt == time_cmp) ? 1 : 0;
-reg [7:0] sr;
-always @(posedge clk) begin
-    if (rst)
-        sr <= 0;
-    else begin
-        if (cmp_valid)
-            sr <= {sr[6:0], DATA_IN};    
-    end
-end
-
-    
-    assign io_out[30] = sr[7]; 
-    assign io_out[29] = sr[6];
-    assign io_out[28] = sr[5];
-    assign io_out[27] = sr[4];
-    assign io_out[26] = sr[3];
-    assign io_out[25] = sr[2];
-    assign io_out[24] = sr[1];
-    assign io_out[23] = sr[0];
-
-    assign io_out[22] = cmp_valid;   //data valid pulse
-
-    assign io_out[21] = clk;
-    assign io_out[20] = rst;
-    assign io_out[19] = start;
-
-    
 endmodule
 
 

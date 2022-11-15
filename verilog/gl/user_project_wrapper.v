@@ -53,39 +53,74 @@ module user_project_wrapper (user_clock2,
  output [31:0] wbs_dat_o;
  input [3:0] wbs_sel_i;
 
+ wire cmp_out_c;
+ wire ota_out_c;
+ wire ota_sh_c;
+ wire pd1;
+ wire pd10;
  wire pd10_a;
  wire pd10_b;
+ wire pd11;
  wire pd11_a;
  wire pd11_b;
+ wire pd12;
  wire pd12_a;
  wire pd12_b;
  wire pd1_a;
  wire pd1_b;
+ wire pd2;
  wire pd2_a;
  wire pd2_b;
+ wire pd3;
  wire pd3_a;
  wire pd3_b;
+ wire pd4;
  wire pd4_a;
  wire pd4_b;
+ wire pd5;
  wire pd5_a;
  wire pd5_b;
+ wire pd6;
  wire pd6_a;
  wire pd6_b;
+ wire pd7;
  wire pd7_a;
  wire pd7_b;
+ wire pd8;
  wire pd8_a;
  wire pd8_b;
+ wire pd9;
  wire pd9_a;
  wire pd9_b;
  wire sh;
  wire sh_cmp;
+ wire sh_out_c;
  wire sh_rst;
  wire sw1;
  wire sw2;
  wire vd1;
  wire vd2;
+ wire vref_cmp_c;
+ wire vref_sel_c;
 
- rlbp_macro rlbp_macro0 (.DATA_IN(io_in[4]),
+ PD_M1_M2 PD_M1_M2_macro0 (.PD1(pd1),
+    .PD2(pd2),
+    .PD3(pd3),
+    .PD4(pd4),
+    .PD5(pd5),
+    .PD6(pd6),
+    .PD7(pd7),
+    .PD8(pd8),
+    .PD9(pd9),
+    .PD10(pd10),
+    .PD11(pd11),
+    .PD12(pd12),
+    .VSS(vssa1),
+    .VDD(vdda2));
+ rlbp_macro rlbp_macro0 (.CMP_out_c(cmp_out_c),
+    .DATA_IN(io_in[4]),
+    .OTA_out_c(ota_out_c),
+    .OTA_sh_c(ota_sh_c),
     .Pd10_a(pd10_a),
     .Pd10_b(pd10_b),
     .Pd11_a(pd11_a),
@@ -110,6 +145,7 @@ module user_project_wrapper (user_clock2,
     .Pd8_b(pd8_b),
     .Pd9_a(pd9_a),
     .Pd9_b(pd9_b),
+    .SH_out_c(sh_out_c),
     .Sh(sh),
     .Sh_cmp(sh_cmp),
     .Sh_rst(sh_rst),
@@ -117,6 +153,8 @@ module user_project_wrapper (user_clock2,
     .Sw2(sw2),
     .Vd1(vd1),
     .Vd2(vd2),
+    .Vref_cmp_c(vref_cmp_c),
+    .Vref_sel_c(vref_sel_c),
     .vccd1(vccd1),
     .vssd1(vssd1),
     .wb_clk_i(wb_clk_i),
@@ -726,4 +764,58 @@ module user_project_wrapper (user_clock2,
     wbs_sel_i[2],
     wbs_sel_i[1],
     wbs_sel_i[0]}));
+ SystemLevel sl_macro0 (.Aout(analog_io[26]),
+    .VDD(vdda1),
+    .VSS(vssa1),
+    .PD1(pd1),
+    .pd1_a(pd1_a),
+    .pd1_b(pd1_b),
+    .Ibias(vdda2),
+    .Vd1(vd1),
+    .Vd2(vd2),
+    .sw1(sw1),
+    .sw2(sw2),
+    .sh(sh),
+    .sh_cmp(sh_cmp),
+    .sh_rst(sh_rst),
+    .OTA_out_c(ota_out_c),
+    .SH_out_c(sh_out_c),
+    .Vref_cmp_c(vref_cmp_c),
+    .OTA_sh_c(ota_sh_c),
+    .CMP_out_c(cmp_out_c),
+    .PD2(pd2),
+    .pd2_a(pd2_a),
+    .pd2_b(pd2_b),
+    .PD3(pd3),
+    .pd3_a(pd3_a),
+    .pd3_b(pd3_b),
+    .PD4(pd4),
+    .pd4_a(pd4_a),
+    .pd4_b(pd4_b),
+    .PD5(pd5),
+    .pd5_a(pd5_a),
+    .pd5_b(pd5_b),
+    .PD6(pd6),
+    .pd6_a(pd6_a),
+    .pd6_b(pd6_b),
+    .PD7(pd7),
+    .pd7_a(pd7_a),
+    .pd7_b(pd7_b),
+    .PD8(pd8),
+    .pd8_a(pd8_a),
+    .pd8_b(pd8_b),
+    .PD9(pd9),
+    .pd9_a(pd9_a),
+    .pd9_b(pd9_b),
+    .PD10(pd10),
+    .pd10_a(pd10_a),
+    .pd10_b(pd10_b),
+    .PD11(pd11),
+    .pd11_a(pd11_a),
+    .pd11_b(pd11_b),
+    .PD12(pd12),
+    .pd12_a(pd12_a),
+    .pd12_b(pd12_b),
+    .Vref_sel_c(vref_sel_c),
+    .CMP(io_out[18]));
 endmodule

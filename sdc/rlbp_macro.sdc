@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Mon Nov 14 16:09:34 2022
+# Tue Nov 15 02:45:26 2022
 ###############################################################################
 current_design rlbp_macro
 ###############################################################################
@@ -10,7 +10,7 @@ create_clock -name wb_clk_i -period 10.0000 [get_ports {wb_clk_i}]
 set_clock_transition 0.1500 [get_clocks {wb_clk_i}]
 set_clock_uncertainty 0.2500 wb_clk_i
 set_propagated_clock [get_clocks {wb_clk_i}]
-set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {DATA_IN}]
+set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {CMP}]
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {io_in[0]}]
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {io_in[10]}]
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {io_in[11]}]
@@ -934,7 +934,7 @@ set_load -pin_load 0.0334 [get_ports {wbs_dat_o[3]}]
 set_load -pin_load 0.0334 [get_ports {wbs_dat_o[2]}]
 set_load -pin_load 0.0334 [get_ports {wbs_dat_o[1]}]
 set_load -pin_load 0.0334 [get_ports {wbs_dat_o[0]}]
-set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {DATA_IN}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {CMP}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {wb_clk_i}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {wb_rst_i}]
 set_driving_cell -lib_cell sky130_fd_sc_hd__inv_2 -pin {Y} -input_transition_rise 0.0000 -input_transition_fall 0.0000 [get_ports {wbs_cyc_i}]

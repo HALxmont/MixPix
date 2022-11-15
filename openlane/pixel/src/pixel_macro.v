@@ -101,25 +101,25 @@ module pixel_macro #(
     //https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md
 
     //reg_la0_oenb = reg_la0_iena = 0xFF000000;    // [31:0]  OUTPUTS (00, 24bits)  INPUTS(FF, last 8bits)
-    assign wire_pxl_q = la_data_out[3:0];           //out  0
-    assign wire_loc_timer_en = la_data_out[4];      //out  
-    assign wire_adj_timer_en = la_data_out[5];      //out
-    assign wire_s_p1 = la_data_out[6];              //out
-    assign wire_s_p2 = la_data_out[7];              //out  0
-    assign wire_s1 = la_data_out[8];                //out
-    assign wire_s2 = la_data_out[9];                //out
-    assign wire_s1_inv = la_data_out[10];           //out
-    assign wire_s2_inv = la_data_out[11];           //out  0
-    assign wire_v_b0 = la_data_out[12];             //out
-    assign wire_v_b1 = la_data_out[13];             //out
-    assign wire_sh = la_data_out[14];               //out
-    assign wire_pxl_done_o = la_data_out[15];       //out  0
-    assign wire_loc_timer_max = la_data_out[16];    //out
-    assign wire_adj_timer_max = la_data_out[17];    //out
-    assign wire_kernel_done_o = la_data_out[18];    //out
-    assign wire_clk_out = la_data_out[19];          //out  0 
-    assign wire_reset_out = la_data_out[20];        //out
-    assign wire_pxl_start_out = la_data_out[21];    //out 22,23 -> 0
+    assign wire_pxl_q = la_data_out[3:0];            
+    assign wire_loc_timer_en = la_data_out[4];         
+    assign wire_adj_timer_en = la_data_out[5];       
+    assign wire_s_p1 = la_data_out[6];               
+    assign wire_s_p2 = la_data_out[7];               
+    assign wire_s1 = la_data_out[8];                 
+    assign wire_s2 = la_data_out[9];                 
+    assign wire_s1_inv = la_data_out[10];            
+    assign wire_s2_inv = la_data_out[11];            
+    assign wire_v_b0 = la_data_out[12];              
+    assign wire_v_b1 = la_data_out[13];              
+    assign wire_sh = la_data_out[14];                
+    assign wire_pxl_done_o = la_data_out[15];        
+    assign wire_loc_timer_max = la_data_out[16];     
+    assign wire_adj_timer_max = la_data_out[17];     
+    assign wire_kernel_done_o = la_data_out[18];     
+    assign wire_clk_out = la_data_out[19];            
+    assign wire_reset_out = la_data_out[20];         
+    assign wire_pxl_start_out = la_data_out[21];      22,23 -> 0
 
     //1byte per input (32bit RiscV)
     assign wire_clk_in_ext = la_data_in[24];       //in 24,25,26,26 -> F

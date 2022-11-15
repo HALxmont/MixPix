@@ -124,8 +124,13 @@ void main()
 
 	reg_la1_data = 0x00000002;  
 
+uint8_t i = 0;
+
 	while (1) {
-		if (reg_la0_data_in > 0x1F4) {
+
+		i++;
+
+		if (i > 10) {
 			reg_mprj_datal = 0xAB410000;
 			break;
 		}

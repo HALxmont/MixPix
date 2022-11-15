@@ -1,11 +1,11 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1668442425
+timestamp 1668480529
 << obsli1 >>
 rect 1104 2159 58880 57681
 << obsm1 >>
-rect 1104 824 58880 57792
+rect 1104 892 58880 57712
 << metal2 >>
 rect 1766 59200 1822 60000
 rect 3330 59200 3386 60000
@@ -613,10 +613,10 @@ rect 51926 59144 53322 59242
 rect 53490 59144 54886 59242
 rect 55054 59144 56450 59242
 rect 56618 59144 58014 59242
-rect 58182 59144 58308 59242
-rect 1398 856 58308 59144
+rect 58182 59144 58218 59242
+rect 1398 856 58218 59144
 rect 1398 800 5482 856
-rect 54410 800 58308 856
+rect 54410 800 58218 856
 << metal3 >>
 rect 0 58352 800 58472
 rect 59200 57536 60000 57656
@@ -846,22 +846,25 @@ rect 800 3600 59120 3880
 rect 800 3200 59200 3600
 rect 880 2920 59200 3200
 rect 800 2384 59200 2920
-rect 800 2143 59120 2384
+rect 800 2104 59120 2384
+rect 800 1704 59200 2104
+rect 880 1531 59200 1704
 << metal4 >>
 rect 4208 2128 4528 57712
 rect 19568 2128 19888 57712
 rect 34928 2128 35248 57712
 rect 50288 2128 50608 57712
 << obsm4 >>
-rect 1899 2211 4128 56677
-rect 4608 2211 19488 56677
-rect 19968 2211 34848 56677
-rect 35328 2211 49989 56677
+rect 3923 2048 4128 56813
+rect 4608 2048 19488 56813
+rect 19968 2048 34848 56813
+rect 35328 2048 45021 56813
+rect 3923 1531 45021 2048
 << labels >>
+rlabel metal3 s 0 58352 800 58472 6 CMP
+port 1 nsew signal input
 rlabel metal2 s 47122 59200 47178 60000 6 CMP_out_c
-port 1 nsew signal output
-rlabel metal3 s 0 58352 800 58472 6 DATA_IN
-port 2 nsew signal input
+port 2 nsew signal output
 rlabel metal2 s 40866 59200 40922 60000 6 OTA_out_c
 port 3 nsew signal output
 rlabel metal2 s 45558 59200 45614 60000 6 OTA_sh_c
@@ -934,81 +937,81 @@ rlabel metal2 s 43994 59200 44050 60000 6 Vref_cmp_c
 port 37 nsew signal output
 rlabel metal2 s 39302 59200 39358 60000 6 Vref_sel_c
 port 38 nsew signal output
-rlabel metal3 s 0 1504 800 1624 6 io_in[0]
+rlabel metal3 s 59200 2184 60000 2304 6 io_in[0]
 port 39 nsew signal input
-rlabel metal3 s 0 16464 800 16584 6 io_in[10]
+rlabel metal3 s 59200 17144 60000 17264 6 io_in[10]
 port 40 nsew signal input
-rlabel metal3 s 0 17960 800 18080 6 io_in[11]
+rlabel metal3 s 59200 18640 60000 18760 6 io_in[11]
 port 41 nsew signal input
-rlabel metal3 s 0 19456 800 19576 6 io_in[12]
+rlabel metal3 s 59200 20136 60000 20256 6 io_in[12]
 port 42 nsew signal input
-rlabel metal3 s 0 20952 800 21072 6 io_in[13]
+rlabel metal3 s 59200 21632 60000 21752 6 io_in[13]
 port 43 nsew signal input
-rlabel metal3 s 0 22448 800 22568 6 io_in[14]
+rlabel metal3 s 59200 23128 60000 23248 6 io_in[14]
 port 44 nsew signal input
-rlabel metal3 s 0 23944 800 24064 6 io_in[15]
+rlabel metal3 s 59200 24624 60000 24744 6 io_in[15]
 port 45 nsew signal input
-rlabel metal3 s 0 25440 800 25560 6 io_in[16]
+rlabel metal3 s 59200 26120 60000 26240 6 io_in[16]
 port 46 nsew signal input
-rlabel metal3 s 0 26936 800 27056 6 io_in[17]
+rlabel metal3 s 59200 27616 60000 27736 6 io_in[17]
 port 47 nsew signal input
-rlabel metal3 s 0 28432 800 28552 6 io_in[18]
+rlabel metal3 s 59200 29112 60000 29232 6 io_in[18]
 port 48 nsew signal input
-rlabel metal3 s 0 29928 800 30048 6 io_in[19]
+rlabel metal3 s 59200 30608 60000 30728 6 io_in[19]
 port 49 nsew signal input
-rlabel metal3 s 0 3000 800 3120 6 io_in[1]
+rlabel metal3 s 59200 3680 60000 3800 6 io_in[1]
 port 50 nsew signal input
-rlabel metal3 s 0 31424 800 31544 6 io_in[20]
+rlabel metal3 s 59200 32104 60000 32224 6 io_in[20]
 port 51 nsew signal input
-rlabel metal3 s 0 32920 800 33040 6 io_in[21]
+rlabel metal3 s 59200 33600 60000 33720 6 io_in[21]
 port 52 nsew signal input
-rlabel metal3 s 0 34416 800 34536 6 io_in[22]
+rlabel metal3 s 59200 35096 60000 35216 6 io_in[22]
 port 53 nsew signal input
-rlabel metal3 s 0 35912 800 36032 6 io_in[23]
+rlabel metal3 s 59200 36592 60000 36712 6 io_in[23]
 port 54 nsew signal input
-rlabel metal3 s 0 37408 800 37528 6 io_in[24]
+rlabel metal3 s 59200 38088 60000 38208 6 io_in[24]
 port 55 nsew signal input
-rlabel metal3 s 0 38904 800 39024 6 io_in[25]
+rlabel metal3 s 59200 39584 60000 39704 6 io_in[25]
 port 56 nsew signal input
-rlabel metal3 s 0 40400 800 40520 6 io_in[26]
+rlabel metal3 s 59200 41080 60000 41200 6 io_in[26]
 port 57 nsew signal input
-rlabel metal3 s 0 41896 800 42016 6 io_in[27]
+rlabel metal3 s 59200 42576 60000 42696 6 io_in[27]
 port 58 nsew signal input
-rlabel metal3 s 0 43392 800 43512 6 io_in[28]
+rlabel metal3 s 59200 44072 60000 44192 6 io_in[28]
 port 59 nsew signal input
-rlabel metal3 s 0 44888 800 45008 6 io_in[29]
+rlabel metal3 s 59200 45568 60000 45688 6 io_in[29]
 port 60 nsew signal input
-rlabel metal3 s 0 4496 800 4616 6 io_in[2]
+rlabel metal3 s 59200 5176 60000 5296 6 io_in[2]
 port 61 nsew signal input
-rlabel metal3 s 0 46384 800 46504 6 io_in[30]
+rlabel metal3 s 59200 47064 60000 47184 6 io_in[30]
 port 62 nsew signal input
-rlabel metal3 s 0 47880 800 48000 6 io_in[31]
+rlabel metal3 s 59200 48560 60000 48680 6 io_in[31]
 port 63 nsew signal input
-rlabel metal3 s 0 49376 800 49496 6 io_in[32]
+rlabel metal3 s 59200 50056 60000 50176 6 io_in[32]
 port 64 nsew signal input
-rlabel metal3 s 0 50872 800 50992 6 io_in[33]
+rlabel metal3 s 59200 51552 60000 51672 6 io_in[33]
 port 65 nsew signal input
-rlabel metal3 s 0 52368 800 52488 6 io_in[34]
+rlabel metal3 s 59200 53048 60000 53168 6 io_in[34]
 port 66 nsew signal input
-rlabel metal3 s 0 53864 800 53984 6 io_in[35]
+rlabel metal3 s 59200 54544 60000 54664 6 io_in[35]
 port 67 nsew signal input
-rlabel metal3 s 0 55360 800 55480 6 io_in[36]
+rlabel metal3 s 59200 56040 60000 56160 6 io_in[36]
 port 68 nsew signal input
-rlabel metal3 s 0 56856 800 56976 6 io_in[37]
+rlabel metal3 s 59200 57536 60000 57656 6 io_in[37]
 port 69 nsew signal input
-rlabel metal3 s 0 5992 800 6112 6 io_in[3]
+rlabel metal3 s 59200 6672 60000 6792 6 io_in[3]
 port 70 nsew signal input
-rlabel metal3 s 0 7488 800 7608 6 io_in[4]
+rlabel metal3 s 59200 8168 60000 8288 6 io_in[4]
 port 71 nsew signal input
-rlabel metal3 s 0 8984 800 9104 6 io_in[5]
+rlabel metal3 s 59200 9664 60000 9784 6 io_in[5]
 port 72 nsew signal input
-rlabel metal3 s 0 10480 800 10600 6 io_in[6]
+rlabel metal3 s 59200 11160 60000 11280 6 io_in[6]
 port 73 nsew signal input
-rlabel metal3 s 0 11976 800 12096 6 io_in[7]
+rlabel metal3 s 59200 12656 60000 12776 6 io_in[7]
 port 74 nsew signal input
-rlabel metal3 s 0 13472 800 13592 6 io_in[8]
+rlabel metal3 s 59200 14152 60000 14272 6 io_in[8]
 port 75 nsew signal input
-rlabel metal3 s 0 14968 800 15088 6 io_in[9]
+rlabel metal3 s 59200 15648 60000 15768 6 io_in[9]
 port 76 nsew signal input
 rlabel metal2 s 50894 0 50950 800 6 io_oeb[0]
 port 77 nsew signal output
@@ -1086,81 +1089,81 @@ rlabel metal2 s 51630 0 51686 800 6 io_oeb[8]
 port 113 nsew signal output
 rlabel metal2 s 51722 0 51778 800 6 io_oeb[9]
 port 114 nsew signal output
-rlabel metal3 s 59200 2184 60000 2304 6 io_out[0]
+rlabel metal3 s 0 1504 800 1624 6 io_out[0]
 port 115 nsew signal output
-rlabel metal3 s 59200 17144 60000 17264 6 io_out[10]
+rlabel metal3 s 0 16464 800 16584 6 io_out[10]
 port 116 nsew signal output
-rlabel metal3 s 59200 18640 60000 18760 6 io_out[11]
+rlabel metal3 s 0 17960 800 18080 6 io_out[11]
 port 117 nsew signal output
-rlabel metal3 s 59200 20136 60000 20256 6 io_out[12]
+rlabel metal3 s 0 19456 800 19576 6 io_out[12]
 port 118 nsew signal output
-rlabel metal3 s 59200 21632 60000 21752 6 io_out[13]
+rlabel metal3 s 0 20952 800 21072 6 io_out[13]
 port 119 nsew signal output
-rlabel metal3 s 59200 23128 60000 23248 6 io_out[14]
+rlabel metal3 s 0 22448 800 22568 6 io_out[14]
 port 120 nsew signal output
-rlabel metal3 s 59200 24624 60000 24744 6 io_out[15]
+rlabel metal3 s 0 23944 800 24064 6 io_out[15]
 port 121 nsew signal output
-rlabel metal3 s 59200 26120 60000 26240 6 io_out[16]
+rlabel metal3 s 0 25440 800 25560 6 io_out[16]
 port 122 nsew signal output
-rlabel metal3 s 59200 27616 60000 27736 6 io_out[17]
+rlabel metal3 s 0 26936 800 27056 6 io_out[17]
 port 123 nsew signal output
-rlabel metal3 s 59200 29112 60000 29232 6 io_out[18]
+rlabel metal3 s 0 28432 800 28552 6 io_out[18]
 port 124 nsew signal output
-rlabel metal3 s 59200 30608 60000 30728 6 io_out[19]
+rlabel metal3 s 0 29928 800 30048 6 io_out[19]
 port 125 nsew signal output
-rlabel metal3 s 59200 3680 60000 3800 6 io_out[1]
+rlabel metal3 s 0 3000 800 3120 6 io_out[1]
 port 126 nsew signal output
-rlabel metal3 s 59200 32104 60000 32224 6 io_out[20]
+rlabel metal3 s 0 31424 800 31544 6 io_out[20]
 port 127 nsew signal output
-rlabel metal3 s 59200 33600 60000 33720 6 io_out[21]
+rlabel metal3 s 0 32920 800 33040 6 io_out[21]
 port 128 nsew signal output
-rlabel metal3 s 59200 35096 60000 35216 6 io_out[22]
+rlabel metal3 s 0 34416 800 34536 6 io_out[22]
 port 129 nsew signal output
-rlabel metal3 s 59200 36592 60000 36712 6 io_out[23]
+rlabel metal3 s 0 35912 800 36032 6 io_out[23]
 port 130 nsew signal output
-rlabel metal3 s 59200 38088 60000 38208 6 io_out[24]
+rlabel metal3 s 0 37408 800 37528 6 io_out[24]
 port 131 nsew signal output
-rlabel metal3 s 59200 39584 60000 39704 6 io_out[25]
+rlabel metal3 s 0 38904 800 39024 6 io_out[25]
 port 132 nsew signal output
-rlabel metal3 s 59200 41080 60000 41200 6 io_out[26]
+rlabel metal3 s 0 40400 800 40520 6 io_out[26]
 port 133 nsew signal output
-rlabel metal3 s 59200 42576 60000 42696 6 io_out[27]
+rlabel metal3 s 0 41896 800 42016 6 io_out[27]
 port 134 nsew signal output
-rlabel metal3 s 59200 44072 60000 44192 6 io_out[28]
+rlabel metal3 s 0 43392 800 43512 6 io_out[28]
 port 135 nsew signal output
-rlabel metal3 s 59200 45568 60000 45688 6 io_out[29]
+rlabel metal3 s 0 44888 800 45008 6 io_out[29]
 port 136 nsew signal output
-rlabel metal3 s 59200 5176 60000 5296 6 io_out[2]
+rlabel metal3 s 0 4496 800 4616 6 io_out[2]
 port 137 nsew signal output
-rlabel metal3 s 59200 47064 60000 47184 6 io_out[30]
+rlabel metal3 s 0 46384 800 46504 6 io_out[30]
 port 138 nsew signal output
-rlabel metal3 s 59200 48560 60000 48680 6 io_out[31]
+rlabel metal3 s 0 47880 800 48000 6 io_out[31]
 port 139 nsew signal output
-rlabel metal3 s 59200 50056 60000 50176 6 io_out[32]
+rlabel metal3 s 0 49376 800 49496 6 io_out[32]
 port 140 nsew signal output
-rlabel metal3 s 59200 51552 60000 51672 6 io_out[33]
+rlabel metal3 s 0 50872 800 50992 6 io_out[33]
 port 141 nsew signal output
-rlabel metal3 s 59200 53048 60000 53168 6 io_out[34]
+rlabel metal3 s 0 52368 800 52488 6 io_out[34]
 port 142 nsew signal output
-rlabel metal3 s 59200 54544 60000 54664 6 io_out[35]
+rlabel metal3 s 0 53864 800 53984 6 io_out[35]
 port 143 nsew signal output
-rlabel metal3 s 59200 56040 60000 56160 6 io_out[36]
+rlabel metal3 s 0 55360 800 55480 6 io_out[36]
 port 144 nsew signal output
-rlabel metal3 s 59200 57536 60000 57656 6 io_out[37]
+rlabel metal3 s 0 56856 800 56976 6 io_out[37]
 port 145 nsew signal output
-rlabel metal3 s 59200 6672 60000 6792 6 io_out[3]
+rlabel metal3 s 0 5992 800 6112 6 io_out[3]
 port 146 nsew signal output
-rlabel metal3 s 59200 8168 60000 8288 6 io_out[4]
+rlabel metal3 s 0 7488 800 7608 6 io_out[4]
 port 147 nsew signal output
-rlabel metal3 s 59200 9664 60000 9784 6 io_out[5]
+rlabel metal3 s 0 8984 800 9104 6 io_out[5]
 port 148 nsew signal output
-rlabel metal3 s 59200 11160 60000 11280 6 io_out[6]
+rlabel metal3 s 0 10480 800 10600 6 io_out[6]
 port 149 nsew signal output
-rlabel metal3 s 59200 12656 60000 12776 6 io_out[7]
+rlabel metal3 s 0 11976 800 12096 6 io_out[7]
 port 150 nsew signal output
-rlabel metal3 s 59200 14152 60000 14272 6 io_out[8]
+rlabel metal3 s 0 13472 800 13592 6 io_out[8]
 port 151 nsew signal output
-rlabel metal3 s 59200 15648 60000 15768 6 io_out[9]
+rlabel metal3 s 0 14968 800 15088 6 io_out[9]
 port 152 nsew signal output
 rlabel metal2 s 50618 0 50674 800 6 irq[0]
 port 153 nsew signal output
@@ -2160,8 +2163,8 @@ port 647 nsew signal input
 string FIXED_BBOX 0 0 60000 60000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 8008082
-string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_14_13_07/results/signoff/rlbp_macro.magic.gds
-string GDS_START 559886
+string GDS_END 7253576
+string GDS_FILE /home/mxmont/Documents/Universidad/IC-UBB/MixPix/CARAVEL_WRAPPER/MixPix/openlane/rlbp/runs/22_11_14_23_44/results/signoff/rlbp_macro.magic.gds
+string GDS_START 553884
 << end >>
 
