@@ -53,7 +53,7 @@ module rlbp_macro #(
 
 // ------------------- Design Specific Ports ----------------- //
 
-    input CMP,
+    input CMP,          //CMP PIN Sl TO THIS
     output Vd1,
     output Vd2,
     output Sw1,
@@ -78,7 +78,7 @@ module rlbp_macro #(
     //one hot encode (active high) 
     output OTA_out_c,
     output SH_out_c,
-    output CMP_out_c,
+    output CMP_out_c,  
     output OTA_sh_c,
     output Vref_cmp_c,
 
@@ -220,12 +220,15 @@ module rlbp_macro #(
     wire wire_ext_clk; 
     wire wire_ext_start; 
     wire wire_ext_reset; 
+    wire cmp_tmp;
 
     assign wire_ext_clk = io_in[15];
     assign wire_ext_start = io_in[16];
     assign wire_ext_reset = io_in[17];
-    
-    assign io_out[18] = CMP; 
+    assign cmp_tmp = CMP;
+
+
+
     assign io_out[19] = start;
     assign io_out[20] = rst;
     assign io_out[21] = clk;
@@ -239,8 +242,8 @@ module rlbp_macro #(
     assign io_out[28] = sr[5];
     assign io_out[29] = sr[6];
     assign io_out[30] = sr[7];
-    assign io_out[31] = clr;
-
+    assign io_out[31] = clr;        
+    assign io_out[32] = cmp_tmp; 
      
 // ---------------- Module specific ports interconections ------------------//
 
@@ -300,7 +303,7 @@ module rlbp_macro #(
     //one hot encode (active high) 
     assign OTA_out_c = ota_out_c;   
     assign SH_out_c = sh_out_c;
-    assign CMP_out_c = cmp_out_c;
+    assign CMP_out_c = cmp_valid;
     assign OTA_sh_c = ota_sh_c;
     assign Vref_cmp_c = vref_cmp_c;
 

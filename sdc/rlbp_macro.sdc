@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Tue Nov 15 02:45:26 2022
+# Fri Nov 25 18:35:02 2022
 ###############################################################################
 current_design rlbp_macro
 ###############################################################################
@@ -377,6 +377,7 @@ set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs_sel_i[3]}]
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs_stb_i}]
 set_input_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wbs_we_i}]
+set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {CLR}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {CMP_out_c}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {OTA_out_c}]
 set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {OTA_sh_c}]
@@ -657,6 +658,7 @@ set_output_delay 2.0000 -clock [get_clocks {wb_clk_i}] -add_delay [get_ports {wb
 ###############################################################################
 # Environment
 ###############################################################################
+set_load -pin_load 0.0334 [get_ports {CLR}]
 set_load -pin_load 0.0334 [get_ports {CMP_out_c}]
 set_load -pin_load 0.0334 [get_ports {OTA_out_c}]
 set_load -pin_load 0.0334 [get_ports {OTA_sh_c}]

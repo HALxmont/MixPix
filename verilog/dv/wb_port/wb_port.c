@@ -126,6 +126,7 @@ void main()
     uint8_t TIME_DOWN_7 = 13;
     uint8_t COUNT_RST = 14;
     uint8_t TIME_CMP = 15;
+    uint8_t SR = 16;
 
 
 

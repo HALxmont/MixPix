@@ -53,7 +53,6 @@ module user_project_wrapper (user_clock2,
  output [31:0] wbs_dat_o;
  input [3:0] wbs_sel_i;
 
- wire cmp;
  wire cmp_out_c;
  wire ota_out_c;
  wire ota_sh_c;
@@ -118,7 +117,8 @@ module user_project_wrapper (user_clock2,
     .PD12(pd12),
     .VSS(vssa1),
     .VDD(vdda2));
- rlbp_macro rlbp_macro0 (.CMP(cmp),
+ rlbp_macro rlbp_macro0 (.CLR(io_out[31]),
+    .CMP(io_out[11]),
     .CMP_out_c(cmp_out_c),
     .OTA_out_c(ota_out_c),
     .OTA_sh_c(ota_sh_c),
@@ -765,7 +765,7 @@ module user_project_wrapper (user_clock2,
     wbs_sel_i[2],
     wbs_sel_i[1],
     wbs_sel_i[0]}));
- SystemLevel sl_macro0 (.Aout(analog_io[26]),
+ SystemLevel sl_macro0 (.Aout(analog_io[10]),
     .VDD(vdda1),
     .VSS(vssa1),
     .PD1(pd1),
@@ -818,5 +818,5 @@ module user_project_wrapper (user_clock2,
     .pd12_a(pd12_a),
     .pd12_b(pd12_b),
     .Vref_sel_c(vref_sel_c),
-    .CMP(cmp));
+    .CMP(io_out[11]));
 endmodule

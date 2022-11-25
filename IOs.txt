@@ -5,16 +5,10 @@ assign wire_ext_start = io_in[16];
 assign wire_ext_reset = io_in[17];
 
 
-
-
-
-
 //aps
 .RST(io_in[7]),
 .IP(analog_io[0]),
 .OUT(analog_io[1])
-
-
 
 //muller
 
@@ -23,12 +17,14 @@ assign wire_ext_reset = io_in[17];
 .C(io_in[6]),
 
 
-
-
-
 // ------ OUTS
 
 //rlbp macro
+
+assign io_out[32] = cmp_tmp;
+
+io_out[31] = clr;
+ 
 assign io_out[30] = sr[7]; 
 assign io_out[29] = sr[6];
 assign io_out[28] = sr[5];
@@ -45,8 +41,11 @@ assign io_out[20] = rst;
 assign io_out[19] = start;
 
 
+
 //system level
-.CMP(io_in[18])
+.CMP_out_c(io_out[10])
+.Aout(analog_io[2])
+
 
 //muler
 .OUT(io_out[5])
