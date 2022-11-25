@@ -73,6 +73,7 @@ module rlbp_macro #(
     output Pd10_a, Pd10_b,
     output Pd11_a, Pd11_b,
     output Pd12_a, Pd12_b,
+    output CLR,
 
     //one hot encode (active high) 
     output OTA_out_c,
@@ -190,6 +191,8 @@ module rlbp_macro #(
     reg [11:0] time_down_sh_cmp; 
     reg [11:0] time_cmp;
 
+    reg [7:0] sr;
+
 
 
     // WB REGS ADDRs values 
@@ -209,6 +212,9 @@ module rlbp_macro #(
     localparam TIME_DOWN_7 = 52;
     localparam COUNT_RST = 56;
     localparam TIME_CMP = 60;
+    localparam SR = 64;
+
+
 
 // ------------------- assigns to IOs pins ------------------------------- //
     wire wire_ext_clk; 
@@ -233,6 +239,7 @@ module rlbp_macro #(
     assign io_out[28] = sr[5];
     assign io_out[29] = sr[6];
     assign io_out[30] = sr[7];
+    assign io_out[31] = clr;
 
      
 // ---------------- Module specific ports interconections ------------------//
@@ -244,6 +251,7 @@ module rlbp_macro #(
     wire wire_sh; 
     wire wire_sh_cmp; 
     wire wire_sh_reset; 
+
    //to control TGates (one hot encode, ACTIVE HIGH)
     wire ota_out_c;  
     wire sh_out_c;
@@ -259,6 +267,7 @@ module rlbp_macro #(
     assign Sh = wire_sh;
     assign Sh_cmp = wire_sh_cmp;
     assign Sh_rst = wire_sh_reset;
+
     //transistors siganls
     assign Pd1_a = pd1_a;
     assign Pd1_b = pd1_b;
@@ -284,6 +293,9 @@ module rlbp_macro #(
     assign Pd11_b = pd11_b;
     assign Pd12_a = pd12_a;
     assign Pd12_b = pd12_b;
+
+    //clear out
+    assign CLR = clr; 
 
     //one hot encode (active high) 
     assign OTA_out_c = ota_out_c;   
@@ -375,7 +387,7 @@ reg ext_clk_temp, ext_reset_temp, ext_start_temp;
     assign cmp_valid = (cnt == time_cmp) ? 1 : 0;
     
     //RLBP OUTS
-    reg [7:0] sr;
+    
     always @(posedge clk) begin
         if (rst)
             sr <= 0;
@@ -412,6 +424,7 @@ always@(posedge clk) begin
             time_counter_reset <= 0; 
             reg_count <= 0;  //Counter
             time_cmp <= 0;
+            sr <= 0;
 
 		end
 
@@ -520,6 +533,11 @@ always@(posedge clk) begin
                             time_cmp <= wdata[11:0];
                     end
 
+                    SR: begin
+                        rdata <= sr;
+                        if(wstrb[0])
+                            sr <= wdata[7:0];
+                    end
 
                     default: ;
 
