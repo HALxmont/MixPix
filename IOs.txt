@@ -44,7 +44,7 @@ assign io_out[19] = start;
 
 //system level
 .CMP_out_c(io_out[10])
-.Aout(analog_io[2])
+.Aout(analog_io[3])
 
 
 //muler

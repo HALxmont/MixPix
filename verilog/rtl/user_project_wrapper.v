@@ -118,7 +118,7 @@ wire pd12;
 wire cmp;
 
 //CMP input (RLBP MACRO)
-assign io_out[11] = cmp;   
+//assign io_out[11] = cmp;   
 
 //to control TGates (one hot encode, ACTIVE HIGH)
 wire ota_out_c;
@@ -202,7 +202,6 @@ rlbp_macro rlbp_macro0 (
     .Pd11_b(pd11_b),
     .Pd12_a(pd12_a), 
     .Pd12_b(pd12_b),
-    .CLR(io_out[31]),
 
     .OTA_out_c(ota_out_c),
     .SH_out_c(sh_out_c),
@@ -210,7 +209,7 @@ rlbp_macro rlbp_macro0 (
     .OTA_sh_c(ota_sh_c),
     .Vref_cmp_c(vref_cmp_c),
     .Vref_sel_c(vref_sel_c),
-    .CMP(cmp)                      //in
+    .CMP(cmp)                      //in digital macro
 
 );
 
@@ -274,8 +273,8 @@ SystemLevel sl_macro0(
     .PD10(pd10),
     .PD11(pd11),
     .PD12(pd12),
-    .CMP(io_out[11]),       //out
-    .Aout(analog_io[10])
+    .CMP(cmp),       //out analog macro
+    .Aout(analog_io[3])
 );
 
 
