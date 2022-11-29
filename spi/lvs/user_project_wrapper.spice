@@ -12,6 +12,10 @@
 + CMP
 .ends
 
+* Black-box entry subcircuit for APS abstract view
+.subckt APS VDD VSS RST OUT IP
+.ends
+
 * Black-box entry subcircuit for rlbp_macro abstract view
 .subckt rlbp_macro CLR CMP CMP_out_c OTA_out_c OTA_sh_c Pd10_a Pd10_b Pd11_a Pd11_b
 + Pd12_a Pd12_b Pd1_a Pd1_b Pd2_a Pd2_b Pd3_a Pd3_b Pd4_a Pd4_b Pd5_a Pd5_b Pd6_a
@@ -228,6 +232,7 @@ Xsl_macro0 analog_io[3] vdda1 vssa1 sl_macro0/PD1 sl_macro0/pd1_a sl_macro0/pd1_
 + sl_macro0/pd9_a sl_macro0/pd9_b sl_macro0/PD10 sl_macro0/pd10_a sl_macro0/pd10_b
 + sl_macro0/PD11 sl_macro0/pd11_a sl_macro0/pd11_b sl_macro0/PD12 sl_macro0/pd12_a
 + sl_macro0/pd12_b sl_macro0/Vref_sel_c sl_macro0/CMP SystemLevel
+XAPS_macro0 vdda2 vssa1 io_in[7] analog_io[1] analog_io[0] APS
 Xrlbp_macro0 rlbp_macro0/CLR sl_macro0/CMP sl_macro0/CMP_out_c sl_macro0/OTA_out_c
 + sl_macro0/OTA_sh_c sl_macro0/pd10_a sl_macro0/pd10_b sl_macro0/pd11_a sl_macro0/pd11_b
 + sl_macro0/pd12_a sl_macro0/pd12_b sl_macro0/pd1_a sl_macro0/pd1_b sl_macro0/pd2_a

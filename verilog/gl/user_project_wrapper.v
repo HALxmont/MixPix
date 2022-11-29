@@ -104,6 +104,11 @@ module user_project_wrapper (user_clock2,
  wire vref_cmp_c;
  wire vref_sel_c;
 
+ APS APS_macro0 (.VDD(vdda2),
+    .VSS(vssa1),
+    .RST(io_in[7]),
+    .OUT(analog_io[1]),
+    .IP(analog_io[0]));
  PD_M1_M2 PD_M1_M2_macro0 (.PD1(pd1),
     .PD2(pd2),
     .PD3(pd3),

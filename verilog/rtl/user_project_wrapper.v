@@ -302,18 +302,17 @@ PD_M1_M2 PD_M1_M2_macro0 (
 );
 
 
-// APS APS_macro0 (
+APS APS_macro0 (
 
-// `ifdef USE_POWER_PINS
-//     .VDD(vdda2),   
-//     .VSS(vssa1),
-// `endif
+`ifdef USE_POWER_PINS
+    .VDD(vdda2),   
+    .VSS(vssa1),
+`endif
 
-// .RST(io_in[7]),
-// .IP(analog_io[0]),
-// .OUT(analog_io[1])
-
-// );
+.RST(io_in[7]),
+.IP(analog_io[0]),
+.OUT(analog_io[1])
+);
 
 
 
