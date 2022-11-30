@@ -134,7 +134,6 @@ void main()
     /* Testbench start condition starts the simulation*/
 	reg_mprj_datal = 0xAB600000;
 
-
 //  ################## FRIMAWRE TEST START ########################//
 
 //wirte values to LA probes [0:31]
@@ -152,10 +151,10 @@ void main()
 
 
 // Introducing data using WB inetrface
-    // to_wb[TIME_DOWN_1] = 775;
-    // to_wb[TIME_UP_1] = 776; 
-    // to_wb[TIME_UP_2] = 333;
-    // to_wb[TIME_DOWN_2] = 444;
+     to_wb[TIME_DOWN_1] = 775;
+     to_wb[TIME_UP_1] = 776; 
+     to_wb[TIME_UP_2] = 333;
+     to_wb[TIME_DOWN_2] = 444;
 
 //  ################## FRIMAWRE TEST END ########################//
 
